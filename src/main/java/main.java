@@ -1,6 +1,4 @@
-package com.example.demo;
-
-public class mainEFICAZ {
+public class main {
     public static void main(String[] args) {
         System.out.println("Hello Members");
     }
