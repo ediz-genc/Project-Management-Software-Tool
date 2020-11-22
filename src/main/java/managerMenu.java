@@ -33,7 +33,7 @@ public class managerMenu {
         String weeks = printOutput.readLine("The amount of weeks project will take: ");
 
         int convertedWeeks = Integer.parseInt(weeks);
-        createProject CreateProject = new createProject(projectName,convertedWeeks);
+        createProject newProject = new createProject(projectName,convertedWeeks);
 
 
 
