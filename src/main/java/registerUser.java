@@ -2,7 +2,7 @@
 
 public class registerUser {
     static InputClass printOutput = new InputClass();
-    static userList UserList = userList.getInstance();
+    static users UserList = users.getInstance();
 
 
     public static void selectPosition(int type){
@@ -32,11 +32,11 @@ public class registerUser {
         tempList[j] = position;
         printOutput.printLine("Position: " + tempList[j]);
         j++;
-        tempList[j] = printOutput.readLine1("Username: ");
+        tempList[j] = printOutput.readLine("Username: ");
         j++;
-        tempList[j] = printOutput.readLine1("Name: ");
+        tempList[j] = printOutput.readLine("Name: ");
         j++;
-        tempList[j] = printOutput.readLine1("Password: ");
+        tempList[j] = printOutput.readLine("Password: ");
         j=0;
         //printOutput.readLine("Enter same Password again: ");
 

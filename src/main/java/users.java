@@ -1,18 +1,18 @@
 
 
-public class userList {
+public class users {
 
     private final String[][] userList;
-    private static volatile userList exclusiveUserList = new userList();
+    private static volatile users exclusiveUserList = new users();
 
 
-    public userList() {
+    public users() {
 
         this.userList = new String[10000][4];
     }
-    public static userList getInstance(){
+    public static users getInstance(){
         if(exclusiveUserList == null){
-            exclusiveUserList = new userList();
+            exclusiveUserList = new users();
         }
         return exclusiveUserList;
     }

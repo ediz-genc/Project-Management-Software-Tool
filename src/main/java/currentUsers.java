@@ -3,7 +3,7 @@
 public class currentUsers {
 
     static InputClass printOutput = new InputClass();
-    static userList uList = userList.getInstance();
+    static users uList = users.getInstance();
     static String tempU; int tempPosition;
 
     public static void currUserMenu(String userName){

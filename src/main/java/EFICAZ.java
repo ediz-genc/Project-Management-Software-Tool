@@ -5,7 +5,7 @@ public class EFICAZ {
     static InputClass printOutput = new InputClass();
     static registerUser rU = new registerUser();
     static currentUsers tU = new currentUsers();
-    static userList us = userList.getInstance();
+    static users us = users.getInstance();
 
     public static void main(String[] args) {
 
@@ -21,8 +21,8 @@ public class EFICAZ {
 
             switch (choices) {
                 case "1":
-                    String userName = printOutput.readLine1("Username: ");
-                    String passWord = printOutput.readLine1("Password: ");
+                    String userName = printOutput.readLine("Username: ");
+                    String passWord = printOutput.readLine("Password: ");
                     boolean credCheck = us.passwordCheck(userName, passWord);
 
                     if (credCheck==true){
