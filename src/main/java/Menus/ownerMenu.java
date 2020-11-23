@@ -4,6 +4,7 @@ import Tools.randomID;
 import Tools.InputClass;
 import Projects.createProject;
 import Users.addedMembers;
+import Projects.allProjects;
 
 
 
@@ -11,6 +12,7 @@ public class ownerMenu {
 
     static InputClass printOutput = new InputClass();
     static addedMembers addedmember = addedMembers.getInstance();
+    static allProjects allprojects = allProjects.getInstance();
 
 
    public void menu(){
@@ -45,15 +47,16 @@ public class ownerMenu {
         printOutput.printLine("\nThe coming questions are just your own projected estimated project details. " +
                 "\nThey can be changed moving forward");
 
-        int milestones = printOutput.readInt("What's the estimated milestones of the project? ");
+        int milestones = printOutput.readInt("What's the estimated number of milestones in the project? ");
         int tasks = printOutput.readInt("How many inclusive task will each milestone have in average? ");
 
         String tempUser = addedmember.getActiveUser();
         String key = addedmember.getUserKey(tempUser);
-
         int projectOwnerKey = Integer.parseInt(key);
 
+
         createProject newProject = new createProject(projectName,weeks, milestones, tasks,projectOwnerKey);
+        allprojects.addProject(newProject);
 
 
 

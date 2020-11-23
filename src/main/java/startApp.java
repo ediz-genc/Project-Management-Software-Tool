@@ -19,7 +19,6 @@ public class startApp {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
-    private String activeUser;
 
 
     public void run() {
@@ -45,7 +44,7 @@ public class startApp {
                     levelCheck = addedmembers.findMember(userName, passWord);
                     if (levelCheck > 0) {
                         printOutput.printLine("Welcome!");
-                        setActiveUser(userName);
+                        addedmembers.setActiveUser(userName);
                         menuDirectory(levelCheck);
                     } else {
                         printOutput.printLine("Invalid login information");
@@ -101,8 +100,6 @@ public class startApp {
 
     }
 
-    public void setActiveUser(String userName){this.activeUser=userName;}
 
-    public String getActiveUser(){return activeUser;}
 }
 
