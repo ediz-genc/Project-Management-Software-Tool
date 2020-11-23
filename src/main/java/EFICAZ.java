@@ -4,7 +4,17 @@ public class EFICAZ {
 
 
     static InputClass printOutput = new InputClass();
+
     static addedMembers addedmembers = addedMembers.getInstance();
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void main(String[] args) {
 
@@ -12,10 +22,12 @@ public class EFICAZ {
         String choices1;
 
 
-        while(!choices.equals("4")){
-            System.out.println("\n\nWelcome to EFICAZ! The one and only Project Management Tool right now.\n");
 
-            choices = printOutput.readLine("Insert a number between 1-3 and then hit `Enter´:\n\n1. Login\n2. New User? Register now!\n3. Exit program\n\n");
+        while(!choices.equals("4")){
+            System.out.println(ANSI_WHITE + "\n\nWelcome to EFICAZ! The one and only Project Management Tool right now.\n" + ANSI_RESET);
+
+
+            choices = printOutput.readLine(ANSI_CYAN + "Insert a number between 1-3 and then hit `Enter´:\n\n1. Login\n2. New User? Register now!\n3. Exit program\n\n"  + ANSI_RESET);
             int levelCheck;
 
             switch (choices) {
