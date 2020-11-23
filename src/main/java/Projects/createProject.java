@@ -2,8 +2,11 @@ package Projects;
 
 import java.util.ArrayList;
 import java.util.List;
+import Tools.randomID;
 
 public class createProject {
+
+    static randomID randID = new randomID();
 
     private String projectName;
     private int weeks;
@@ -15,6 +18,7 @@ public class createProject {
         this.projectName=projectName;
         this.weeks=weeks;
         this.projectMilestones = new String[milestones][task];
+        this.projectKey=randID.getRandom();
     }
 
     public String getProjectName() {
