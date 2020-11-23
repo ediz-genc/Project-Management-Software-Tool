@@ -4,12 +4,32 @@ public class createProject {
 
     private String projectName;
     private int weeks;
-   // private String[][] tasks;
+    private String[][] projectMilestones;
+    private int[] memberKey;
 
-    public createProject(String projectName, int weeks){
+    public createProject(String projectName, int weeks, int milestones, int task){
         this.projectName=projectName;
         this.weeks=weeks;
-       // this.tasks=task;
+        this.projectMilestones = new String[milestones][task];
     }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public int getWeeks() {
+        return weeks;
+    }
+
+    public String[][] getProjectMilestones() {
+        return projectMilestones;
+    }
+
+    public void addMemberKey(int key){
+
+
+
+    }
+
 
 }
