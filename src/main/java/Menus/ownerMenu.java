@@ -3,12 +3,14 @@ package Menus;
 import Tools.randomID;
 import Tools.InputClass;
 import Projects.createProject;
+import Users.addedMembers;
 
 
 
 public class ownerMenu {
 
     static InputClass printOutput = new InputClass();
+    static addedMembers addedmember = addedMembers.getInstance();
 
 
    public void menu(){
@@ -46,10 +48,12 @@ public class ownerMenu {
         int milestones = printOutput.readInt("What's the estimated milestones of the project? ");
         int tasks = printOutput.readInt("How many inclusive task will each milestone have in average? ");
 
+        String tempUser = addedmember.getActiveUser();
+        String key = addedmember.getUserKey(tempUser);
 
+        int projectOwnerKey = Integer.parseInt(key);
 
-
-        createProject newProject = new createProject(projectName,weeks, milestones, tasks);
+        createProject newProject = new createProject(projectName,weeks, milestones, tasks,projectOwnerKey);
 
 
 
