@@ -1,3 +1,5 @@
+package Tools;
+
 import java.util.Scanner;
 public class InputClass {
 
@@ -27,9 +29,7 @@ public class InputClass {
             System.out.println(A);
             output = input.nextInt();
             if(!(output >=0)){
-                 throw new Exception();
-            }
-
+                 throw new Exception(); }
         } catch (Exception e) {
             System.out.println(message);
             readInt(A);

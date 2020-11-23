@@ -1,3 +1,7 @@
+package Users;
+
+import Tools.randomID;
+
 public class createMember {
 
     randomID randID = new randomID();
@@ -29,5 +33,9 @@ public class createMember {
 
     public int getLevel() {
         return level;
+    }
+
+    public int getMemberKey() {
+        return memberKey;
     }
 }

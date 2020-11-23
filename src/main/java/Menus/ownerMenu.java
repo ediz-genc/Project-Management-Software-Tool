@@ -1,9 +1,17 @@
+package Menus;
+
+import Tools.randomID;
+import Tools.InputClass;
+import Projects.createProject;
+
+
+
 public class ownerMenu {
 
     static InputClass printOutput = new InputClass();
 
 
-    void menu(){
+   public void menu(){
 
         printOutput.printLine("Welcome!\n\n Here you can start on a new project or open existing ones.\n" +
                 "Choose a option below.\n");

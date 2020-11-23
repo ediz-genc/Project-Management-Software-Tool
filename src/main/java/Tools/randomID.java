@@ -1,9 +1,8 @@
+package Tools;
+
 import java.util.Random;
 
-
-
-
-    public class randomID {
+        public class randomID {
 
         private static volatile randomID randID = new randomID();
 
@@ -11,6 +10,7 @@ import java.util.Random;
         private int min = 1001;
         private int max = 9999;
         private int number;
+        private final int row = 50; private final int colum = 2;
 
 
         public static randomID getInstance() {
@@ -21,7 +21,7 @@ import java.util.Random;
         }
 
         public void generate(){
-            ID = new int[500][2];
+            ID = new int[row][colum];
 
             for(int i =0;i<ID.length;i++){
                 ID[i][0] = new Random().nextInt((max-min) + 1) + min;
