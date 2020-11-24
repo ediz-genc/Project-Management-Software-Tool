@@ -17,25 +17,31 @@ public class ownerMenu {
 
    public void menu(){
 
-        printOutput.printLine("Welcome!\n\n Here you can start on a new project or open existing ones.\n" +
-                "Choose a option below.\n");
-        String option = printOutput.readLine("1. Open project\n2. Create new Project\n3. Delete/archive project\n");
-        int convertedOption = Integer.parseInt(option);
-        switch(convertedOption){
-            case 1:
-                newProject();
-                printOutput.printLine("to be continued...");
-                break;
-            case 2:
-                printOutput.printLine("to be continued...");
+       int option=0;
 
-                break;
-            case 3:
-                printOutput.printLine("to be continued...");
+       while(option!=4) {
 
-                break;
-        }
+           printOutput.printLine("Welcome!\n\n Here you can start on a new project or open existing ones.\n" +
+                   "Choose a option below.\n");
+           option = printOutput.readInt("1. Open project\n2. Create new Project\n3. Delete/archive project\n4. Return to main menu\n");
+           switch (option) {
+               case 1:
+                   newProject();
+                   printOutput.printLine("to be continued...");
+                   break;
+               case 2:
+                   printOutput.printLine("to be continued...");
 
+                   break;
+               case 3:
+                   printOutput.printLine("to be continued...");
+                   break;
+               case 4:
+                   return;
+               default:
+                   printOutput.printLine("Invalid input");
+           }
+       }
 
 
     }
@@ -57,6 +63,15 @@ public class ownerMenu {
 
         createProject newProject = new createProject(projectName,weeks, milestones, tasks,projectOwnerKey);
         allprojects.addProject(newProject);
+
+
+
+
+    }
+
+    void openProject(){
+
+
 
 
 
