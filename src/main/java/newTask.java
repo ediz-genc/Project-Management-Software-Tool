@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class newTask implements ActionListener {
 
     private static volatile newTask soloNewTask = new newTask();
-    static addedMembers AddedMembers = addedMembers.getInstance();
+    static Users.addedMembers AddedMembers = Users.addedMembers.getInstance();
     public final ArrayList<task> tasks = new ArrayList<>();
 
     JFrame frame;
@@ -91,9 +91,9 @@ public class newTask implements ActionListener {
     }
     public boolean findMember(String memberUsername){
         boolean assignTask = false;
-        ArrayList<createMember> allMembers = AddedMembers.getAllMembers();
+        ArrayList<Users.createMember> allMembers = AddedMembers.getAllMembers();
 
-        for (createMember allMember : allMembers) {
+        for (Users.createMember allMember : allMembers) {
             if (allMember.getUsername() != null && allMember.getUsername().equals(memberUsername)) {
                 assignTask = true;
                 break;
