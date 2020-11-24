@@ -26,10 +26,11 @@ public class ownerMenu {
            option = printOutput.readInt("1. Open project\n2. Create new Project\n3. Delete/archive project\n4. Return to main menu\n");
            switch (option) {
                case 1:
-                   newProject();
                    printOutput.printLine("to be continued...");
                    break;
                case 2:
+                   newProject();
+
                    printOutput.printLine("to be continued...");
 
                    break;

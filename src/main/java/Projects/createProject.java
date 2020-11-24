@@ -6,7 +6,7 @@ import Tools.randomID;
 
 public class createProject {
 
-    static randomID randID = new randomID();
+    randomID randID = randomID.getInstance();
 
     private String projectName;
     private int weeks;

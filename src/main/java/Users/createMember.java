@@ -4,7 +4,7 @@ import Tools.randomID;
 
 public class createMember {
 
-    randomID randID = new randomID();
+    randomID randID = randomID.getInstance();
 
     private String name;
     private String username;
