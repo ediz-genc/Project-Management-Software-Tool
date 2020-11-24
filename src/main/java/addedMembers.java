@@ -6,7 +6,7 @@ public class addedMembers {
     private ArrayList<createMember> allMembers = new ArrayList<createMember>();
 
 
-    private addedMembers() {
+    public addedMembers() {
     }
 
     public static addedMembers getInstance() {
@@ -21,6 +21,9 @@ public class addedMembers {
 
         allMembers.add((createMember) o);
 
+    }
+    public ArrayList<createMember> getAllMembers(){
+        return allMembers;
     }
 
     public int findMember(String username, String password) {

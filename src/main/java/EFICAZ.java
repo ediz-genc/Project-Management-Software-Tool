@@ -6,6 +6,9 @@ public class EFICAZ {
     static InputClass printOutput = new InputClass();
 
     static addedMembers addedmembers = addedMembers.getInstance();
+    static newTask newtask = newTask.getInstance();
+
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -83,7 +86,7 @@ public class EFICAZ {
 
                 break;
             case 2:
-
+                newtask.assignTask();
                 break;
             case 3:
 
