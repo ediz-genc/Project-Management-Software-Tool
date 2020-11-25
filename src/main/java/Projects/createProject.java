@@ -2,9 +2,12 @@ package Projects;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Menus.ownerMenu;
 import Tools.randomID;
 
 public class createProject {
+
 
     randomID randID = randomID.getInstance();
 
@@ -12,7 +15,9 @@ public class createProject {
     private int weeks;
     private String[][] projectMilestones;
     private ArrayList<Integer> memberKey;
-    private int projectKey; private int ownerKey;
+    private int projectKey;
+    private int ownerKey;
+
 
     public createProject(String projectName, int weeks, int milestones, int task,int ownerKey){
         this.projectName=projectName;

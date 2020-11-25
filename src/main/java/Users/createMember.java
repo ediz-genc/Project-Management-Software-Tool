@@ -1,6 +1,9 @@
 package Users;
 
+import Menus.ownerMenu;
 import Tools.randomID;
+
+import java.util.ArrayList;
 
 public class createMember {
 
@@ -18,6 +21,7 @@ public class createMember {
         this.password=password;
         this.level=level;
         this.memberKey = randID.getRandom();
+
     }
 
     public String getName() {

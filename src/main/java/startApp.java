@@ -87,9 +87,7 @@ public class startApp {
          switch (level) {
              case 1:
                  printOutput.printLine ("\nPlease wait...\n\nWelcome to the project owner menu");
-                 String teamMemberName = new String();
-                 String teamMemberRole = new String();
-                 ownerMenu oM = new ownerMenu(teamMemberName, teamMemberRole);
+                 ownerMenu oM = new ownerMenu();
                  oM.menu();
                  break;
 

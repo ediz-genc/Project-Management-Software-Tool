@@ -49,4 +49,4 @@ public class InputClass {
         return output;
     }
 
-    }
+}
