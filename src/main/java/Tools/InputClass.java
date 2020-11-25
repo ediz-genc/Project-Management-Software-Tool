@@ -1,5 +1,7 @@
 package Tools;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 public class InputClass {
 
@@ -8,7 +10,17 @@ public class InputClass {
 
         return A;
     }
+
+    public char readChar(String userMessage) {
+        Scanner input = new Scanner(System.in);
+        System.out.println(userMessage);
+        char charText = input.next().charAt(0);
+        charText = Character.toUpperCase(charText);
+        return charText;
+    }
+
     public String readLine(String A){
+
         Scanner input = new Scanner(System.in);
         String output = null;
 
@@ -33,11 +45,8 @@ public class InputClass {
         } catch (Exception e) {
             System.out.println(message);
             readInt(A);
-
         }
         return output;
-
-
     }
 
     }

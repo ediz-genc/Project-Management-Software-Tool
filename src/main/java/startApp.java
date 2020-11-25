@@ -9,6 +9,7 @@ public class startApp {
 
     static InputClass printOutput = new InputClass();
 
+
     static addedMembers addedmembers = addedMembers.getInstance();
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -21,7 +22,7 @@ public class startApp {
     public static final String ANSI_WHITE = "\u001B[37m";
 
 
-    public void run() {
+    public void run(){
 
         randomID randID = randomID.getInstance();
         randID.generate();
@@ -32,7 +33,6 @@ public class startApp {
 
         while (!choices.equals("4")) {
             System.out.println(ANSI_WHITE + "\n\nWelcome to EFICAZ! The one and only Project Management Tool right now.\n" + ANSI_RESET);
-
 
             choices = printOutput.readLine(ANSI_CYAN + "Insert a number between 1-3 and then hit `Enter´:\n\n1. Login\n2. New User? Register now!\n3. Exit program\n\n" + ANSI_RESET);
             int levelCheck;
@@ -47,13 +47,13 @@ public class startApp {
                         addedmembers.setActiveUser(userName);
                         menuDirectory(levelCheck);
                     } else {
-                        printOutput.printLine("Invalid login information");
+                        printOutput.printLine("Invalid login information. Please try again!");
                     }
 
                     break;
                 case "2":
                     newUser();
-                    printOutput.printLine("Your account was succesfully added");
+                    printOutput.printLine("Your account was successfully added");
                     break;
                 case "3": {
                     printOutput.printLine("\nThank you for using EFICAZ.\nSee you next time!");
@@ -66,40 +66,38 @@ public class startApp {
         }
     }
 
-    static void newUser() {
+    public void newUser(){
 
         String name = printOutput.readLine("Whats your name?");
-        String userName = printOutput.readLine("Create a new username...");
-        String pass = printOutput.readLine("Create a password...");
+
+        String userName = printOutput.readLine("Create a new username: ");
+        String pass = printOutput.readLine("Create a password: ");
+
         int level = printOutput.readInt("Whats your profession? Choose from the options below.\n\n" +
                 "1. Project owner\n2. Project manager\n3. Developer/Designer\n (Enter 1-3 depending on your profession)\n\n");
 
+        menuDirectory(level);
 
         createMember createMember = new createMember(name, userName, pass, level);
         addedmembers.addMember(createMember);
-
-
     }
 
-    static void menuDirectory(int level) {
+     public void menuDirectory(int level){
 
-        switch (level) {
-            case 1:
-                printOutput.printLine("\nPlease wait...\n\nWelcome to the project owner menu");
-                ownerMenu oM = new ownerMenu();
-                oM.menu();
-                break;
-            case 2:
+         switch (level) {
+             case 1:
+                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the project owner menu");
+                 String teamMemberName = new String();
+                 String teamMemberRole = new String();
+                 ownerMenu oM = new ownerMenu(teamMemberName, teamMemberRole);
+                 oM.menu();
+                 break;
 
-                break;
-            case 3:
-
-                break;
-        }
-
-
+             case 2:
+                 break;
+             case 3:
+                 break;
+         }
     }
-
-
 }
 

@@ -1,4 +1,5 @@
 package Menus;
 
-public class workerMenu {
+public class workerMenu{
+
 }

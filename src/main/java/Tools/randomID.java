@@ -10,7 +10,8 @@ import java.util.Random;
         private int min = 1001;
         private int max = 9999;
         private int number;
-        private final int row = 50; private final int colum = 2;
+        private final int row = 50;
+        private final int column = 2;
 
 
         public static randomID getInstance() {
@@ -21,7 +22,7 @@ import java.util.Random;
         }
 
         public void generate(){
-            ID = new int[row][colum];
+            ID = new int[row][column];
 
             for(int i =0;i<ID.length;i++){
                 ID[i][0] = new Random().nextInt((max-min) + 1) + min;
