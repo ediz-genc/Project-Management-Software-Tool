@@ -32,7 +32,7 @@ import java.util.Random;
 
         public int getRandom(){
 
-            for(int i=0;i< ID.length;i++){
+            for(int i=0;i<ID.length-1;i++){
                 if(ID[i][1] == 0){
                     this.number = (ID[i][0]);
                     ID[i][1] = 1;

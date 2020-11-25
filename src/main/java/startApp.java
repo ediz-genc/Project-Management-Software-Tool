@@ -20,11 +20,11 @@ public class startApp {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
+    static randomID randID = randomID.getInstance();
 
 
     public void run(){
 
-        randomID randID = randomID.getInstance();
         randID.generate();
 
         String choices = "1";
