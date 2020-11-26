@@ -1,9 +1,11 @@
 package Menus;
 
 import Tools.InputClass;
-import Projects.createProject;
+import Projects.Project;
 import Users.addedMembers;
 import Projects.allProjects;
+
+import java.util.ArrayList;
 
 public class ownerMenu {
     public final String ANSI_RED = "\u001B[31m";
@@ -12,6 +14,7 @@ public class ownerMenu {
     static InputClass printOutput = new InputClass();
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
+    static Project projects = new Project();
 
     public void menu() {
         addedMembers addedMembers = new addedMembers();
@@ -43,7 +46,7 @@ public class ownerMenu {
 
     void newProject() {
 
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String projectName = printOutput.readLine("Project name: ");
 
         String startDate = printOutput.readLine("Enter the start date of the project (yyyy-MM-dd): ");
@@ -55,7 +58,7 @@ public class ownerMenu {
 
         String selection;
 
-        do {
+        /*do {
             String memberName = printOutput.printLine("Type team member's name: ");
             addedmember.setMemberName(memberName);
             printOutput.readLine("");
@@ -63,16 +66,25 @@ public class ownerMenu {
             addedmember.setMemberRole(memberRole);
             printOutput.readLine("");
             selection = printOutput.readLine("Would you like to add more team members?(y/n): ");
-        } while (selection.equals("y"));
+        } while (selection.equals("y"));*/
 
-        int milestones = printOutput.readInt("What's the estimated number of milestones in the project?: ");
-        int tasks = printOutput.readInt("How many inclusive task will each milestone have in average?: ");
+        String option;
+        String taskDescription;
+        String milestones;
+        do {
+            milestones = printOutput.readLine("Enter the milestones in the project?: ");
+            taskDescription = printOutput.readLine("Enter the description of the Projects.task: ");
+            Projects.task task = new Projects.task(milestones, taskDescription);
+            projects.addTask(task);
+
+            option = printOutput.readLine("Do you want to enter more tasks to your project? (y/n): ");
+        }while (option.equals("y"));
 
         String tempUser = addedmember.getActiveUser();
         String key = addedmember.getUserKey(tempUser);
         int projectOwnerKey = Integer.parseInt(key);
 
-        createProject newProject = new createProject(projectName,weeks, milestones, tasks, projectOwnerKey);
+        Project newProject = new Project(projectName,weeks, milestones, taskDescription, projectOwnerKey, startDate, endDate);
         allprojects.addProject(newProject);
     }
 

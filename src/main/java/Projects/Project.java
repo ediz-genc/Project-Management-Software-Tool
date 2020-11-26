@@ -6,8 +6,7 @@ import java.util.List;
 import Menus.ownerMenu;
 import Tools.randomID;
 
-public class createProject {
-
+public class Project {
 
     randomID randID = randomID.getInstance();
 
@@ -17,14 +16,22 @@ public class createProject {
     private ArrayList<Integer> memberKey;
     private int projectKey;
     private int ownerKey;
+    private String startDate;
+    private String endDate;
+    private ArrayList<task> tasks = new ArrayList<>();
 
-
-    public createProject(String projectName, int weeks, int milestones, int task,int ownerKey){
+    public Project(String projectName, int weeks, String milestones, String task, int ownerKey, String startDate, String endDate){
         this.projectName=projectName;
         this.weeks=weeks;
-        this.projectMilestones = new String[milestones][task];
+        this.projectMilestones = new String[20][100];
         this.projectKey=randID.getRandom();
         this.ownerKey = ownerKey;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.tasks = new ArrayList<>();
+    }
+
+    public Project(){
     }
 
     public String getProjectName() {
@@ -40,12 +47,22 @@ public class createProject {
     }
 
     public void addMemberKey(int key){
-
         memberKey.add(key);
-
     }
+
+    public String getStartDate() { return startDate; }
+
+    public String getEndDate() { return endDate; }
 
     public int getProjectKey() {
         return projectKey;
+    }
+
+    public ArrayList<task> getTasks() {
+        return tasks;
+    }
+
+    public void addTask(Object o){
+        tasks.add((task) o);
     }
 }

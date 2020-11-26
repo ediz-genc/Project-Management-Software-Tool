@@ -1,12 +1,10 @@
 package Projects;
-import Users.addedMembers;
-import Users.createMember;
 import java.util.ArrayList;
 
 public class allProjects {
 
     private static volatile allProjects soloAllProjects = new allProjects();
-    private ArrayList<createProject> allProjects = new ArrayList<createProject>();
+    private ArrayList<Project> allProjects = new ArrayList<Project>();
 
     private allProjects() {
     }
@@ -19,7 +17,7 @@ public class allProjects {
     }
 
     public void addProject(Object o){
-        allProjects.add((createProject) o);
+        allProjects.add((Project) o);
     }
 
     public void addMember(int key){

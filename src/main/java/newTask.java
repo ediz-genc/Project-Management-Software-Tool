@@ -1,3 +1,5 @@
+import Projects.task;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -58,7 +60,7 @@ public class newTask implements ActionListener {
         taskSummary = new JTextArea();
         taskSummary.setBounds(180,185,150,150);
 
-        JButton assignNewTask = new JButton("Assign task");
+        JButton assignNewTask = new JButton("Assign Projects.task");
         assignNewTask.setBounds(30, 260,130,30);
         Color darkGreen = new Color(85,139,47);
         assignNewTask.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -102,7 +104,7 @@ public class newTask implements ActionListener {
         return assignTask;
     }
     public void actionPerformed(ActionEvent e){
-        task task = new task(writeUsername.getText(), memberAssigned.getText(), nameOfProject.getText(), taskSummary.getText());
+        task task = new task(nameOfProject.getText(), taskSummary.getText());
         if(newTask.getInstance().findMember(memberAssigned.getText())){
             tasks.add(task);
             message.setText("Task assigned");
