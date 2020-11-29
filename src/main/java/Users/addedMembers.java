@@ -72,24 +72,20 @@ public class addedMembers {
 
     public String getActiveUser(){return activeUser;}
 
-    public String getUserKey(String userName){
+    public int getUserKey(String userName){
 
-        int tempKey=0; boolean found = false; String key;
+        int tempKey=0; boolean found = false; int key = 0;
 
         for(int i=0; i< allMembers.size();i++){
             if(allMembers.get(i).getUsername()!=null &&
                     allMembers.get(i).getUsername().equals(userName)){
-                tempKey = allMembers.get(i).getMemberKey();
+                key = allMembers.get(i).getMemberKey();
                 found = true;
                 break;
             }
         }
 
-        if(found){
-             key = String.valueOf(tempKey);
-        } else {
-             key = "Key not found";
-        }
+
         return key;
     }
 }

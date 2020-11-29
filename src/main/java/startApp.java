@@ -1,8 +1,10 @@
+import Menus.workerMenu;
 import Tools.InputClass;
 import Tools.randomID;
 import Users.addedMembers;
 import Users.createMember;
 import Menus.ownerMenu;
+import Menus.managerMenu;
 
 public class startApp {
 
@@ -24,6 +26,7 @@ public class startApp {
 
 
     public void run(){
+
 
         randID.generate();
 
@@ -92,8 +95,14 @@ public class startApp {
                  break;
 
              case 2:
+                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the project manager menu");
+                 managerMenu mM = new managerMenu();
+                 mM.menu();
                  break;
              case 3:
+                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the worker menu");
+                 workerMenu wM = new workerMenu();
+                 wM.menu();
                  break;
          }
     }
