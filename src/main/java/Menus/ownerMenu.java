@@ -7,6 +7,8 @@ import Users.addedMembers;
 import Projects.allProjects;
 import Mainclasses.startApp;
 
+import java.util.ArrayList;
+
 public class ownerMenu {
     public final String ANSI_RED = "\u001B[31m";
     public final String ANSI_RESET = "\u001B[0m";
@@ -15,6 +17,7 @@ public class ownerMenu {
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
     static startApp returnedMenu = new startApp();
+    static Project projects = new Project();
 
     public void menu() {
         int option = 0;
@@ -54,20 +57,19 @@ public class ownerMenu {
         printOutput.printLine("\nThe coming questions are just your own projected estimated project details. " +
                 "\nThey can be changed moving forward");
 
-        String selection;
-
+        String select;
+        String taskDescription;
+        String milestones;
+        ArrayList<Projects.task> tasks = projects.getTasks();
         do {
-            String memberName = printOutput.printLine("Type team member's name: ");
-            addedmember.setMemberName(memberName);
-            printOutput.readLine("");
-            String memberRole = printOutput.printLine("Type team member's role: ");
-            addedmember.setMemberRole(memberRole);
-            printOutput.readLine("");
-            selection = printOutput.readLine("Would you like to add more team members?(y/n): ");
-        } while (selection.equals("y"));
+            milestones = printOutput.readLine("Enter the description of the milestones in the project?: ");
+            taskDescription = printOutput.readLine("Enter the description of the task: ");
+            Projects.task task = new Projects.task(milestones, taskDescription);
+            tasks.add(task);
 
-        int milestones = printOutput.readInt("What's the estimated number of milestones in the project?: ");
-        int tasks = printOutput.readInt("How many inclusive task will each milestone have in average?: ");
+            select = printOutput.readLine("Would you like to add more tasks to your project? (y/n): ");
+        } while (select.equals("y"));
+
         int managerKey=0;
 
         int option = printOutput.readInt("Would you like to assign a project manager? Enter '1' if yes and '2' if no.\n");
@@ -76,7 +78,7 @@ public class ownerMenu {
         String tempUser = addedmember.getActiveUser();
         int ownerKey = addedmember.getUserKey(tempUser);
 
-        Project newProject = new Project(projectName,weeks, milestones, tasks, ownerKey, managerKey, startDate,endDate);
+        Project newProject = new Project(projectName,weeks, milestones, taskDescription, ownerKey, managerKey, startDate,endDate, tasks);
         allprojects.addProject(newProject);
     }
     void openProject(){

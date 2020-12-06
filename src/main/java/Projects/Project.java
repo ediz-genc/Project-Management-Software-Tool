@@ -12,7 +12,8 @@ public class Project {
 
     private String projectName;
     private int weeks;
-    private String[][] projectMilestones;
+    private String projectMilestones;
+    private String task;
     private ArrayList<Integer> memberKey;
     private int projectKey;
     private int ownerKey;
@@ -21,61 +22,40 @@ public class Project {
     private String endDate;
     private ArrayList<task> tasks = new ArrayList<>();
 
-    public Project(String projectName, int weeks, int milestones, int task, int ownerKey, int managerKey, String startDate, String endDate){
+    public Project(String projectName, int weeks, String milestones, String task, int ownerKey, int managerKey, String startDate, String endDate, ArrayList<task>tasks){
         this.projectName=projectName;
         this.weeks=weeks;
-        this.projectMilestones = new String[20][100];
+        this.projectMilestones = milestones;
+        this.task = task;
         this.projectKey=randID.getRandom();
         this.ownerKey = ownerKey;
         this.managerKey = managerKey;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.tasks = new ArrayList<>();
+        this.tasks = tasks;
     }
     public Project(){
     }
-    public String getProjectName(){
 
-    return projectName;
-    }
-    public int getWeeks() {
+    public String getProjectName(){ return projectName; }
 
-    return weeks;
-    }
-    public String[][] getProjectMilestones(){
+    public int getWeeks() { return weeks; }
 
-    return projectMilestones;
-    }
-    public void addMemberKey(int key){
+    public String getProjectMilestones(){ return projectMilestones; }
 
-    memberKey.add(key);
-    }
-    public String getStartDate(){
+    public void addMemberKey(int key){ memberKey.add(key); }
 
-    return startDate;
-    }
-    public String getEndDate(){
+    public String getStartDate(){ return startDate; }
 
-    return endDate;
-    }
-    public int getProjectKey() {
+    public String getEndDate(){ return endDate; }
 
-    return projectKey;
-    }
-    public ArrayList<task> getTasks() {
+    public int getProjectKey() { return projectKey; }
 
-    return tasks;
-    }
-    public void addTask(Object o){
+    public ArrayList<task> getTasks() { return tasks; }
 
-    tasks.add((task) o);
-    }
-    public int getManagerKey() {
+    public void addTask(Object o){ tasks.add((task) o); }
 
-    return managerKey;
-    }
-    public ArrayList<Integer> getMemberKey() {
+    public int getManagerKey() { return managerKey; }
 
-    return memberKey;
-    }
+    public ArrayList<Integer> getMemberKey() { return memberKey; }
 }
