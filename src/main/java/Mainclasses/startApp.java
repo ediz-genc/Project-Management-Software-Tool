@@ -79,7 +79,6 @@ public class startApp {
         int level = printOutput.readInt("\nWhats your profession? Choose from the options below.\n\n" +
                 "1. Project owner\n2. Project manager\n3. Developer/Designer\n(Enter 1-3 depending on your profession)\n\n");
 
-        menuDirectory(level);
 
         createMember createMember = new createMember(name, userName, pass, level);
         addedmembers.addMember(createMember);

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class addedMembers {
 
     private static volatile addedMembers soloAddedMembers = new addedMembers();
-    private ArrayList<createMember> allMembers;
+    private ArrayList<createMember> allMembers = new ArrayList();
     private String memberRole;
     private String memberName;
     private String activeUser;
@@ -49,6 +49,8 @@ public class addedMembers {
         this.memberRole = memberRole;
     }
     public int findMember(String username, String password) {
+
+        // Method works as a authentication for now to verify if an member exist using the login credentials.
 
         int valid = 0;
         int searchListLength = allMembers.size();
