@@ -52,4 +52,7 @@ public class allProjects {
         }
         return project;
     }
+    public ArrayList<Project> getAllProjects(){
+        return allProjects;
+    }
 }
