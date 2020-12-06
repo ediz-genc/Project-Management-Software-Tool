@@ -5,22 +5,24 @@ import Tools.InputClass;
 import Projects.Project;
 import Users.addedMembers;
 import Projects.allProjects;
-
+import Mainclasses.startApp;
 public class managerMenu {
 
     static InputClass printOutput = new InputClass();
     static addedMembers addedmembers = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
+    static startApp returnedMenu = new startApp();
 
     public void menu(){
 
         int option = 0;
 
-        printOutput.readInt("\nWelcome to the Manager Menu!\n1. Open assigned projects\n2. Explore Projects\n" +
-                "3. Return to menu");
 
-        while(!(option ==3)) {
-            switch(option){
+        while(option !=3) {
+            printOutput.printLine("\nWelcome to the Manager Menu! Take care of your Team well.");
+            option = printOutput.readInt("\n1. Open assigned projects\n2. Explore Projects\n3. Return to Main menu\n");
+
+            switch (option) {
                 case 1:
                     menuDirectory(option);
                     break;
@@ -28,14 +30,13 @@ public class managerMenu {
                     menuDirectory(option);
                     break;
                 case 3:
-                    return;
+                    returnedMenu.run();
                 default:
                     printOutput.printLine("Invalid input");
 
             }
         }
     }
-
     void menuDirectory(int caseNumber){
 
         switch(caseNumber){
@@ -52,8 +53,6 @@ public class managerMenu {
 
         }
     }
-
-
     void openProject(Project Project ){
 
 

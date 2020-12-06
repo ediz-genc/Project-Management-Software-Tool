@@ -10,7 +10,6 @@ public class InputClass {
 
         return A;
     }
-
     public char readChar(String userMessage) {
         Scanner input = new Scanner(System.in);
         System.out.println(userMessage);
@@ -18,7 +17,6 @@ public class InputClass {
         charText = Character.toUpperCase(charText);
         return charText;
     }
-
     public String readLine(String A){
 
         Scanner input = new Scanner(System.in);
@@ -29,7 +27,6 @@ public class InputClass {
 
         return output;
     }
-
     public int readInt(String A){
 
         Scanner input = new Scanner(System.in);
@@ -38,7 +35,7 @@ public class InputClass {
         String message = "Invalid input";
 
         try {
-            System.out.println(A);
+            System.out.print(A);
             output = input.nextInt();
             if(!(output >=0)){
                  throw new Exception(); }

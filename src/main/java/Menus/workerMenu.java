@@ -6,23 +6,23 @@ import Tools.InputClass;
 import Projects.Project;
 import Users.addedMembers;
 import Projects.allProjects;
-
+import Mainclasses.startApp;
 public class workerMenu{
 
 
     static InputClass printOutput = new InputClass();
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
-
+    static startApp returnedMenu = new startApp();
 
     public void menu(){
 
         int option = 0;
 
-        printOutput.readInt("\nWelcome to the menu where stuff gets done!\n1. Open assigned projects\n2. Explore Projects\n" +
-                "3. Return to menu");
+        while(option != 3) {
+            printOutput.printLine("\nWelcome to the menu where stuff gets done!");
+            option = printOutput.readInt("\n1. Open assigned projects\n2. Explore Projects\n3. Return to menu\n");
 
-        while(!(option ==3)) {
             switch(option){
                 case 1:
                     menuDirectory(option);
@@ -31,15 +31,13 @@ public class workerMenu{
                     menuDirectory(option);
                     break;
                 case 3:
-                    return;
+                    returnedMenu.run();
                 default:
                     printOutput.printLine("Invalid input");
 
             }
         }
     }
-
-
     void menuDirectory(int caseNumber){
 
         switch(caseNumber){
@@ -56,8 +54,6 @@ public class workerMenu{
 
         }
     }
-
-
     void openProject(Project project){
 
     }

@@ -32,47 +32,50 @@ public class Project {
         this.endDate = endDate;
         this.tasks = new ArrayList<>();
     }
-
     public Project(){
     }
+    public String getProjectName(){
 
-    public String getProjectName() {
-        return projectName;
+    return projectName;
     }
-
     public int getWeeks() {
-        return weeks;
-    }
 
-    public String[][] getProjectMilestones() {
-        return projectMilestones;
+    return weeks;
     }
+    public String[][] getProjectMilestones(){
 
+    return projectMilestones;
+    }
     public void addMemberKey(int key){
-        memberKey.add(key);
+
+    memberKey.add(key);
     }
+    public String getStartDate(){
 
-    public String getStartDate() { return startDate; }
+    return startDate;
+    }
+    public String getEndDate(){
 
-    public String getEndDate() { return endDate; }
-
+    return endDate;
+    }
     public int getProjectKey() {
-        return projectKey;
-    }
 
+    return projectKey;
+    }
     public ArrayList<task> getTasks() {
-        return tasks;
-    }
 
+    return tasks;
+    }
     public void addTask(Object o){
-        tasks.add((task) o);
-    }
 
+    tasks.add((task) o);
+    }
     public int getManagerKey() {
-        return managerKey;
-    }
 
+    return managerKey;
+    }
     public ArrayList<Integer> getMemberKey() {
-        return memberKey;
+
+    return memberKey;
     }
 }

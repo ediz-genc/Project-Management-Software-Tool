@@ -5,6 +5,7 @@ import Tools.InputClass;
 import Projects.Project;
 import Users.addedMembers;
 import Projects.allProjects;
+import Mainclasses.startApp;
 
 public class ownerMenu {
     public final String ANSI_RED = "\u001B[31m";
@@ -13,13 +14,14 @@ public class ownerMenu {
     static InputClass printOutput = new InputClass();
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
+    static startApp returnedMenu = new startApp();
 
     public void menu() {
         int option = 0;
 
         while (option != 4) {
 
-            printOutput.printLine("Welcome!\n\n Here you can start on a new project or open existing ones.\n" +
+            printOutput.printLine("Welcome!\n\nHere you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
             option = printOutput.readInt("1. Open project\n2. Create new Project\n3. Delete/archive project\n4. Return to main menu\n");
             switch (option) {
@@ -34,13 +36,12 @@ public class ownerMenu {
                     printOutput.printLine("to be continued...");
                     break;
                 case 4:
-                    return;
+                    returnedMenu.run();
                 default:
                     printOutput.printLine("Invalid input");
             }
         }
     }
-
     void newProject() {
 
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -78,7 +79,6 @@ public class ownerMenu {
         Project newProject = new Project(projectName,weeks, milestones, tasks, ownerKey, managerKey, startDate,endDate);
         allprojects.addProject(newProject);
     }
-
     void openProject(){
 
     }

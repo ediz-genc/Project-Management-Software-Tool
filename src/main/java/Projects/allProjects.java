@@ -8,18 +8,15 @@ public class allProjects {
 
     private allProjects() {
     }
-
     public static allProjects getInstance() {
         if (soloAllProjects == null) {
             soloAllProjects = new allProjects();
         }
         return soloAllProjects;
     }
-
     public void addProject(Object o) {
         allProjects.add((Project) o);
     }
-
     public void addMember(int key) {
 
         for (int i = 0; i < allProjects.size(); i++) {
@@ -27,8 +24,6 @@ public class allProjects {
             }
         }
     }
-
-
     public Object getManagerProject(int key) {
 
         Object project = null;
@@ -42,7 +37,6 @@ public class allProjects {
         return project;
 
     }
-
     public Object getProject(int key) {
 
         Object project = null;

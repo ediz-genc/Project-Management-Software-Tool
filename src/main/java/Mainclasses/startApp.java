@@ -1,3 +1,5 @@
+package Mainclasses;
+
 import Menus.workerMenu;
 import Tools.InputClass;
 import Tools.randomID;
@@ -59,7 +61,7 @@ public class startApp {
                     printOutput.printLine("Your account was successfully added");
                     break;
                 case "3": {
-                    printOutput.printLine("\nThank you for using EFICAZ.\nSee you next time!");
+                    printOutput.printLine("\nThank you for using Mainclasses.EFICAZ.\nSee you next time!");
                     System.exit(0);
                 }
                 default:
@@ -68,39 +70,36 @@ public class startApp {
 
         }
     }
-
     public void newUser(){
 
-        String name = printOutput.readLine("Whats your name?");
-
-        String userName = printOutput.readLine("Create a new username: ");
+        String name = printOutput.readLine("Enter your full name: ");
+        String userName = printOutput.readLine("Create a username: ");
         String pass = printOutput.readLine("Create a password: ");
 
-        int level = printOutput.readInt("Whats your profession? Choose from the options below.\n\n" +
-                "1. Project owner\n2. Project manager\n3. Developer/Designer\n (Enter 1-3 depending on your profession)\n\n");
+        int level = printOutput.readInt("\nWhats your profession? Choose from the options below.\n\n" +
+                "1. Project owner\n2. Project manager\n3. Developer/Designer\n(Enter 1-3 depending on your profession)\n\n");
 
         menuDirectory(level);
 
         createMember createMember = new createMember(name, userName, pass, level);
         addedmembers.addMember(createMember);
     }
-
-     public void menuDirectory(int level){
+    public void menuDirectory(int level){
 
          switch (level) {
              case 1:
-                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the project owner menu");
+                 /*printOutput.printLine ("\nPlease wait...\n\nWelcome to the project owner menu");*/
                  ownerMenu oM = new ownerMenu();
                  oM.menu();
                  break;
 
              case 2:
-                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the project manager menu");
+                 /*printOutput.printLine ("\nPlease wait...\n\nWelcome to the project manager menu");*/
                  managerMenu mM = new managerMenu();
                  mM.menu();
                  break;
              case 3:
-                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the worker menu");
+                 /*printOutput.printLine ("\nPlease wait...\n\nWelcome to the worker menu");*/
                  workerMenu wM = new workerMenu();
                  wM.menu();
                  break;
