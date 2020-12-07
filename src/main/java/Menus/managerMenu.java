@@ -53,8 +53,8 @@ public class managerMenu {
 
         }
     }
-    void openProject(Project Project ){
 
+    void openProject(Project Project){
 
 
 

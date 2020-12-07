@@ -48,6 +48,8 @@ public class addedMembers {
     public void setMemberRole(String memberRole){
         this.memberRole = memberRole;
     }
+    
+    
     public int findMember(String username, String password) {
 
         // Method works as a authentication for now to verify if an member exist using the login credentials.

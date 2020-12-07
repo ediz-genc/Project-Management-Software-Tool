@@ -2,10 +2,11 @@ package Menus;
 
 import Projects.Project;
 import Tools.InputClass;
-import Projects.Project;
+import Projects.newTask;
 import Users.addedMembers;
 import Projects.allProjects;
 import Mainclasses.startApp;
+import Tools.InputClass;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class ownerMenu {
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
     static startApp returnedMenu = new startApp();
+    static newTask assigningTask = newTask.getInstance();
     static Project projects = new Project();
 
     public void menu() {
@@ -30,6 +32,7 @@ public class ownerMenu {
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");
+                    openProject();
                     break;
                 case 2:
                     newProject();
@@ -37,6 +40,7 @@ public class ownerMenu {
                     break;
                 case 3:
                     printOutput.printLine("to be continued...");
+                    assigningTask.assignTask();
                     break;
                 case 4:
                     returnedMenu.run();
@@ -45,6 +49,7 @@ public class ownerMenu {
             }
         }
     }
+
     void newProject() {
 
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -57,31 +62,152 @@ public class ownerMenu {
         printOutput.printLine("\nThe coming questions are just your own projected estimated project details. " +
                 "\nThey can be changed moving forward");
 
-        String select;
-        String taskDescription;
-        String milestones;
-        ArrayList<Projects.task> tasks = projects.getTasks();
-        do {
-            milestones = printOutput.readLine("Enter the description of the milestones in the project?: ");
-            taskDescription = printOutput.readLine("Enter the description of the task: ");
-            Projects.task task = new Projects.task(milestones, taskDescription);
-            tasks.add(task);
+        int taskDescription;
+        int milestones;
 
-            select = printOutput.readLine("Would you like to add more tasks to your project? (y/n): ");
-        } while (select.equals("y"));
+        milestones = printOutput.readInt("Enter the number of the milestones in the project?: ");
+        taskDescription = printOutput.readInt("Enter the number of the tasks: ");
 
-        int managerKey=0;
+
+        int managerKey = 0;
 
         int option = printOutput.readInt("Would you like to assign a project manager? Enter '1' if yes and '2' if no.\n");
-        if(option==1){ managerKey = printOutput.readInt("Please enter Managers Key?"); }
+        if (option == 1) {
+            managerKey = printOutput.readInt("Please enter Managers Key?");
+        }
 
         String tempUser = addedmember.getActiveUser();
         int ownerKey = addedmember.getUserKey(tempUser);
 
-        Project newProject = new Project(projectName,weeks, milestones, taskDescription, ownerKey, managerKey, startDate,endDate, tasks);
+        taskDescription++;
+
+        Project newProject = new Project(projectName, weeks, milestones, taskDescription, ownerKey, managerKey, startDate, endDate);
         allprojects.addProject(newProject);
     }
-    void openProject(){
+
+
+    void openProject() {
+
+
+        int option = 0;
+        Object Project;
+
+        while (option != 3) {
+
+            option = printOutput.readInt("Hi Welcome your project!\n1. Add tasks\n2. Assign members to tasks\n3. Return");
+            switch (option) {
+                case 1:
+                Project = getProject();
+                addTasks((Projects.Project) Project);
+                    break;
+                case 2:
+                Project = getProject();
+                assignMember((Projects.Project) Project);
+
+                break;
+                case 3:
+                return;
+                default:
+                    printOutput.printLine("Invalid input");
+
+            }
+        }
+    }
+
+
+    void addTasks(Project project) {
+
+        int counter = 0;
+        String[][] tempTasks = project.getTasks();
+        int length = tempTasks[0].length-1;
+        String[] taskDescription = new String[length];
+
+
+        String milestoneName = printOutput.readLine("What is the name of the milestone?");
+
+        do {
+
+            String option = printOutput.readLine("Do you want to add another task? y/n");
+            if (option.equals("y")) {
+                taskDescription[counter] = printOutput.readLine("Please enter task description");
+            } else {
+                break;
+            }
+
+            counter++;
+
+        } while (counter <= length);
+
+        for (int i = 0; i < tempTasks.length; i++) {
+            if (tempTasks[i][0] == null) {
+                tempTasks[i][0] = milestoneName;
+            }
+            for (int j = 0; j < tempTasks[0].length-1; j++) {
+                tempTasks[i][j] = taskDescription[j];
+            }
+
+        }
+
+
+        project.setTasks(tempTasks);
+        allprojects.addProject(project);
+
 
     }
+
+    public Object getProject(){
+
+    String activeUser = addedmember.getActiveUser();
+    int key = addedmember.getUserKey(activeUser);
+        return allprojects.getProject(key);
+    }
+
+
+    void assignMember(Project project){
+
+    String[][] tempTasks = project.getTasks();
+
+    ArrayList<Users.createMember> members = addedmember.getAllMembers();
+
+    for(int k = 0; k < members.size(); k++ ){
+
+    printOutput.printLine(members.get(k).getName() + " " + members.get(k).getUsername());
+
+    }
+    String assignedUser = printOutput.readLine("Which user do you want to assign?(username)");
+    for(Users.createMember member:members){
+        if(member.getUsername() != null && !member.getUsername().equals(assignedUser)){
+           assignMember(project);
+        }
+    }
+
+
+    for(int i =0;i < tempTasks.length;i++){
+
+        for(int j =0; j < tempTasks[0].length;j++){
+        printOutput.printLine(i+1 + "." + j+1 + tempTasks[i][j] + "\n");
+
+        }
+    }
+
+    String option = printOutput.readLine("What task do you want to assign the user to?(tasknumber)");
+    double doption = Double.parseDouble(option);
+
+        String[] arr=String.valueOf(doption).split("\\.");
+        int[] intArr=new int[2];
+        intArr[0]=Integer.parseInt(arr[0]);
+        intArr[1]=Integer.parseInt(arr[1]);
+        int row = intArr[0]; int column = intArr[1]; int length = tempTasks[0].length;
+
+        tempTasks[row][length] = assignedUser;
+
+
+
+    }
+
+
 }
+
+
+
+

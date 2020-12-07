@@ -12,28 +12,25 @@ public class Project {
 
     private String projectName;
     private int weeks;
-    private String projectMilestones;
-    private String task;
-    private ArrayList<Integer> memberKey;
+    private ArrayList<Integer> memberKey = new ArrayList<>();
     private int projectKey;
     private int ownerKey;
     private int managerKey;
     private String startDate;
     private String endDate;
-    private ArrayList<task> tasks = new ArrayList<>();
+    private String[][] tasks;
 
-    public Project(String projectName, int weeks, String milestones, String task, int ownerKey, int managerKey, String startDate, String endDate, ArrayList<task>tasks){
+    public Project(String projectName, int weeks, int milestones, int task, int ownerKey, int managerKey, String startDate, String endDate){
         this.projectName=projectName;
         this.weeks=weeks;
-        this.projectMilestones = milestones;
-        this.task = task;
         this.projectKey=randID.getRandom();
         this.ownerKey = ownerKey;
         this.managerKey = managerKey;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.tasks = tasks;
+        this.tasks = new String[milestones][task];
     }
+
     public Project(){
     }
 
@@ -41,7 +38,7 @@ public class Project {
 
     public int getWeeks() { return weeks; }
 
-    public String getProjectMilestones(){ return projectMilestones; }
+   // public String getProjectMilestones(){ return projectMilestones; }
 
     public void addMemberKey(int key){ memberKey.add(key); }
 
@@ -51,11 +48,19 @@ public class Project {
 
     public int getProjectKey() { return projectKey; }
 
-    public ArrayList<task> getTasks() { return tasks; }
+    //public ArrayList<task> getTasks() { return tasks; }
 
-    public void addTask(Object o){ tasks.add((task) o); }
+   // public void addTask(Object o){ tasks.add((task) o); }
 
     public int getManagerKey() { return managerKey; }
 
+    public String[][] getTasks(){
+        return tasks;
+    }
+
     public ArrayList<Integer> getMemberKey() { return memberKey; }
+
+    public void setTasks(String[][] tasks){
+    this.tasks = tasks;
+    }
 }

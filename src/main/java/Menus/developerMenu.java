@@ -7,7 +7,7 @@ import Projects.Project;
 import Users.addedMembers;
 import Projects.allProjects;
 import Mainclasses.startApp;
-public class workerMenu{
+public class developerMenu {
 
 
     static InputClass printOutput = new InputClass();
@@ -38,6 +38,7 @@ public class workerMenu{
             }
         }
     }
+    
     void menuDirectory(int caseNumber){
 
         switch(caseNumber){

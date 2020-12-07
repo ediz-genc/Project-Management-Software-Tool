@@ -101,25 +101,24 @@ public class newTask implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
         String chosenProject = (String) chooseProjectName.getItemAt(chooseProjectName.getSelectedIndex());
-        ArrayList<Projects.task> allProjectTasks;
-        ArrayList<Projects.Project> searchList = allProjects.getAllProjects();
+        String[][] allProjectTasks;
+        ArrayList<Projects.Project>searchList = allProjects.getAllProjects();
         int position;
         for (int i = 0; i < searchList.size(); i++) {
             if (searchList.get(i).getProjectName() != null && searchList.get(i).getProjectName().equals(chosenProject)) {
                 position = i;
                 allProjectTasks = searchList.get(position).getTasks();
-                System.out.println(allProjectTasks.get(position).getTaskDescription());
-                for(task Task:allProjectTasks){
-                    allTasks.append(Task.getProjectMilestones());
+                for(int k = 0;k<allProjectTasks.length;k++){
+                    allTasks.append(allProjectTasks[i][0]);
                     allTasks.append(" ");
-                    allTasks.append(Task.getTaskDescription());
+                    allTasks.append(allProjectTasks[i][1]);
                     allTasks.append("\n");
 
                 }
                 String tasksAndMilestones = allTasks.toString();
                 displayTasks.setText(tasksAndMilestones);
             }else{
-                System.out.println("Project not found");
+                System.out.println("No tasks registered");
             }
         }
     }
