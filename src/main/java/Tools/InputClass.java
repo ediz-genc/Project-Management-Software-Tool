@@ -56,7 +56,7 @@ public class InputClass {
         try {
             System.out.print(A);
             output = input.nextDouble();
-            if((output -(int)output!=0)){
+            if((output -(int)output==0)){
                 throw new Exception(); }
         } catch (Exception e) {
             System.out.println(message);
