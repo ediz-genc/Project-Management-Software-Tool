@@ -63,4 +63,9 @@ public class Project {
     public void setTasks(String[][] tasks){
     this.tasks = tasks;
     }
+
+
+    public int getOwnerKey() {
+        return ownerKey;
+    }
 }

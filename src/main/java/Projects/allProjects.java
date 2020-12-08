@@ -15,7 +15,7 @@ public class allProjects {
         return soloAllProjects;
     }
     public void addProject(Object o) {
-        allProjects.add((Project) o);
+        this.allProjects.add((Project) o);
     }
     public void addMember(int key) {
 
@@ -43,6 +43,7 @@ public class allProjects {
         ArrayList<Integer> tempKeys;
 
         for (int i = 0; i < allProjects.size(); i++) {
+            if(key==allProjects.get(i).getOwnerKey() || key==allProjects.get(i).getManagerKey()){project=allProjects.get(i); break;}
             tempKeys = allProjects.get(i).getMemberKey();
             for (int j = 0; j < tempKeys.size(); j++) {
                 if (tempKeys.get(i) == key) {
@@ -55,4 +56,6 @@ public class allProjects {
     public ArrayList<Project> getAllProjects(){
         return allProjects;
     }
+
+
 }

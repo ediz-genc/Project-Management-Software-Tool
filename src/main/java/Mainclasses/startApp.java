@@ -54,7 +54,6 @@ public class startApp {
                     } else {
                         printOutput.printLine("Invalid login information. Please try again!");
                     }
-
                     break;
                 case "2":
                     newUser();

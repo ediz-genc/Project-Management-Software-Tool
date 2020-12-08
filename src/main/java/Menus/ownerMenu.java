@@ -159,7 +159,9 @@ public class ownerMenu {
 
     String activeUser = addedmember.getActiveUser();
     int key = addedmember.getUserKey(activeUser);
-        return allprojects.getProject(key);
+
+
+    return allprojects.getProject(key);
     }
 
 
