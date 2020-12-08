@@ -46,4 +46,27 @@ public class InputClass {
         return output;
     }
 
+    public double readDouble(String A){
+
+        Scanner input = new Scanner(System.in);
+        double output = -1;
+
+        String message = "Invalid input";
+
+        try {
+            System.out.print(A);
+            output = input.nextDouble();
+            if((output -(int)output!=0)){
+                throw new Exception(); }
+        } catch (Exception e) {
+            System.out.println(message);
+            readInt(A);
+        }
+        return output;
+
+
+
+
+    }
+
 }

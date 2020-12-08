@@ -192,14 +192,13 @@ public class ownerMenu {
         }
     }
 
-    String option = printOutput.readLine("What task do you want to assign the user to?(tasknumber)");
-    double doption = Double.parseDouble(option);
+    double option = printOutput.readDouble("What task do you want to assign the user to?(tasknumber)");
 
-        String[] arr=String.valueOf(doption).split("\\.");
+        String[] arr=String.valueOf(option).split("\\.");
         int[] intArr=new int[2];
         intArr[0]=Integer.parseInt(arr[0]);
         intArr[1]=Integer.parseInt(arr[1]);
-        int row = intArr[0]; int column = intArr[1]; int length = tempTasks[0].length;
+        int row = intArr[0]; int column = intArr[1]; int length = tempTasks[0].length-1;
 
         tempTasks[row][length] = assignedUser;
 
