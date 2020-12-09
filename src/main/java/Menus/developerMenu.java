@@ -92,17 +92,15 @@ public class developerMenu {
             for(int i =0;i < tempTasks.length;i++){
 
                 for(int j =0; j < tempTasks[0].length-1;j++){
-                    printOutput.printLine(i+1 + "." + j+1 + " " + tempTasks[i][j]);
+                    printOutput.print(i+1 + "." + j+1 + " " + tempTasks[i][j]);
                     if(j==0){
-                        printOutput.printLine("Milestone: ");
+                        printOutput.print("Milestone: ");
                     }
                     if(j==tempTasks[0].length-1){
-                        printOutput.printLine("\n");
+                        printOutput.print("\n");
                     }
-
                 }
             }
-
         } else if(option.equals("n")) {
             for(int i =0;i < tempTasks.length;i++){
 
@@ -110,14 +108,13 @@ public class developerMenu {
                         tempTasks[i][tempTasks.length-1].equals(addedmember.getActiveUser())) {
 
                     for (int j = 0; j < tempTasks[i].length-1; j++) {
-                        printOutput.printLine(i + 1 + "." + j + 1 + " " + tempTasks[i][j]);
+                        printOutput.print(i + 1 + "." + j + 1 + " " + tempTasks[i][j]);
                         if (j == 0) {
-                            printOutput.printLine("Milestone: ");
+                            printOutput.print("Milestone: ");
                         }
                         if (j == tempTasks[0].length - 1) {
-                            printOutput.printLine("\n");
+                            printOutput.print("\n");
                         }
-
                     }
                 }
             }

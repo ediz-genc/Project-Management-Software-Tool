@@ -5,6 +5,12 @@ import java.util.Date;
 import java.util.Scanner;
 public class InputClass {
 
+    public String print(String A){
+        System.out.print(A);
+
+        return A;
+    }
+
     public String printLine(String A){
         System.out.println(A);
 
