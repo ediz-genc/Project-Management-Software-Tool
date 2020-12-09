@@ -84,7 +84,7 @@ public class InputClass {
                 throw new Exception(); }
         } catch (Exception e) {
             System.out.println(message);
-            readInt(A);
+            readYN(A);
         }
         return output;
     }
