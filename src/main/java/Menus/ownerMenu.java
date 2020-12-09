@@ -173,7 +173,8 @@ public class ownerMenu {
 
     for(int k = 0; k < members.size(); k++ ){
 
-    printOutput.printLine(members.get(k).getName() + " " + members.get(k).getUsername());
+    printOutput.printLine("Name: " + members.get(k).getName() + " Username: " + members.get(k).getUsername()
+            + " ID: " + members.get(k).getMemberKey());
 
     }
     String assignedUser = printOutput.readLine("Which user do you want to assign?(username)");
@@ -182,12 +183,11 @@ public class ownerMenu {
            assignMember(project);
         }
     }
-
-
     for(int i =0;i < tempTasks.length;i++){
 
         for(int j =0; j < tempTasks[0].length;j++){
-        printOutput.printLine(i+1 + "." + j+1 + tempTasks[i][j] + "\n");
+        printOutput.printLine(i+1 + "." + j+1 + " " + tempTasks[i][j]);
+        if(j==tempTasks[0].length-1){printOutput.printLine("\n");}
 
         }
     }
@@ -198,7 +198,7 @@ public class ownerMenu {
         int[] intArr=new int[2];
         intArr[0]=Integer.parseInt(arr[0]);
         intArr[1]=Integer.parseInt(arr[1]);
-        int row = intArr[0]; int column = intArr[1]; int length = tempTasks[0].length-1;
+        int row = intArr[0]-1; int column = intArr[1]; int length = tempTasks[0].length-1;
 
         tempTasks[row][length] = assignedUser;
 

@@ -69,4 +69,24 @@ public class InputClass {
 
     }
 
+
+    public String readYN(String A){
+
+        Scanner input = new Scanner(System.in);
+        String output=null;
+
+        String message = "Invalid input";
+
+        try {
+            System.out.print(A);
+            output = input.nextLine();
+            if(!(output.equals("y"))  || !(output.equals("n")) ){
+                throw new Exception(); }
+        } catch (Exception e) {
+            System.out.println(message);
+            readInt(A);
+        }
+        return output;
+    }
+
 }

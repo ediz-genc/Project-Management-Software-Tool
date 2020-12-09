@@ -37,9 +37,9 @@ public class allProjects {
         return project;
 
     }
-    public Object getProject(int key) {
+    public Project getProject(int key) {
 
-        Object project = null;
+        Project project = null;
         ArrayList<Integer> tempKeys;
 
         for (int i = 0; i < allProjects.size(); i++) {
