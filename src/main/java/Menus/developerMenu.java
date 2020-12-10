@@ -1,6 +1,5 @@
 package Menus;
 
-
 import Projects.Project;
 import Tools.InputClass;
 import Projects.Project;
@@ -159,12 +158,4 @@ public class developerMenu {
 
         return allprojects.getProject(key);
     }
-
-
-
-
-
-
-
-
 }

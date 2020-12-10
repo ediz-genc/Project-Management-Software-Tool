@@ -16,6 +16,12 @@ public class InputClass {
 
         return A;
     }
+
+    public int printInt(int A){
+        System.out.println(A);
+
+        return A;
+    }
     public char readChar(String userMessage) {
         Scanner input = new Scanner(System.in);
         System.out.println(userMessage);

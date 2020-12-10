@@ -1,9 +1,7 @@
 package Projects;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import Menus.ownerMenu;
 import Tools.randomID;
 
 public class Project {
@@ -19,6 +17,8 @@ public class Project {
     private String startDate;
     private String endDate;
     private String[][] tasks;
+    private String milestoneDescription;
+    private String taskDescription;
 
     public Project(String projectName, int weeks, int milestones, int task, int ownerKey, int managerKey, String startDate, String endDate){
         this.projectName=projectName;
@@ -36,16 +36,28 @@ public class Project {
 
     public String getProjectName(){ return projectName; }
 
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
     public int getWeeks() { return weeks; }
 
+    public void setWeeks(int weeks) {
+        this.weeks = weeks;
+    }
    // public String getProjectMilestones(){ return projectMilestones; }
 
     public void addMemberKey(int key){ memberKey.add(key); }
 
     public String getStartDate(){ return startDate; }
 
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
     public String getEndDate(){ return endDate; }
-
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
     public int getProjectKey() { return projectKey; }
 
     //public ArrayList<task> getTasks() { return tasks; }
@@ -67,6 +79,20 @@ public class Project {
 
     public int getOwnerKey() {
         return ownerKey;
+    }
+
+    public String getMilestoneDescription(){
+        return tasks[0][0];
+    }
+    public String getTaskDescription(){
+        return tasks[0][0];
+    }
+
+    public void setMilestoneDescription(String milestoneDescription){
+        this.tasks[0][0] = milestoneDescription;
+    }
+    public void setTaskDescription(String taskDescription){
+        this.tasks[0][0] = taskDescription;
     }
 
     public void statusReport(int status, int row, int column){
