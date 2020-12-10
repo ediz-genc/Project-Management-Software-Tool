@@ -68,4 +68,39 @@ public class Project {
     public int getOwnerKey() {
         return ownerKey;
     }
+
+    public void statusReport(int status, int row, int column){
+
+         String RED = "\u001B[31m";
+         String GREEN = "\u001B[32m";
+         String YELLOW = "\u001B[33m";
+         String update = null;
+
+         switch(status) {
+             case 1:
+                 update = GREEN;
+                 break;
+             case 2:
+                 update = YELLOW;
+                 break;
+             case 3:
+                 update = RED;
+                 break;
+         }
+
+        StringBuilder str = new StringBuilder(tasks[row][column]);
+        String previousStatus = str.substring(6,7);
+
+        if(previousStatus.equals("[3")){
+            str.delete(0,9);
+            str.insert(0,str);
+        } else {
+            str.insert(0,str);
+        }
+
+        tasks[row][column] = String.valueOf(str);
+
+    }
+
+
 }

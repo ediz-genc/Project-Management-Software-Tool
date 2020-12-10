@@ -21,6 +21,8 @@ public class InputClass {
         System.out.println(userMessage);
         char charText = input.next().charAt(0);
         charText = Character.toUpperCase(charText);
+        input.close();
+
         return charText;
     }
     public String readLine(String A){
@@ -32,24 +34,26 @@ public class InputClass {
         output = input.nextLine();
 
         return output;
+
     }
     public int readInt(String A){
 
         Scanner input = new Scanner(System.in);
-        int output = -1;
+        System.out.print(A);
+        String output = input.nextLine(); int x = 0;
 
         String message = "Invalid input";
 
         try {
-            System.out.print(A);
-            output = input.nextInt();
-            if(!(output >=0)){
-                 throw new Exception(); }
-        } catch (Exception e) {
+            x = Integer.parseInt(output);
+
+        } catch (NumberFormatException e) {
             System.out.println(message);
             readInt(A);
         }
-        return output;
+
+
+        return x;
     }
 
     public double readDouble(String A){
@@ -68,6 +72,8 @@ public class InputClass {
             System.out.println(message);
             readInt(A);
         }
+
+
         return output;
 
 
@@ -92,6 +98,8 @@ public class InputClass {
             System.out.println(message);
             readYN(A);
         }
+
+
         return output;
     }
 
