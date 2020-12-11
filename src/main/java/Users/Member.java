@@ -5,17 +5,17 @@ import Tools.randomID;
 
 import java.util.ArrayList;
 
-public class createMember {
+public class Member {
 
     randomID randID = randomID.getInstance();
 
-    private String name;
-    private String username;
-    private String password;
-    private int level;
-    private int memberKey;
+    private final String name;
+    private final String username;
+    private final String password;
+    private final int level;
+    private final int memberKey;
 
-    public createMember(String name, String username, String password, int level){
+    public Member(String name, String username, String password, int level){
         this.name = name;
         this.username=username;
         this.password=password;

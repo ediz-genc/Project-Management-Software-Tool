@@ -6,16 +6,12 @@ public class addedMembers {
 
     private static volatile addedMembers soloAddedMembers = new addedMembers();
 
-    private ArrayList<createMember> allMembers;
+    private final ArrayList<Member> allMembers = new ArrayList<>();
     private String memberRole;
     private String memberName;
     private String activeUser;
 
-    public addedMembers(ArrayList<createMember> allMembers, String memberName, String memberRole) {
-        this.allMembers = new ArrayList();
-        this.memberName = memberName;
-        this.memberRole = memberRole;
-    }
+
 
     public addedMembers() {
     }
@@ -30,11 +26,11 @@ public class addedMembers {
 
     public void addMember(Object o) {
 
-        allMembers.add((createMember) o);
+        allMembers.add((Member) o);
 
     }
 
-    public ArrayList<createMember> getAllMembers(){
+    public ArrayList<Member> getAllMembers(){
         return allMembers;
     }
     public String getMemberName(){
@@ -66,30 +62,37 @@ public class addedMembers {
         }
         return valid;
     }
+    public boolean findMember(String memberUsername){
+        boolean assignTask = false;
+
+        for (Member allMember : allMembers) {
+            if (allMember.getUsername() != null && allMember.getUsername().equals(memberUsername)) {
+                assignTask = true;
+                break;
+            }
+        }
+        return assignTask;
+    }
 
 
     public void setActiveUser(String userName){this.activeUser=userName;}
 
     public String getActiveUser(){return activeUser;}
 
-    public String getUserKey(String userName){
+    public int getUserKey(String userName){
 
-        int tempKey=0; boolean found = false; String key;
+        int tempKey=0; boolean found = false; int key = 0;
 
         for(int i=0; i< allMembers.size();i++){
             if(allMembers.get(i).getUsername()!=null &&
                     allMembers.get(i).getUsername().equals(userName)){
-                tempKey = allMembers.get(i).getMemberKey();
+                key = allMembers.get(i).getMemberKey();
                 found = true;
                 break;
             }
         }
 
-        if(found){
-             key = String.valueOf(tempKey);
-        } else {
-             key = "Key not found";
-        }
+
         return key;
     }
 }

@@ -12,7 +12,8 @@ public class Project {
 
     private String projectName;
     private int weeks;
-    private String[][] projectMilestones;
+    private String projectMilestones;
+    private String task;
     private ArrayList<Integer> memberKey;
     private int projectKey;
     private int ownerKey;
@@ -20,15 +21,16 @@ public class Project {
     private String endDate;
     private ArrayList<task> tasks = new ArrayList<>();
 
-    public Project(String projectName, int weeks, String milestones, String task, int ownerKey, String startDate, String endDate){
+    public Project(String projectName, int weeks, String milestones, String task, int ownerKey, String startDate, String endDate, ArrayList<task>tasks){
         this.projectName=projectName;
         this.weeks=weeks;
-        this.projectMilestones = new String[20][100];
+        this.projectMilestones = milestones;
+        this.task = task;
         this.projectKey=randID.getRandom();
         this.ownerKey = ownerKey;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.tasks = new ArrayList<>();
+        this.tasks = tasks;
     }
 
     public Project(){
@@ -42,7 +44,7 @@ public class Project {
         return weeks;
     }
 
-    public String[][] getProjectMilestones() {
+    public String getProjectMilestones() {
         return projectMilestones;
     }
 

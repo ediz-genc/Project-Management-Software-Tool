@@ -1,8 +1,10 @@
 import Tools.InputClass;
 import Tools.randomID;
 import Users.addedMembers;
-import Users.createMember;
+import Users.Member;
 import Menus.ownerMenu;
+import Menus.managerMenu;
+import Menus.developerMenu;
 
 public class startApp {
 
@@ -78,7 +80,7 @@ public class startApp {
 
         menuDirectory(level);
 
-        createMember createMember = new createMember(name, userName, pass, level);
+        Member createMember = new Member(name, userName, pass, level);
         addedmembers.addMember(createMember);
     }
 
@@ -92,8 +94,13 @@ public class startApp {
                  break;
 
              case 2:
+                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the project owner menu");
+                 managerMenu ManagerMenu = new managerMenu();
+                 ManagerMenu.menu();
                  break;
              case 3:
+                 developerMenu DeveloperMenu = new developerMenu();
+                 DeveloperMenu.menu();
                  break;
          }
     }

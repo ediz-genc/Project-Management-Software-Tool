@@ -4,21 +4,21 @@ public class task {
 //Task attributes
 
     private String projectMilestones;
-    private String projectDescription;
+    private String taskDescription;
 
-    public task(String projectMilestones, String projectDescription){
+    public task(String projectMilestones, String taskDescription){
 
 
         this.projectMilestones = projectMilestones;
-        this.projectDescription = projectDescription;
+        this.taskDescription = taskDescription;
     }
 
     public String getProjectMilestones(){
         return projectMilestones;
     }
 
-    public String getProjectDescription(){
-        return projectDescription;
+    public String getTaskDescription(){
+        return taskDescription;
     }
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class allProjects {
 
     private static volatile allProjects soloAllProjects = new allProjects();
-    private ArrayList<Project> allProjects = new ArrayList<Project>();
+    private final ArrayList<Project> allProjects = new ArrayList<>();
 
     private allProjects() {
     }
@@ -26,6 +26,9 @@ public class allProjects {
             if(allProjects.get(i).getProjectKey() == key){
             }
         }
+    }
+    public ArrayList<Project> getAllProjects(){
+        return allProjects;
     }
 
 

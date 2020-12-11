@@ -4,6 +4,7 @@ import Tools.InputClass;
 import Projects.Project;
 import Users.addedMembers;
 import Projects.allProjects;
+import Projects.assignTaskInterface;
 
 import java.util.ArrayList;
 
@@ -14,29 +15,35 @@ public class ownerMenu {
     static InputClass printOutput = new InputClass();
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
-    static Project projects = new Project();
+    static Project project = new Project();
+    static assignTaskInterface newTask = new assignTaskInterface();
+
+
 
     public void menu() {
-        addedMembers addedMembers = new addedMembers();
+
         int option = 0;
 
         while (option != 4) {
 
             printOutput.printLine("Welcome!\n\n Here you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. Open project\n2. Create new Project\n3. Delete/archive project\n4. Return to main menu\n");
+            option = printOutput.readInt("1. Open project\n2. Assign task to user \n3.Create new Project\n4. Delete/archive project\n5. Return to main menu\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");
                     break;
                 case 2:
-                    newProject();
+                    newTask.assignTask();
                     printOutput.printLine("to be continued...");
                     break;
                 case 3:
                     printOutput.printLine("to be continued...");
+                    newProject();
                     break;
                 case 4:
+                    break;
+                case 5:
                     return;
                 default:
                     printOutput.printLine("Invalid input");
@@ -71,20 +78,20 @@ public class ownerMenu {
         String option;
         String taskDescription;
         String milestones;
+        ArrayList<Projects.task> tasks = project.getTasks();
         do {
             milestones = printOutput.readLine("Enter the milestones in the project?: ");
             taskDescription = printOutput.readLine("Enter the description of the Projects.task: ");
             Projects.task task = new Projects.task(milestones, taskDescription);
-            projects.addTask(task);
+            tasks.add(task);
 
             option = printOutput.readLine("Do you want to enter more tasks to your project? (y/n): ");
         }while (option.equals("y"));
 
         String tempUser = addedmember.getActiveUser();
-        String key = addedmember.getUserKey(tempUser);
-        int projectOwnerKey = Integer.parseInt(key);
+        int key = addedmember.getUserKey(tempUser);
 
-        Project newProject = new Project(projectName,weeks, milestones, taskDescription, projectOwnerKey, startDate, endDate);
+        Project newProject = new Project(projectName,weeks, milestones, taskDescription, key, startDate, endDate,tasks);
         allprojects.addProject(newProject);
     }
 
