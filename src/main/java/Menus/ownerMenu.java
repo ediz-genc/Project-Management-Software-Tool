@@ -62,11 +62,11 @@ public class ownerMenu {
         printOutput.printLine("\nThe coming questions are just your own projected estimated project details. " +
                 "\nThey can be changed moving forward");
 
-        int taskDescription;
-        int milestones;
+        int taskNumber;
+        int milestoneNumber;
 
-        milestones = printOutput.readInt("Enter the number of the milestones in the project?: ");
-        taskDescription = printOutput.readInt("Enter the number of the tasks: ");
+        milestoneNumber = printOutput.readInt("Enter the number of the milestones in the project?: ");
+        taskNumber = printOutput.readInt("Enter the number of the tasks: ");
 
 
         int managerKey = 0;
@@ -79,15 +79,13 @@ public class ownerMenu {
         String tempUser = addedmember.getActiveUser();
         int ownerKey = addedmember.getUserKey(tempUser);
 
-        taskDescription++;
+        taskNumber++;
 
-        Project newProject = new Project(projectName, weeks, milestones, taskDescription, ownerKey, managerKey, startDate, endDate);
+        Project newProject = new Project(projectName, weeks, milestoneNumber, taskNumber, ownerKey, managerKey, startDate, endDate);
         allprojects.addProject(newProject);
     }
 
-
     void openProject() {
-
 
         int option = 0;
         Object Project;
@@ -192,7 +190,7 @@ public class ownerMenu {
         }
     }
 
-    double option = printOutput.readDouble("What task do you want to assign the user to?(tasknumber)");
+    double option = printOutput.readDouble("What task do you want to assign the user to?(Task Number)");
 
         String[] arr=String.valueOf(option).split("\\.");
         int[] intArr=new int[2];
