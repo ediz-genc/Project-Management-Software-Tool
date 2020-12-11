@@ -1,11 +1,20 @@
 package Mainclasses;
 
+import Import_Export.importSavedInfo;
+
+import java.io.IOException;
+
 public class EFICAZ {
 
-    public static void main(String[] args) {
+    static importSavedInfo io = new importSavedInfo();
 
-        startApp start = new startApp();
-        start.run();
+
+    public static void main(String[] args) throws IOException {
+
+       io.loadUser();
+
+       startApp start = new startApp();
+       start.run();
 
     }
 

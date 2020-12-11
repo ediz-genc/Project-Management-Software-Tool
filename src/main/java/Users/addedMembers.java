@@ -85,4 +85,9 @@ public class addedMembers {
 
         return key;
     }
+
+    public void loadFromFile(ArrayList<createMember> savedMembers){
+        this.allMembers = savedMembers;
+
+    }
 }
