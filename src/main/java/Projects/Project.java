@@ -21,8 +21,9 @@ public class Project {
     private String startDate;
     private String endDate;
     private ArrayList<task> tasks = new ArrayList<>();
+    private String projectDesc;
 
-    public Project(String projectName, int weeks, String milestones, String task, int ownerKey, int managerKey, String startDate, String endDate, ArrayList<task> tasks) {
+    public Project(String projectName, int weeks, String milestones, String task, int ownerKey, int managerKey, String startDate, String endDate, ArrayList<task> tasks, String projectDescription) {
         this.projectName = projectName;
         this.weeks = weeks;
         this.projectMilestones = milestones;
@@ -33,6 +34,7 @@ public class Project {
         this.startDate = startDate;
         this.endDate = endDate;
         this.tasks = tasks;
+        this.projectDesc = projectDescription;
     }
 
     public Project() {

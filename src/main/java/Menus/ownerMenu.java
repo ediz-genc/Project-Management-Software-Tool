@@ -2,6 +2,7 @@ package Menus;
 
 import Tools.InputClass;
 import Projects.Project;
+import Users.Member;
 import Users.addedMembers;
 import Projects.allProjects;
 import Projects.assignTaskInterface;
@@ -17,18 +18,17 @@ public class ownerMenu {
     static allProjects allprojects = allProjects.getInstance();
     static Project project = new Project();
     static assignTaskInterface newTask = new assignTaskInterface();
-
-
+    static Member member = new Member();
 
     public void menu() {
 
         int option = 0;
 
-        while (option != 4) {
+        while (option != 6) {
 
             printOutput.printLine("Welcome!\n\n Here you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. Open project\n2. Assign task to user \n3.Create new Project\n4. Delete/archive project\n5. Return to main menu\n");
+            option = printOutput.readInt("1. Open project\n2. Assign task to user \n3.Create new Project\n4. Delete/archive project\n5. View all Users\n6. Return to main menu\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");
@@ -44,6 +44,9 @@ public class ownerMenu {
                 case 4:
                     break;
                 case 5:
+                    viewUsers();
+                    break;
+                case 6:
                     return;
                 default:
                     printOutput.printLine("Invalid input");
@@ -53,8 +56,8 @@ public class ownerMenu {
 
     void newProject() {
 
-//      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String projectName = printOutput.readLine("Project name: ");
+        String projectDescription = printOutput.readLine("Enter a short description of the project you want to create: ");
 
         String startDate = printOutput.readLine("Enter the start date of the project (yyyy-MM-dd): ");
         String endDate = printOutput.readLine("Enter the end date of the project (yyyy-MM-dd): ");
@@ -63,29 +66,17 @@ public class ownerMenu {
         printOutput.printLine("\nThe coming questions are just your own projected estimated project details. " +
                 "\nThey can be changed moving forward");
 
-        String selection;
-
-        /*do {
-            String memberName = printOutput.printLine("Type team member's name: ");
-            addedmember.setMemberName(memberName);
-            printOutput.readLine("");
-            String memberRole = printOutput.printLine("Type team member's role: ");
-            addedmember.setMemberRole(memberRole);
-            printOutput.readLine("");
-            selection = printOutput.readLine("Would you like to add more team members?(y/n): ");
-        } while (selection.equals("y"));*/
-
         String option;
         String taskDescription;
         String milestones;
         ArrayList<Projects.task> tasks = project.getTasks();
         do {
-            milestones = printOutput.readLine("Enter the milestones in the project?: ");
-            taskDescription = printOutput.readLine("Enter the description of the Projects.task: ");
+            milestones = printOutput.readLine("Enter the description of the milestones: ");
+            taskDescription = printOutput.readLine("Enter the description of the task: ");
             Projects.task task = new Projects.task(milestones, taskDescription);
             tasks.add(task);
 
-            option = printOutput.readLine("Do you want to enter more tasks to your project? (y/n): ");
+            option = printOutput.readLine("Do you want to enter more tasks to your milestone? (y/n): ");
         }while (option.equals("y"));
 
         int managerKey = 2;
@@ -93,11 +84,37 @@ public class ownerMenu {
         String tempUser = addedmember.getActiveUser();
         int key = addedmember.getUserKey(tempUser);
 
-        Project newProject = new Project(projectName,weeks, milestones, taskDescription, key,managerKey, startDate, endDate,tasks);
+        Project newProject = new Project(projectName,weeks, milestones, taskDescription, key,managerKey, startDate, endDate,tasks, projectDescription);
         allprojects.addProject(newProject);
     }
 
     void openProject(){
 
+    }
+
+    public void viewUsers(){
+
+        //Method to be finished (Patricia and Jakob)
+
+        ArrayList<Member> allMembers = addedmember.getAllMembers();
+
+        for (int i = 0; i < allMembers.size(); i++){
+            printOutput.printLine("Name of the User: " +allMembers.get(i).getName()+ "\n" + "User ID: " +allMembers.get(i).getUsername() + "\n"+ "User Key: "+allMembers.get(i).getMemberKey()+"\n"+
+                    "Use Access to see project: "+ allMembers.get(i).getGrantedAccess());
+        }
+        //Choose which user can see the project and allow access to the user
+
+        int selectedUser = printOutput.readInt("Select the User's key that will have access to see the project: ");
+
+        for (int j = 0; j < allMembers.size(); j++){
+            if (selectedUser == allMembers.get(j).getMemberKey()){
+                allMembers.get(j).setGrantedAccess("Access granted");
+            }
+        }
+    }
+
+    public void allowUserToSeeProject (){
+
+        //Method to be finished (Patricia and Jakob)
     }
 }

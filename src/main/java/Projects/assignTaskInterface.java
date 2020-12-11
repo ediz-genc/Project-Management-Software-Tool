@@ -15,10 +15,6 @@ public class assignTaskInterface {
     static Users.addedMembers AddedMembers = addedMembers.getInstance();
     static Projects.allProjects allProjects = Projects.allProjects.getInstance();
 
-
-
-
-
     JFrame frame;
     JComboBox chooseProjectName;
     JTextField milestoneChosen;

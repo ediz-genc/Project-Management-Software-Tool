@@ -10,19 +10,23 @@ public class Member {
 
     randomID randID = randomID.getInstance();
 
-    private final String name;
-    private final String username;
-    private final String password;
-    private final int level;
-    private final int memberKey;
+    private String name;
+    private String username;
+    private String password;
+    private int level;
+    private int memberKey;
+    private String grantedAccess;
 
-    public Member(String name, String username, String password, int level){
+    public Member (String name, String username, String password, int level){
         this.name = name;
         this.username=username;
         this.password=password;
         this.level=level;
         this.memberKey = randID.getRandom();
+        this.grantedAccess = "access not granted";
+    }
 
+    public Member() {
     }
 
     public String getName() {
@@ -44,4 +48,9 @@ public class Member {
     public int getMemberKey() {
         return memberKey;
     }
+
+    public String getGrantedAccess() { return grantedAccess; }
+
+    public void setGrantedAccess(String grantedAccess) { this.grantedAccess = grantedAccess; }
+
 }
