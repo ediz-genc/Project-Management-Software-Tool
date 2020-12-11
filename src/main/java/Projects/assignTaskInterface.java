@@ -118,7 +118,7 @@ public class assignTaskInterface {
                     allProjectTasks = searchList.get(position).getTasks();
                     System.out.println(allProjectTasks.get(position).getTaskDescription());
                     for(task Task:allProjectTasks){
-                        allTasks.append(Task.getProjectMilestones());
+                        allTasks.append(Task.getMilestoneDescription());
                         allTasks.append(" ");
                         allTasks.append(Task.getTaskDescription());
                         allTasks.append("\n");

@@ -9,7 +9,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import Users.addedMembers;
-import Users.createMember;
+import Users.Member;
 import Projects.Project;
 import java.io.IOException;
 import Projects.allProjects;
@@ -20,7 +20,7 @@ public class importSavedInfo {
 
     InputClass input = new InputClass();
     addedMembers addedmembers = addedMembers.getInstance();
-    ArrayList<createMember> allMembers = new ArrayList<createMember>();
+    ArrayList<Member> allMembers = new ArrayList<Member>();
 
 
 
@@ -30,7 +30,7 @@ public class importSavedInfo {
 
     try (Reader reader = new FileReader("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/SavedInfo/savedUsersObjects.json")) {
 
-        Type type = new TypeToken<ArrayList<createMember>>(){}.getType();
+        Type type = new TypeToken<ArrayList<Member>>(){}.getType();
         allMembers = gson.fromJson(reader,type);
         try {
             int secondsToSleep = 2;

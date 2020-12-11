@@ -6,7 +6,7 @@ public class addedMembers {
 
     private static volatile addedMembers soloAddedMembers = new addedMembers();
 
-    private final ArrayList<Member> allMembers = new ArrayList<>();
+    private ArrayList<Member> allMembers = new ArrayList<>();
     private String memberRole;
     private String memberName;
     private String activeUser;
@@ -95,4 +95,9 @@ public class addedMembers {
 
         return key;
     }
+
+    public void loadFromFile(ArrayList<Member> savedMembers){
+            this.allMembers = savedMembers;
+
+        }
 }

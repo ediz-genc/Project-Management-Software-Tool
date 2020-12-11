@@ -88,10 +88,12 @@ public class ownerMenu {
             option = printOutput.readLine("Do you want to enter more tasks to your project? (y/n): ");
         }while (option.equals("y"));
 
+        int managerKey = 2;
+
         String tempUser = addedmember.getActiveUser();
         int key = addedmember.getUserKey(tempUser);
 
-        Project newProject = new Project(projectName,weeks, milestones, taskDescription, key, startDate, endDate,tasks);
+        Project newProject = new Project(projectName,weeks, milestones, taskDescription, key,managerKey, startDate, endDate,tasks);
         allprojects.addProject(newProject);
     }
 
