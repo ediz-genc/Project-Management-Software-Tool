@@ -19,6 +19,7 @@ public class ownerMenu {
     static Project project = new Project();
     static assignTaskInterface newTask = new assignTaskInterface();
     static Member member = new Member();
+    ArrayList<Member> allMembers = addedmember.getAllMembers();
 
     public void menu() {
 
@@ -26,9 +27,9 @@ public class ownerMenu {
 
         while (option != 6) {
 
-            printOutput.printLine("Welcome!\n\n Here you can start on a new project or open existing ones.\n" +
+            printOutput.printLine("\nWelcome!\n\nHere you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. Open project\n2. Assign task to user \n3.Create new Project\n4. Delete/archive project\n5. View all Users\n6. Return to main menu\n");
+            option = printOutput.readInt("1. Open project\n2. Assign task to user \n3. Create new Project\n4. Delete/archive project\n5. Allow users to see projects\n6. Return to main menu\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");
@@ -44,7 +45,7 @@ public class ownerMenu {
                 case 4:
                     break;
                 case 5:
-                    viewUsers();
+                    allowUserToSeeProject();
                     break;
                 case 6:
                     return;
@@ -96,25 +97,31 @@ public class ownerMenu {
 
         //Method to be finished (Patricia and Jakob)
 
-        ArrayList<Member> allMembers = addedmember.getAllMembers();
-
         for (int i = 0; i < allMembers.size(); i++){
             printOutput.printLine("Name of the User: " +allMembers.get(i).getName()+ "\n" + "User ID: " +allMembers.get(i).getUsername() + "\n"+ "User Key: "+allMembers.get(i).getMemberKey()+"\n"+
                     "Use Access to see project: "+ allMembers.get(i).getGrantedAccess());
-        }
-        //Choose which user can see the project and allow access to the user
-
-        int selectedUser = printOutput.readInt("Select the User's key that will have access to see the project: ");
-
-        for (int j = 0; j < allMembers.size(); j++){
-            if (selectedUser == allMembers.get(j).getMemberKey()){
-                allMembers.get(j).setGrantedAccess("Access granted");
-            }
         }
     }
 
     public void allowUserToSeeProject (){
 
         //Method to be finished (Patricia and Jakob)
+        //Choose which user can see the project and allow access to the user
+        viewUsers();
+
+        String select;
+
+        do {
+
+            int selectedUser = printOutput.readInt("Select the User's key that will have access to see the project: ");
+
+            for (int j = 0; j < allMembers.size(); j++) {
+                if (selectedUser == allMembers.get(j).getMemberKey()) {
+                    allMembers.get(j).setGrantedAccess("Access granted");
+                }
+            }
+            select = printOutput.readLine("Do you want to give access to another user to see the project? (yes/no) ");
+
+        }while (select.equals("yes"));
     }
 }

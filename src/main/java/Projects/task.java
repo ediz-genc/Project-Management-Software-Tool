@@ -24,4 +24,8 @@ public class task {
     public void setTaskDescription(String taskDescription){
         this.taskDescription = taskDescription;
     }
+
+    public String toString() {
+        return "\nMilestone Description: " + this.milestoneDescription + "\nTask Description: " + this.taskDescription;
+    }
 }

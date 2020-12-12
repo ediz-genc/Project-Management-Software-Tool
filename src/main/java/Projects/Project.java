@@ -89,6 +89,9 @@ public class Project {
     public void setTaskDescription(String taskDescription) {
         //this.tasks[0][0] = taskDescription;
     }
+    public String getProjectDesc() { return projectDesc; }
+
+    public void setProjectDesc(String projectDesc) { this.projectDesc = projectDesc; }
 
     public void statusReport(int status, int row, int column) {
 

@@ -74,7 +74,7 @@ public class managerMenu {
         do{
             editChoice = printOutput.readLine("Would you like to edit the project?(y/n)");
             if (editChoice.equals("y")){
-                char editSelection = printOutput.readChar("What would you would like to edit in the project?");
+                char editSelection = printOutput.readChar("Enter the first letter of the option you want choose: ");
                 System.out.println("[N]ame of the project");
                 System.out.println("[S]tart Date");
                 System.out.println("[E]nd Date");
@@ -138,8 +138,6 @@ public class managerMenu {
 
         String activeUser = addedmembers.getActiveUser();
         int key = addedmembers.getUserKey(activeUser);
-
-
         return allprojects.getProject(key);
     }
 

@@ -46,7 +46,6 @@ public class startApp {
                     String passWord = printOutput.readLine("Password: ");
                     levelCheck = addedmembers.findMember(userName, passWord);
                     if (levelCheck > 0) {
-                        printOutput.printLine("Welcome!");
                         addedmembers.setActiveUser(userName);
                         menuDirectory(levelCheck);
                     } else {
@@ -71,9 +70,9 @@ public class startApp {
 
     public void newUser(){
 
-        String name = printOutput.readLine("Whats your name?");
+        String name = printOutput.readLine("Enter your full name: ");
 
-        String userName = printOutput.readLine("Create a new username: ");
+        String userName = printOutput.readLine("Create a username: ");
         String pass = printOutput.readLine("Create a password: ");
 
         int level = printOutput.readInt("Whats your profession? Choose from the options below.\n\n" +
@@ -89,17 +88,18 @@ public class startApp {
 
          switch (level) {
              case 1:
-                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the project owner menu");
+                 printOutput.printLine ("\nPlease wait...\n");
                  ownerMenu oM = new ownerMenu();
                  oM.menu();
                  break;
 
              case 2:
-                 printOutput.printLine ("\nPlease wait...\n\nWelcome to the project owner menu");
+                 printOutput.printLine ("\nPlease wait...\n");
                  managerMenu ManagerMenu = new managerMenu();
                  ManagerMenu.menu();
                  break;
              case 3:
+                 printOutput.printLine ("\nPlease wait...\n");
                  developerMenu DeveloperMenu = new developerMenu();
                  DeveloperMenu.menu();
                  break;
