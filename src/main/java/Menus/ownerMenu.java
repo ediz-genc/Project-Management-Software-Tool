@@ -33,7 +33,7 @@ public class ownerMenu {
 
             printOutput.printLine("\nWelcome!\n\nHere you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Send a message\n5. See your inbox\n6. Invite users to project\n");
+            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Send a message\n5. See your inbox\n6. Invite users to project\n7. Return to main menu\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");

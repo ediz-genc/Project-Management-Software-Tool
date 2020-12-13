@@ -29,8 +29,7 @@ public class allMessages {
         ArrayList<Member> allMembers = AddedMembers.getAllMembers();
 
         for (Member member : allMembers){
-            if (member.getUsername() != null && member.getUsername().equals(Sender) &&
-                    member.getUsername() != null && member.getUsername().equals(Receiver)) {
+            if (member.getUsername() != null && member.getUsername().equals(Receiver)) {
                 String Content = printOutput.readLine("Please enter message content: ");
                 Message newMessage = new Message(Sender, Receiver, Content, Status);
                 allMessages.add(newMessage);
