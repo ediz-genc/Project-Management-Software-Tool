@@ -28,7 +28,7 @@ public class importSavedInfo {
 
     Gson gson = new Gson();
 
-    try (Reader reader = new FileReader("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/SavedInfo/savedUsersObjects.json")) {
+    try (Reader reader = new FileReader("/Users/edizg/IdeaProjects/eficaz2/src/main/java/SavedInfo/savedUsersObjects.json")) {
 
         Type type = new TypeToken<ArrayList<Member>>(){}.getType();
         allMembers = gson.fromJson(reader,type);

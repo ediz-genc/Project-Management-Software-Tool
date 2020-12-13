@@ -44,6 +44,13 @@ public class Project {
         return projectName;
     }
 
+    public String getShortDescription(){
+        return projectDesc;
+    }
+
+    public void setShortDescription(String projectDesc){
+        this.projectDesc = projectDesc;
+    }
     public int getWeeks() {
         return weeks;
     }
@@ -102,16 +109,17 @@ public class Project {
     public String getMilestoneDescription(){
             String[][] task = new String[2][2];
             return task[0][0];
-        }
-        public String getTaskDescription(){
+    }
+    public String getTaskDescription(){
            String[][] task = new String[2][2];
            return task[0][0];
 
-        }
+    }
 
-        public void setWeeks(int weeks) {
+    public void setWeeks(int weeks) {
                 this.weeks = weeks;
-            }
+    }
+
     public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
