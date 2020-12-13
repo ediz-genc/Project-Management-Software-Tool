@@ -22,14 +22,14 @@ public class myTasksInterface {
 
                 displayTasks.append("Project name: ").append(searchList.get(position).getProjectName()).append("\n");
                 displayTasks.append("\n");
-                displayTasks.append(searchList.get(position).getMilestoneName());
+                displayTasks.append("Milestone: ").append(searchList.get(position).getMilestoneName());
                 displayTasks.append("\n");
                 displayTasks.append(searchList.get(position).getTaskDescription());
 
                 String myTasks = displayTasks.toString();
                 JFrame frame = new JFrame();
 
-                JLabel tasksDisplay = new JLabel();
+                JTextArea tasksDisplay = new JTextArea();
                 tasksDisplay.setSize(150,150);
                 tasksDisplay.setText(myTasks);
 

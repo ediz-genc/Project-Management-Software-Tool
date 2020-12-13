@@ -3,16 +3,18 @@ package Projects;
 import java.util.ArrayList;
 
 public class assignedTask {
-    private final String projectName;
-    private final String milestoneName;
-    private final String taskDescription;
-    private final String memberAssigned;
+    private String projectName;
+    private String milestoneName;
+    private String taskDescription;
+    private String memberAssigned;
+    private String Status;
 
-    public assignedTask(String projectName,String milestoneName,String taskDescription,String memberAssigned){
+    public assignedTask(String projectName,String milestoneName,String taskDescription,String memberAssigned, String Status){
         this.projectName = projectName;
         this.milestoneName = milestoneName;
         this.taskDescription = taskDescription;
         this.memberAssigned = memberAssigned;
+        this.Status = Status;
     }
 
     public String getProjectName() {
@@ -30,21 +32,28 @@ public class assignedTask {
     public String getMemberAssigned() {
         return memberAssigned;
     }
-    static class allAssignedTasks{
-       ArrayList<assignedTask> assignedTasks = new ArrayList<>();
-       private static volatile allAssignedTasks soloAllAssignedTasks = new allAssignedTasks();
 
-       private allAssignedTasks(){
+    public String getStatus(){return Status;}
 
-       }
-       public static allAssignedTasks getInstance(){
-           if(soloAllAssignedTasks == null){
-               soloAllAssignedTasks = new allAssignedTasks();
-           }
-           return soloAllAssignedTasks;
-       }
-       public ArrayList<assignedTask> getAssignedTasks(){
-           return assignedTasks;
-       }
+    public void changeStatus(){
+        this.Status = "Completed";
+    }
+
+    public static class allAssignedTasks{
+        ArrayList<assignedTask> assignedTasks = new ArrayList<>();
+        private static volatile allAssignedTasks soloAllAssignedTasks = new allAssignedTasks();
+
+        public allAssignedTasks(){
+
+        }
+        public static allAssignedTasks getInstance(){
+            if(soloAllAssignedTasks == null){
+                soloAllAssignedTasks = new allAssignedTasks();
+            }
+            return soloAllAssignedTasks;
+        }
+        public ArrayList<assignedTask> getAssignedTasks(){
+            return assignedTasks;
+        }
     }
 }

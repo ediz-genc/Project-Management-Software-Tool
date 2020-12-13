@@ -1,11 +1,13 @@
 package Menus;
 
+import Mainclasses.startApp;
 import Tools.InputClass;
 import Projects.Project;
 import Users.Member;
 import Users.addedMembers;
 import Projects.allProjects;
 import Projects.assignTaskInterface;
+import Users.allMessages;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,8 @@ public class ownerMenu {
     static assignTaskInterface newTask = new assignTaskInterface();
     static Member member = new Member();
     ArrayList<Member> allMembers = addedmember.getAllMembers();
+    static allMessages AllMessages = allMessages.getInstance();
+    static startApp returnedMenu = new startApp();
 
     public void menu() {
 
@@ -29,10 +33,11 @@ public class ownerMenu {
 
             printOutput.printLine("\nWelcome!\n\nHere you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. Open project\n2. Assign task to user \n3. Create new Project\n4. Delete/archive project\n5. Allow users to see projects\n6. Return to main menu\n");
+            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Send a message\n5. See your inbox\n6. Invite users to project\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");
+                    addTasksToProject();
                     break;
                 case 2:
                     newTask.assignTask();
@@ -43,12 +48,16 @@ public class ownerMenu {
                     newProject();
                     break;
                 case 4:
+                    AllMessages.sendMessage();
                     break;
                 case 5:
-                    allowUserToSeeProject();
+                    AllMessages.readMessage();
                     break;
                 case 6:
+                    allowUserToSeeProject();
                     return;
+                case 7:
+                    returnedMenu.run();
                 default:
                     printOutput.printLine("Invalid input");
             }
@@ -123,5 +132,22 @@ public class ownerMenu {
             select = printOutput.readLine("Do you want to give access to another user to see the project? (yes/no) ");
 
         }while (select.equals("yes"));
+    }
+    void addTasksToProject(){
+        String option;
+        String taskDescription;
+        String milestones;
+        String projectName = printOutput.readLine("Please enter project name: ");
+        int position = allprojects.findProjectByName(projectName);
+        ArrayList<Projects.task> tasks = allprojects.getAllProjects().get(position).getTasks();
+        do {
+            milestones = printOutput.readLine("Enter milestone description: ");
+            taskDescription = printOutput.readLine("Enter task description: ");
+            Projects.task task = new Projects.task(milestones, taskDescription);
+            tasks.add(task);
+
+            option = printOutput.readLine("Do you want to enter more tasks to your project? (y/n): ");
+        }while (option.equals("y"));
+
     }
 }

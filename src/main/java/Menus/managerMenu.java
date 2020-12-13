@@ -1,13 +1,13 @@
 package Menus;
 
-import Projects.Project;
-import Projects.task;
+import Projects.*;
 import Tools.InputClass;
 import Projects.Project;
 import Users.addedMembers;
-import Projects.allProjects;
 import Mainclasses.startApp;
+import Users.allMessages;
 import org.springframework.scheduling.config.Task;
+import Projects.assignedTask;
 
 import java.util.ArrayList;
 
@@ -20,6 +20,8 @@ public class managerMenu {
     static allProjects allprojects = allProjects.getInstance();
     static startApp returnedMenu = new startApp();
     static Project projects = new Project();
+    static allMessages AllMessages = allMessages.getInstance();
+    static ownerMenu OwnerMenu = new ownerMenu();
 
 
     public void menu(){
@@ -31,7 +33,7 @@ public class managerMenu {
 
         while(option !=3) {
             printOutput.printLine("\nWelcome to the Manager Menu! Take care of your Team well.");
-            option = printOutput.readInt("\n1. Open assigned projects\n2. Explore Projects\n3. Edit Project\n4. Return to Main menu\n");
+            option = printOutput.readInt("\n1. Open assigned projects\n2. Explore Projects\n3. Add tasks to an existing project \n4. Edit Project\n5. View project progress\n6. Send a message.\n7. See my inbox.\n8. Return to main menu.\n");
 
             switch (option) {
                 case 1:
@@ -41,9 +43,21 @@ public class managerMenu {
                     menuDirectory(option);
                     break;
                 case 3:
-                    editProject(project);
+                    OwnerMenu.addTasksToProject();
                     break;
                 case 4:
+                    editProject(project);
+                    break;
+                case 5:
+                    viewProjectProgress();
+                    break;
+                case 6:
+                    AllMessages.sendMessage();
+                    break;
+                case 7:
+                    AllMessages.readMessage();
+                    break;
+                case 8:
                     returnedMenu.run();
                 default:
                     printOutput.printLine("Invalid input");
@@ -221,5 +235,38 @@ public class managerMenu {
 
         return allprojects.getProject(key);
     }
+    public int numOfTasksInProject(String projectName) {
+        int tasksInProject = 0;
+        ArrayList<Project> allProjects = allprojects.getAllProjects();
+        for (Project project : allProjects) {
+            if (project.getProjectName() != null && project.getProjectName().equals(projectName)) {
+                tasksInProject = project.getTasks().size();
+            } else {
+                printOutput.readLine("Project not found");
+            }
+        }
+        return tasksInProject;
+    }
+
+    public void viewProjectProgress() {
+        String projectName = printOutput.readLine("Please enter project name: ");
+        ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
+        int totalNumOfTasks = numOfTasksInProject(projectName);
+        int tasksCompleted = 0;
+        for (assignedTask AssignedTask : allAssignedTasks) {
+            if (AssignedTask.getProjectName() != null && AssignedTask.getProjectName().equals(projectName) && AssignedTask.getStatus().equals("Completed")) {
+                tasksCompleted++;
+            } else {
+                printOutput.printLine("No completed tasks found.");
+            }
+        }
+        if (tasksCompleted < totalNumOfTasks) {
+            System.out.println(tasksCompleted + " out of " + totalNumOfTasks + " tasks are completed");
+        }else{
+            printOutput.printLine("Congratulations! You have completed the project!");
+        }
+
+    }
+
 
 }

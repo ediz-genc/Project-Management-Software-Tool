@@ -112,10 +112,9 @@ public class assignTaskInterface {
                 if (searchList.get(i).getProjectName() != null && searchList.get(i).getProjectName().equals(chosenProject)) {
                     position = i;
                     allProjectTasks = searchList.get(position).getTasks();
-                    System.out.println(allProjectTasks.get(position).getTaskDescription());
                     for(task Task:allProjectTasks){
                         allTasks.append(Task.getMilestoneDescription());
-                        allTasks.append(" ");
+                        allTasks.append("\n");
                         allTasks.append(Task.getTaskDescription());
                         allTasks.append("\n");
 
@@ -137,8 +136,9 @@ public class assignTaskInterface {
                 String projectName = (String) chooseProjectName.getItemAt(chooseProjectName.getSelectedIndex());
                 String chosenMilestone = milestoneChosen.getText();
                 String chosenTask = taskChosen.getText();
+                String Status = "Uncompleted";
                 ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
-                assignedTask assignedTask = new assignedTask(projectName,chosenMilestone,chosenTask,memberUsername);
+                assignedTask assignedTask = new assignedTask(projectName,chosenMilestone,chosenTask,memberUsername, Status);
                 allAssignedTasks.add(assignedTask);
                 frame.setVisible(false);
 

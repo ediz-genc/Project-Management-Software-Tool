@@ -1,10 +1,12 @@
 package Projects;
 import java.util.ArrayList;
+import Tools.InputClass;
 
 public class allProjects {
 
     private static volatile allProjects soloAllProjects = new allProjects();
     private ArrayList<Project> allProjects = new ArrayList<Project>();
+    static InputClass printOutput = new InputClass();
 
     private allProjects() {
     }
@@ -51,6 +53,19 @@ public class allProjects {
             }
         }
         return project;
+    }
+    public int findProjectByName(String projectName){
+        ArrayList<Project> allProjects = getAllProjects();
+        int position = 0;
+        for(int i = 0; i < allProjects.size();i++){
+            if(allProjects.get(i).getProjectName() != null && allProjects.get(i).getProjectName().equals(projectName)){
+                position = i;
+            }else{
+                printOutput.printLine("Project not found");
+                break;
+            }
+        }
+        return position;
     }
     public ArrayList<Project> getAllProjects(){
         return allProjects;
