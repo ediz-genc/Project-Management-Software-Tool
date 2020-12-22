@@ -107,26 +107,20 @@ public class importAndExportSavedInfo {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        ArrayList<Member> members = addedmembers.getAllMembers();
-
-        String json[] = new String[members.size()];
-
         Type type = new TypeToken<ArrayList<Member>>(){}.getType();
+        ArrayList<Member> allMembers = addedmembers.getAllMembers();
 
+            try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedUsersObjects.json")) {
+               gson.toJson(allMembers,type,writer);
 
-        for(int i =0; i<members.size();i++){
+            } catch (IOException e) {
+                input.printLine("No file found");
 
-        json[i] = gson.toJson(members.get(i));
-
-        try (FileWriter writer = new FileWriter("C:\\Users\\irina\\Eficaz Mini Project\\Eficaz_4\\src\\main\\java\\SavedInfo\\savedUsersObjects.json")) {
-            gson.toJson(members.get(i),writer);
-            input.printLine("succesfull export");
-
-        } catch (IOException e) {
-            input.printLine("No file found()");
-
+            }
         }
+    public void exportProjects(){
+    
     }
 
-    }
+
 }
