@@ -6,6 +6,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import Users.addedMembers;
 import Users.Member;
@@ -53,14 +55,11 @@ public class importAndExportSavedInfo {
             input.printLine("fyi no saved data was loaded... :/");
             e.printStackTrace();
         }
-
     }
 
     public void loadProject() throws IllegalStateException {
 
         Gson gson = new Gson();
-
-
         try (Reader reader = new FileReader("C:\\Users\\irina\\Eficaz Mini Project\\Eficaz_4\\src\\main\\java\\SavedInfo\\savedProjectsObjects.json")) {
             Type type = new TypeToken<ArrayList<Project>>(){}.getType();
             allProject = gson.fromJson(reader, type);
@@ -70,8 +69,6 @@ public class importAndExportSavedInfo {
             System.out.print("File not found...");
             e.printStackTrace();
         }
-
-
     }
 
     public void loadAssignedTasks() throws IllegalStateException {
@@ -112,15 +109,54 @@ public class importAndExportSavedInfo {
 
             try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedUsersObjects.json")) {
                gson.toJson(allMembers,type,writer);
-
             } catch (IOException e) {
                 input.printLine("No file found");
-
             }
         }
     public void exportProjects(){
-    
+     Gson gson = new GsonBuilder().setPrettyPrinting().create();
+     Type type = new TypeToken<ArrayList<Project>>(){}.getType();
+     ArrayList<Project> allProjects = allprojects.getAllProjects();
+
+      try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedProjectsObjects.json")) {
+                    gson.toJson(allProjects,type,writer);
+                 } catch (IOException e) {
+                     input.printLine("No file found");
+                 }
+    }
+
+    public void exportTasks() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Type type = new TypeToken<ArrayList<assignedTask>>() {
+        }.getType();
+        ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
+
+        try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedAssignedTasksObjects.json")) {
+            gson.toJson(allAssignedTasks, type, writer);
+        } catch (IOException e) {
+            input.printLine("No file found");
+        }
+    }
+
+    public void exportMessages () {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Type type = new TypeToken<ArrayList<Message>>() {}.getType();
+        ArrayList<Message> allMessages = AllMessages.getAllMessages();
+
+        try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedMessageObjects.json")) {
+            gson.toJson(allMessages, type, writer);
+        } catch (IOException e) {
+            input.printLine("No file found");
+        }
     }
 
 
-}
+        public void getJsonURL () {
+
+
+
+            // http://www.json-generator.com/api/json/get/bQJgvLEXtu?indent=2
+
+
+        }
+    }
