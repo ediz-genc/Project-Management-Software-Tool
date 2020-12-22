@@ -45,9 +45,10 @@ public class allProjects {
         ArrayList<Integer> tempKeys;
 
         for (int i = 0; i < allProjects.size(); i++) {
-            tempKeys = allProjects.get(i).getMemberKey();
+        if(key == allProjects.get(i).getOwnerKey() || key == allProjects.get(i).getManagerKey()){project = allProjects.get(i); return project;}
+          tempKeys = allProjects.get(i).getMemberKey();
             for (int j = 0; j < tempKeys.size(); j++) {
-                if (tempKeys.get(i) == key) {
+                if (tempKeys.get(i) != null && tempKeys.get(i) == key) {
                     project = allProjects.get(i);
                 }
             }
@@ -69,5 +70,33 @@ public class allProjects {
     }
     public ArrayList<Project> getAllProjects(){
         return allProjects;
+    }
+
+
+    public void loadFromFile(ArrayList<Project> savedProjects){
+                this.allProjects = savedProjects;
+
+            }
+
+
+    public void allProjectsToString(){
+        StringBuffer printAllProjects = new StringBuffer();
+        for(Project project: allProjects){
+            printAllProjects.append(project.getProjectName());
+            printAllProjects.append("\n");
+            printAllProjects.append(project.getWeeks());
+            printAllProjects.append("\n");
+            printAllProjects.append(project.getMemberKey());
+            printAllProjects.append("\n");
+            printAllProjects.append(project.getManagerKey());
+            printAllProjects.append("\n");
+            printAllProjects.append(project.getTasks());
+            printAllProjects.append("\n");
+        }
+        String printAllProjectsArray = printAllProjects.toString();
+        System.out.println(printAllProjectsArray);
+
+
+
     }
 }

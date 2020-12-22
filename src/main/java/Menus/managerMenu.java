@@ -33,7 +33,7 @@ public class managerMenu {
 
         while(option !=3) {
             printOutput.printLine("\nWelcome to the Manager Menu! Take care of your Team well.");
-            option = printOutput.readInt("\n1. Open assigned projects\n2. Explore Projects\n3. Add tasks to an existing project \n4. Edit Project\n5. View project progress\n6. Send a message.\n7. See my inbox.\n8. Return to main menu.\n");
+            option = printOutput.readInt("\n1. Open assigned projects\n2. Explore Projects\n3. Add tasks to an existing project \n4. Edit Project\n5. View project progress\n6. Send a message.\n7. See my inbox.\n8. Log out.\n");
 
             switch (option) {
                 case 1:

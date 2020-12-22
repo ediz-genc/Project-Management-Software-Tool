@@ -1,0 +1,26 @@
+[
+  {
+    "projectName": "Project Eficaz",
+    "milestoneName": "login system",
+    "taskDescription": "Create a login system",
+    "memberAssigned": "iri",
+    "Status": "Uncompleted",
+    "hoursSpent": 7.5
+  },
+  {
+    "projectName": "Project Filmax",
+    "milestoneName": "export to files",
+    "taskDescription": "Create a json file",
+    "memberAssigned": "pat",
+    "Status": "Uncompleted",
+    "hoursSpent": 1
+  },
+  {
+    "projectName": "Project Filmax",
+    "milestoneName": "Budget",
+    "taskDescription": "Calculate hours spent",
+    "memberAssigned": "mei",
+    "Status": "Uncompleted",
+    "hoursSpent": 2
+  }
+]

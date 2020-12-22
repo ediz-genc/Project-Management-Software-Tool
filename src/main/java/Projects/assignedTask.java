@@ -8,6 +8,7 @@ public class assignedTask {
     private String taskDescription;
     private String memberAssigned;
     private String Status;
+    private double hoursSpent;
 
     public assignedTask(String projectName,String milestoneName,String taskDescription,String memberAssigned, String Status){
         this.projectName = projectName;
@@ -15,6 +16,7 @@ public class assignedTask {
         this.taskDescription = taskDescription;
         this.memberAssigned = memberAssigned;
         this.Status = Status;
+        this.hoursSpent = 0;
     }
 
     public String getProjectName() {
@@ -39,6 +41,13 @@ public class assignedTask {
         this.Status = "Completed";
     }
 
+    public void setHoursSpent(double hoursSpent) {
+        this.hoursSpent = hoursSpent;
+    }
+    public double getHoursSpent(){
+        return hoursSpent;
+    }
+
     public static class allAssignedTasks{
         ArrayList<assignedTask> assignedTasks = new ArrayList<>();
         private static volatile allAssignedTasks soloAllAssignedTasks = new allAssignedTasks();
@@ -54,6 +63,9 @@ public class assignedTask {
         }
         public ArrayList<assignedTask> getAssignedTasks(){
             return assignedTasks;
+        }
+        public void loadFromFile(ArrayList<assignedTask> savedAssignedTasks){
+            this.assignedTasks = savedAssignedTasks;
         }
     }
 }

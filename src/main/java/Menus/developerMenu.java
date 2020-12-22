@@ -28,7 +28,7 @@ public class developerMenu {
 
             printOutput.printLine("Welcome!\n\nHere you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. View my tasks\n2. Report about completed tasks\n3. Delete/archive project\n4. View Projects\n5. Send a message\n6. See your inbox\n7. Return to main menu\n");
+            option = printOutput.readInt("1. View my tasks\n2. Report about completed tasks\n3. Delete/archive project\n4. View Projects\n5. Send a message\n6. See your inbox\n7. Log out\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");
@@ -83,17 +83,20 @@ public class developerMenu {
         ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
         String username = printOutput.readLine("Please enter your username: ");
         String choice = "";
+        double hoursSpent = 0;
         for(assignedTask AssignedTask: allAssignedTasks){
             if(AssignedTask.getMemberAssigned().equals(username) && AssignedTask.getStatus().equals("Uncompleted")){
                 int position = allAssignedTasks.indexOf(AssignedTask);
                 System.out.println("Task number: " + position + "\n" + "Project: " + AssignedTask.getProjectName() + "\n" + "Milestone: " + AssignedTask.getMilestoneName()
                         + "\n" + "Task description: " + AssignedTask.getTaskDescription());
                 choice = printOutput.readLine("Please choose a task that has been completed: ");
+                hoursSpent = printOutput.readDouble("Enter the hours you have spent working on this task: ");
             }else{
                 printOutput.printLine("No tasks have been assigned to you.");
             }
             int completedTask = Integer.parseInt(choice);
             allAssignedTasks.get(completedTask).changeStatus();
+            allAssignedTasks.get(completedTask).setHoursSpent(hoursSpent);
             printOutput.printLine("Task completed!");
         }
     }

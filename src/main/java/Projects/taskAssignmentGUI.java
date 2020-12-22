@@ -1,6 +1,5 @@
 package Projects;
 
-import Users.Member;
 import Users.addedMembers;
 
 import javax.swing.*;
@@ -9,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class assignTaskInterface {
+public class taskAssignmentGUI {
 
-    private static volatile assignTaskInterface soloNewTask = new assignTaskInterface();
+    private static volatile taskAssignmentGUI soloNewTask = new taskAssignmentGUI();
     static Users.addedMembers AddedMembers = addedMembers.getInstance();
     static Projects.allProjects allProjects = Projects.allProjects.getInstance();
 
@@ -24,12 +23,12 @@ public class assignTaskInterface {
     StringBuffer allTasks = new StringBuffer();
 
 
-    public assignTaskInterface() {
+    public taskAssignmentGUI() {
 
     }
-    public static assignTaskInterface getInstance(){
+    public static taskAssignmentGUI getInstance(){
         if(soloNewTask == null){
-            soloNewTask = new assignTaskInterface();
+            soloNewTask = new taskAssignmentGUI();
         }
         return soloNewTask;
     }
@@ -162,7 +161,7 @@ public class assignTaskInterface {
     }
 
     public static void main(String[] args){
-        assignTaskInterface newTask = new assignTaskInterface();
+        taskAssignmentGUI newTask = new taskAssignmentGUI();
         newTask.assignTask();
     }
 }

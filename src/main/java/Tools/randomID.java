@@ -12,9 +12,11 @@ import java.util.Random;
         private int number;
         private final int row = 50;
         private final int column = 2;
+        private int singleNumber;
+            private int getSingleNumber;
 
 
-        public static randomID getInstance() {
+            public static randomID getInstance() {
             if(randID == null) {
                 randID = new randomID();
             }
@@ -35,12 +37,14 @@ import java.util.Random;
             for(int i=0;i<ID.length-1;i++){
                 if(ID[i][1] == 0){
                     this.number = (ID[i][0]);
+
                     ID[i][1] = 1;
                     break;
                 }
             }
             return number;
         }
+
 
 
 

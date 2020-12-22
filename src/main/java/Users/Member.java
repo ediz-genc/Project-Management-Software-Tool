@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Member {
 
-    randomID randID = randomID.getInstance();
 
     private String name;
     private String username;
@@ -17,12 +16,12 @@ public class Member {
     private int memberKey;
     private String grantedAccess;
 
-    public Member (String name, String username, String password, int level){
+    public Member (String name, String username, String password, int level, int memberKey){
         this.name = name;
         this.username=username;
         this.password=password;
         this.level=level;
-        this.memberKey = randID.getRandom();
+        this.memberKey = memberKey;
         this.grantedAccess = "access not granted";
     }
 

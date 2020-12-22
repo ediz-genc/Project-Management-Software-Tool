@@ -6,6 +6,7 @@ import Users.Member;
 import Menus.ownerMenu;
 import Menus.managerMenu;
 import Menus.developerMenu;
+import Import_Export.importAndExportSavedInfo;
 
 public class startApp {
 
@@ -24,6 +25,8 @@ public class startApp {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
     static randomID randID = randomID.getInstance();
+    importAndExportSavedInfo ie = new importAndExportSavedInfo();
+
 
 
     public void run(){
@@ -42,6 +45,8 @@ public class startApp {
 
             switch (choices) {
                 case "1":
+                ie.exportUsers();
+                /*
                     String userName = printOutput.readLine("Username: ");
                     String passWord = printOutput.readLine("Password: ");
                     levelCheck = addedmembers.findMember(userName, passWord);
@@ -51,8 +56,9 @@ public class startApp {
                     } else {
                         printOutput.printLine("Invalid login information. Please try again!");
                     }
-
+ */
                     break;
+
                 case "2":
                     newUser();
                     printOutput.printLine("Your account was successfully added");
@@ -64,7 +70,6 @@ public class startApp {
                 default:
                     printOutput.printLine("Wrong input, try again:\n");
             }
-
         }
     }
 
@@ -78,8 +83,8 @@ public class startApp {
         int level = printOutput.readInt("Whats your profession? Choose from the options below.\n\n" +
                 "1. Project owner\n2. Project manager\n3. Developer/Designer\n (Enter 1-3 depending on your profession)\n\n");
 
-
-        Member createMember = new Member(name, userName, pass, level);
+        int memberKey = randID.getRandom();
+        Member createMember = new Member(name, userName, pass, level,memberKey);
         addedmembers.addMember(createMember);
 
     }

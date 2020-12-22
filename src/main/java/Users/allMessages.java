@@ -56,4 +56,7 @@ public class allMessages {
             }
         }
     }
+    public void loadFromFile(ArrayList<Message> savedMessages){
+        this.allMessages = savedMessages;
+    }
 }

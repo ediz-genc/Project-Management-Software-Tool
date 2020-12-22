@@ -6,7 +6,7 @@ import Projects.Project;
 import Users.Member;
 import Users.addedMembers;
 import Projects.allProjects;
-import Projects.assignTaskInterface;
+import Projects.taskAssignmentGUI;
 import Users.allMessages;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class ownerMenu {
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
     static Project project = new Project();
-    static assignTaskInterface newTask = new assignTaskInterface();
+    static taskAssignmentGUI newTask = new taskAssignmentGUI();
     static Member member = new Member();
     ArrayList<Member> allMembers = addedmember.getAllMembers();
     static allMessages AllMessages = allMessages.getInstance();
@@ -94,13 +94,11 @@ public class ownerMenu {
         String tempUser = addedmember.getActiveUser();
         int key = addedmember.getUserKey(tempUser);
 
-        Project newProject = new Project(projectName,weeks, milestones, taskDescription, key,managerKey, startDate, endDate,tasks, projectDescription);
+        Project newProject = new Project(projectName, weeks, key,managerKey, startDate, endDate,projectDescription,tasks);
         allprojects.addProject(newProject);
     }
 
-    void openProject(){
-
-    }
+   
 
     public void viewUsers(){
 

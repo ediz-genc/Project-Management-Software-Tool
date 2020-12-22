@@ -1,28 +1,8 @@
-
-  [
-    {
-      "name": "owner1",
-      "username": "admin",
-      "password": "pass",
-      "level": 1,
-      "memberKey": 9892
-    },
-    {
-      "name": "mana1",
-      "username": "mana",
-      "password": "pass",
-      "level": 2,
-      "memberKey": 3827
-    },
-    {
-      "name": "dev1",
-      "username": "dev",
-      "password": "pass",
-      "level": 1,
-      "memberKey": 5555
-    }
-  ]
-
-
-
-
+{
+  "name": "Irina",
+  "username": "iri",
+  "password": "hello",
+  "level": 1,
+  "memberKey": 2435,
+  "grantedAccess": "access not granted"
+}

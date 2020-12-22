@@ -8,12 +8,11 @@ import Tools.randomID;
 
 public class Project {
 
+    public int getOwnerKey;
     randomID randID = randomID.getInstance();
 
     private String projectName;
     private int weeks;
-    private String projectMilestones;
-    private String task;
     private ArrayList<Integer> memberKey;
     private int projectKey;
     private int ownerKey;
@@ -23,11 +22,9 @@ public class Project {
     private ArrayList<task> tasks = new ArrayList<>();
     private String projectDesc;
 
-    public Project(String projectName, int weeks, String milestones, String task, int ownerKey, int managerKey, String startDate, String endDate, ArrayList<task> tasks, String projectDescription) {
+    public Project(String projectName, int weeks, int ownerKey, int managerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks) {
         this.projectName = projectName;
         this.weeks = weeks;
-        this.projectMilestones = milestones;
-        this.task = task;
         this.projectKey = randID.getRandom();
         this.ownerKey = ownerKey;
         this.managerKey = managerKey;
@@ -55,9 +52,7 @@ public class Project {
         return weeks;
     }
 
-    public String getProjectMilestones() {
-        return projectMilestones;
-    }
+    
 
     public void addMemberKey(int key) {
         memberKey.add(key);
@@ -127,6 +122,10 @@ public class Project {
 
 
     public int getManagerKey() { return managerKey; }
+    
+    public int getOwnerKey(){
+    return ownerKey;
+    }
     public ArrayList<Integer> getMemberKey() { return memberKey; }
 
 
