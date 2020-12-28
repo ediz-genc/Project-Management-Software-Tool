@@ -1,0 +1,26 @@
+[
+  {
+    "name": "jakob",
+    "username": "jako",
+    "password": "123",
+    "level": 1,
+    "memberKey": 1145,
+    "grantedAccess": "access not granted"
+  },
+  {
+    "name": "mike",
+    "username": "mikkee",
+    "password": "123",
+    "level": 2,
+    "memberKey": 8562,
+    "grantedAccess": "access not granted"
+  },
+  {
+    "name": "ediz",
+    "username": "edii",
+    "password": "123",
+    "level": 3,
+    "memberKey": 3537,
+    "grantedAccess": "access not granted"
+  }
+]

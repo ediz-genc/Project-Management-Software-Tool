@@ -37,8 +37,10 @@ public class importAndExportSavedInfo {
     public void loadUser() throws IllegalStateException {
 
         Gson gson = new Gson();
+        File file = new File("savedUsersObjects.json");
+        String path = file.getAbsolutePath();
 
-        try (Reader reader = new FileReader("C:\\Users\\irina\\Eficaz Mini Project\\Eficaz_4\\src\\main\\java\\SavedInfo\\savedUsersObjects.json")) {
+        try (Reader reader = new FileReader(path)) {
 
             Type type = new TypeToken<ArrayList<Member>>(){}.getType();
             allMembers = gson.fromJson(reader, type);
@@ -49,6 +51,7 @@ public class importAndExportSavedInfo {
                 addedmembers.loadFromFile(allMembers);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
+                System.out.println("mmm no");
             }
 
         } catch (IOException e) {
@@ -60,7 +63,10 @@ public class importAndExportSavedInfo {
     public void loadProject() throws IllegalStateException {
 
         Gson gson = new Gson();
-        try (Reader reader = new FileReader("C:\\Users\\irina\\Eficaz Mini Project\\Eficaz_4\\src\\main\\java\\SavedInfo\\savedProjectsObjects.json")) {
+        File file = new File("savedProjectsObjects.json");
+        String path = file.getAbsolutePath();
+
+        try (Reader reader = new FileReader(path)) {
             Type type = new TypeToken<ArrayList<Project>>(){}.getType();
             allProject = gson.fromJson(reader, type);
             allprojects.loadFromFile(allProject);
@@ -72,9 +78,12 @@ public class importAndExportSavedInfo {
     }
 
     public void loadAssignedTasks() throws IllegalStateException {
-        Gson gson = new Gson();
 
-        try (Reader reader = new FileReader("C:\\Users\\irina\\Eficaz Mini Project\\Eficaz_4\\src\\main\\java\\SavedInfo\\savedAssignedTasksObjects.json")) {
+        Gson gson = new Gson();
+        File file = new File("savedAssignedTasksObjects.json");
+        String path = file.getAbsolutePath();
+
+        try (Reader reader = new FileReader(path)) {
             Type type = new TypeToken<ArrayList<assignedTask>>() {}.getType();
             AssignedTasks = gson.fromJson(reader, type);
             allAssignedTasks.loadFromFile(AssignedTasks);
@@ -87,8 +96,10 @@ public class importAndExportSavedInfo {
 
     public void loadMessages() throws IllegalStateException {
         Gson gson = new Gson();
+        File file = new File("savedMessageObjects.json");
+        String path = file.getAbsolutePath();
 
-        try (Reader reader = new FileReader("C:\\Users\\irina\\Eficaz Mini Project\\Eficaz_4\\src\\main\\java\\SavedInfo\\savedMessageObjects.json")) {
+        try (Reader reader = new FileReader(path)) {
             Type type = new TypeToken<ArrayList<Message>>() {
             }.getType();
             allMessages = gson.fromJson(reader, type);
@@ -103,22 +114,27 @@ public class importAndExportSavedInfo {
     public void exportUsers() {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        File file = new File("savedUsersObjects.json");
+        String path = file.getAbsolutePath();
 
         Type type = new TypeToken<ArrayList<Member>>(){}.getType();
         ArrayList<Member> allMembers = addedmembers.getAllMembers();
 
-            try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedUsersObjects.json")) {
+            try (FileWriter writer = new FileWriter(path)) {
                gson.toJson(allMembers,type,writer);
-            } catch (IOException e) {
+           } catch (IOException e) {
                 input.printLine("No file found");
             }
-        }
+    }
+
     public void exportProjects(){
      Gson gson = new GsonBuilder().setPrettyPrinting().create();
      Type type = new TypeToken<ArrayList<Project>>(){}.getType();
      ArrayList<Project> allProjects = allprojects.getAllProjects();
+        File file = new File("savedProjectsObjects.json");
+        String path = file.getAbsolutePath();
 
-      try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedProjectsObjects.json")) {
+      try (FileWriter writer = new FileWriter(path)) {
                     gson.toJson(allProjects,type,writer);
                  } catch (IOException e) {
                      input.printLine("No file found");
@@ -130,8 +146,10 @@ public class importAndExportSavedInfo {
         Type type = new TypeToken<ArrayList<assignedTask>>() {
         }.getType();
         ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
+        File file = new File("savedAssignedTasksObjects.json");
+        String path = file.getAbsolutePath();
 
-        try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedAssignedTasksObjects.json")) {
+        try (FileWriter writer = new FileWriter(path)) {
             gson.toJson(allAssignedTasks, type, writer);
         } catch (IOException e) {
             input.printLine("No file found");
@@ -142,21 +160,13 @@ public class importAndExportSavedInfo {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Type type = new TypeToken<ArrayList<Message>>() {}.getType();
         ArrayList<Message> allMessages = AllMessages.getAllMessages();
+        File file = new File("savedMessageObjects.json");
+        String path = file.getAbsolutePath();
 
-        try (FileWriter writer = new FileWriter("/Users/hagosaraya/IdeaProjects/eficaza/src/main/java/savedInfo/savedMessageObjects.json")) {
+        try (FileWriter writer = new FileWriter(path)) {
             gson.toJson(allMessages, type, writer);
         } catch (IOException e) {
             input.printLine("No file found");
         }
     }
-
-
-        public void getJsonURL () {
-
-
-
-            // http://www.json-generator.com/api/json/get/bQJgvLEXtu?indent=2
-
-
-        }
-    }
+}
