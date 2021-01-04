@@ -30,11 +30,11 @@ public class ownerMenu {
 
         int option = 0;
 
-        while (option != 6) {
+        while (option != 8) {
 
             printOutput.printLine("\nWelcome!\n\nHere you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Add member to project\n5. See your inbox\n6. Invite users to project\n7. Log out\n");
+            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Edit the project\n5. Send a message\n6. See your inbox\n7. Invite users to project\n8. Log out\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");

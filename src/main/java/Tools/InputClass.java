@@ -1,7 +1,5 @@
 package Tools;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 public class InputClass {
 
@@ -13,53 +11,40 @@ public class InputClass {
 
     public String printLine(String A){
         System.out.println(A);
-
         return A;
     }
 
     public int printInt(int A){
         System.out.println(A);
-
         return A;
     }
     public char readChar(String userMessage) {
+
         Scanner input = new Scanner(System.in);
         System.out.println(userMessage);
         char charText = input.next().charAt(0);
         charText = Character.toUpperCase(charText);
-        input.close();
-
+        
         return charText;
     }
     public String readLine(String A){
 
         Scanner input = new Scanner(System.in);
-        String output = null;
 
         System.out.print(A);
-        output = input.nextLine();
-
+        String output = input.nextLine();
         return output;
-
     }
     public int readInt(String A){
 
         Scanner input = new Scanner(System.in);
         System.out.print(A);
-        String output = input.nextLine(); int x = 0;
+        int output = input.nextInt();
+        int x = 0;
 
         String message = "Invalid input";
 
-        try {
-            x = Integer.parseInt(output);
-
-        } catch (NumberFormatException e) {
-            System.out.println(message);
-            readInt(A);
-        }
-
-
-        return x;
+        return output;
     }
 
     public double readDouble(String A){
