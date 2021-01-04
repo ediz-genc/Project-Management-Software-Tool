@@ -34,7 +34,7 @@ public class ownerMenu {
 
             printOutput.printLine("\nWelcome!\n\nHere you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Send a message\n5. See your inbox\n6. Invite users to project\n7. Log out\n");
+            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Add member to project\n5. See your inbox\n6. Invite users to project\n7. Log out\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");
@@ -50,10 +50,16 @@ public class ownerMenu {
                     break;
                 case 4:
                     String activeUser = addedmember.getActiveUser();
-                    int key = addedmember.getUserKey(activeUser);
-                    Project project = (Project) allprojects.getProject(key);
-                    managerMenu.setProject(project);
-                    managerMenu.editProject();
+                    Project project;
+                    try {
+                        int key = addedmember.getUserKey(activeUser);
+                        project = (Project) allprojects.getProject(key);
+                        if(project.getProjectName()==null){throw new Exception();}
+                        managerMenu.setProject(project);
+                        managerMenu.editProject();
+                    } catch(Exception e) {
+                        printOutput.printLine("No project active with your active.");
+                    }
                     break;
                 case 5:
                     AllMessages.sendMessage();
@@ -100,9 +106,9 @@ public class ownerMenu {
         int managerKey = 2;
 
         String tempUser = addedmember.getActiveUser();
-        int key = addedmember.getUserKey(tempUser);
+        int ownerKey = addedmember.getUserKey(tempUser);
 
-        Project newProject = new Project(projectName, weeks, key,managerKey, startDate, endDate,projectDescription,tasks);
+        Project newProject = new Project(projectName, weeks, ownerKey,managerKey, startDate, endDate,projectDescription,tasks);
         allprojects.addProject(newProject);
     }
     public void viewUsers(){
@@ -114,13 +120,12 @@ public class ownerMenu {
     }
 
     public void addMemberToProject(){
-        viewUsers();
         Project theProject;
 
         try {
             String activeUser = addedmember.getActiveUser();
             int key = addedmember.getUserKey(activeUser);
-            theProject = (Project) allprojects.getManagerProject(key);
+            theProject = (Project) allprojects.getProject(key);
             if(theProject.getProjectName()==null&&theProject.getMilestoneDescription()==null&&theProject.getMemberKey()==null){
                 throw new Exception();
             }
@@ -175,4 +180,6 @@ public class ownerMenu {
         }while (option.equals("y"));
 
     }
+
+
 }

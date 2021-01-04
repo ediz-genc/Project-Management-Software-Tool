@@ -47,13 +47,13 @@ public class allProjects {
 
         for (int i = 0; i < allProjects.size(); i++) {
         if(key == allProjects.get(i).getOwnerKey() || key == allProjects.get(i).getManagerKey()){project = allProjects.get(i);getterPosition=i; return project;}
-          if(allProjects.get(i).getMemberKey()!=null){tempKeys = allProjects.get(i).getMemberKey();}
+          if(allProjects.get(i).getMemberKey()!=null){tempKeys = allProjects.get(i).getMemberKey();
             for (int j = 0; j < tempKeys.size(); j++) {
                 if (tempKeys.get(i) != null && tempKeys.get(i) == key) {
                     project = allProjects.get(i);
                     getterPosition=i;
                 }
-            }
+            }}
         }
         return project;
     }
