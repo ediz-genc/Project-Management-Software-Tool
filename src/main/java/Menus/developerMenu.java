@@ -48,6 +48,7 @@ public class developerMenu {
                     return;
                 case 6:
                     AllMessages.readMessage();
+                    return;
                 case 7:
                     returnedMenu.run();
                 default:

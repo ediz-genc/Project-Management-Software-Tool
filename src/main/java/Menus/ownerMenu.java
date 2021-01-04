@@ -24,6 +24,7 @@ public class ownerMenu {
     ArrayList<Member> allMembers = addedmember.getAllMembers();
     static allMessages AllMessages = allMessages.getInstance();
     static startApp returnedMenu = new startApp();
+    static managerMenu managerMenu = new managerMenu();
 
     public void menu() {
 
@@ -33,7 +34,7 @@ public class ownerMenu {
 
             printOutput.printLine("\nWelcome!\n\nHere you can start on a new project or open existing ones.\n" +
                     "Choose a option below.\n");
-            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Send a message\n5. See your inbox\n6. Invite users to project\n7. Return to main menu\n");
+            option = printOutput.readInt("1. Add tasks to existing project\n2. Assign task to user \n3. Create new Project\n4. Send a message\n5. See your inbox\n6. Invite users to project\n7. Log out\n");
             switch (option) {
                 case 1:
                     printOutput.printLine("to be continued...");
@@ -48,15 +49,22 @@ public class ownerMenu {
                     newProject();
                     break;
                 case 4:
-                    AllMessages.sendMessage();
+                    String activeUser = addedmember.getActiveUser();
+                    int key = addedmember.getUserKey(activeUser);
+                    Project project = (Project) allprojects.getProject(key);
+                    managerMenu.setProject(project);
+                    managerMenu.editProject();
                     break;
                 case 5:
-                    AllMessages.readMessage();
+                    AllMessages.sendMessage();
                     break;
                 case 6:
-                    allowUserToSeeProject();
-                    return;
+                    AllMessages.readMessage();
+                    break;
                 case 7:
+                    addMemberToProject();
+                    return;
+                case 8:
                     returnedMenu.run();
                 default:
                     printOutput.printLine("Invalid input");
@@ -97,17 +105,36 @@ public class ownerMenu {
         Project newProject = new Project(projectName, weeks, key,managerKey, startDate, endDate,projectDescription,tasks);
         allprojects.addProject(newProject);
     }
-
-   
-
     public void viewUsers(){
-
-        //Method to be finished (Patricia and Jakob)
 
         for (int i = 0; i < allMembers.size(); i++){
             printOutput.printLine("Name of the User: " +allMembers.get(i).getName()+ "\n" + "User ID: " +allMembers.get(i).getUsername() + "\n"+ "User Key: "+allMembers.get(i).getMemberKey()+"\n"+
                     "Use Access to see project: "+ allMembers.get(i).getGrantedAccess());
         }
+    }
+
+    public void addMemberToProject(){
+        viewUsers();
+        Project theProject;
+
+        try {
+            String activeUser = addedmember.getActiveUser();
+            int key = addedmember.getUserKey(activeUser);
+            theProject = (Project) allprojects.getManagerProject(key);
+            if(theProject.getProjectName()==null&&theProject.getMilestoneDescription()==null&&theProject.getMemberKey()==null){
+                throw new Exception();
+            }
+        } catch (Exception e){
+            printOutput.printLine("No project was found...returning.");
+            return;
+        }
+        System.out.println("Which user do you want to assign to " + theProject.getProjectName());
+        ArrayList<Member> temp = addedmember.getAllMembers();
+        for(Member member: temp){
+            System.out.println("Name: " + member.getName() +  "ID: " + member.getMemberKey());
+        }
+        int number = printOutput.readInt("Who do you want to add? State the ID: ");
+        allprojects.addMember(number);
     }
 
     public void allowUserToSeeProject (){

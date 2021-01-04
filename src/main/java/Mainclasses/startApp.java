@@ -46,7 +46,7 @@ public class startApp {
             switch (choices) {
                 case "1":
                 ie.exportUsers();
-                /*
+
                     String userName = printOutput.readLine("Username: ");
                     String passWord = printOutput.readLine("Password: ");
                     levelCheck = addedmembers.findMember(userName, passWord);
@@ -56,10 +56,9 @@ public class startApp {
                     } else {
                         printOutput.printLine("Invalid login information. Please try again!");
                     }
- */
-                    break;
 
-                case "2":
+                    break;
+                    case "2":
                     newUser();
                     printOutput.printLine("Your account was successfully added");
                     break;
@@ -81,7 +80,7 @@ public class startApp {
         String pass = printOutput.readLine("Create a password: ");
 
         int level = printOutput.readInt("Whats your profession? Choose from the options below.\n\n" +
-                "1. Project owner\n2. Project manager\n3. Developer/Designer\n (Enter 1-3 depending on your profession)\n\n");
+                "1. Product owner\n2. Project manager\n3. Developer/Designer\n (Enter 1-3 depending on your profession)\n\n");
 
         int memberKey = randID.getRandom();
         Member createMember = new Member(name, userName, pass, level,memberKey);

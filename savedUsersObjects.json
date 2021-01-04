@@ -22,5 +22,21 @@
     "level": 3,
     "memberKey": 3537,
     "grantedAccess": "access not granted"
+  },
+  {
+    "name": "mo",
+    "username": "s",
+    "password": "123",
+    "level": 2,
+    "memberKey": 4417,
+    "grantedAccess": "access not granted"
+  },
+  {
+    "name": "michael",
+    "username": "mikey",
+    "password": "kapp",
+    "level": 2,
+    "memberKey": 3293,
+    "grantedAccess": "access not granted"
   }
 ]

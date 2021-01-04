@@ -7,6 +7,7 @@ public class allProjects {
     private static volatile allProjects soloAllProjects = new allProjects();
     private ArrayList<Project> allProjects = new ArrayList<Project>();
     static InputClass printOutput = new InputClass();
+    static private int getterPosition =0;
 
     private allProjects() {
     }
@@ -41,15 +42,16 @@ public class allProjects {
     }
     public Object getProject(int key) {
 
-        Object project = null;
-        ArrayList<Integer> tempKeys;
+        Project project = null;
+        ArrayList<Integer> tempKeys =null;
 
         for (int i = 0; i < allProjects.size(); i++) {
-        if(key == allProjects.get(i).getOwnerKey() || key == allProjects.get(i).getManagerKey()){project = allProjects.get(i); return project;}
-          tempKeys = allProjects.get(i).getMemberKey();
+        if(key == allProjects.get(i).getOwnerKey() || key == allProjects.get(i).getManagerKey()){project = allProjects.get(i);getterPosition=i; return project;}
+          if(allProjects.get(i).getMemberKey()!=null){tempKeys = allProjects.get(i).getMemberKey();}
             for (int j = 0; j < tempKeys.size(); j++) {
                 if (tempKeys.get(i) != null && tempKeys.get(i) == key) {
                     project = allProjects.get(i);
+                    getterPosition=i;
                 }
             }
         }
@@ -98,5 +100,11 @@ public class allProjects {
 
 
 
+    }
+    
+    
+    public void setProject(Project project){
+        int position = getterPosition;
+        allProjects.set(position,project);
     }
 }

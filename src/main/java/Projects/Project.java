@@ -8,7 +8,6 @@ import Tools.randomID;
 
 public class Project {
 
-    public int getOwnerKey;
     randomID randID = randomID.getInstance();
 
     private String projectName;
@@ -127,6 +126,12 @@ public class Project {
     return ownerKey;
     }
     public ArrayList<Integer> getMemberKey() { return memberKey; }
+    
+    public void addMember(int number){
+        memberKey.add(number);
+        
+        
+    }
 
 
 }
