@@ -80,27 +80,7 @@ public class allProjects {
 
             }
 
-
-    public void allProjectsToString(){
-        StringBuffer printAllProjects = new StringBuffer();
-        for(Project project: allProjects){
-            printAllProjects.append(project.getProjectName());
-            printAllProjects.append("\n");
-            printAllProjects.append(project.getWeeks());
-            printAllProjects.append("\n");
-            printAllProjects.append(project.getMemberKey());
-            printAllProjects.append("\n");
-            printAllProjects.append(project.getManagerKey());
-            printAllProjects.append("\n");
-            printAllProjects.append(project.getTasks());
-            printAllProjects.append("\n");
-        }
-        String printAllProjectsArray = printAllProjects.toString();
-        System.out.println(printAllProjectsArray);
-
-
-
-    }
+            
     
     
     public void setProject(Project project){

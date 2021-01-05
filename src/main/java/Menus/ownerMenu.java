@@ -8,6 +8,7 @@ import Users.addedMembers;
 import Projects.allProjects;
 import Projects.taskAssignmentGUI;
 import Users.allMessages;
+import Tools.randomID;
 
 import java.util.ArrayList;
 
@@ -21,11 +22,11 @@ public class ownerMenu {
     static allProjects allprojects = allProjects.getInstance();
     static Project project = new Project();
     static taskAssignmentGUI newTask = new taskAssignmentGUI();
-    static Member member = new Member();
     ArrayList<Member> allMembers = addedmember.getAllMembers();
     static allMessages AllMessages = allMessages.getInstance();
     static startApp returnedMenu = new startApp();
     static managerMenu managerMenu = new managerMenu();
+    static randomID randID = randomID.getInstance();
 
     public void menu() {
 
@@ -52,11 +53,14 @@ public class ownerMenu {
                     try {
                         int key = addedmember.getUserKey(activeUser);
                         project = (Project) allprojects.getProject(key);
-                        if(project.getProjectName()==null){throw new Exception();}
-                        managerMenu.setProject(project);
-                        managerMenu.editProject();
-                    } catch(Exception e) {
-                        printOutput.printLine(ANSI_RED+"No projects were found within your account, please create a project in order to edit."+ANSI_RESET);
+                        if (project.getProjectName() == null) {
+                            throw new Exception();
+                        } else {
+                            managerMenu.setProject(project);
+                            managerMenu.editProject();
+                        }
+                    } catch (Exception e) {
+                        printOutput.printLine(ANSI_RED + "No projects were found within your account, please create a project in order to edit." + ANSI_RESET);
                     }
                     break;
                 case 5:
@@ -66,7 +70,13 @@ public class ownerMenu {
                     AllMessages.readMessage();
                     break;
                 case 7:
-                    addMemberToProject();
+                    String choice = printOutput.readLine("Do you want to assign a developer or manager? 'y' for developer and 'n' for manager  (y/n)");
+                    if (choice.equals("y")) {
+                        addMemberToProject();
+                    } else if(choice.equals("n")){
+                        assignManager();
+                    }
+
                     return;
                 case 8:
                     returnedMenu.run();
@@ -91,21 +101,23 @@ public class ownerMenu {
         String taskDescription;
         String milestones;
         ArrayList<Projects.task> tasks = project.getTasks();
+        Projects.task task;
         do {
             milestones = printOutput.readLine("Enter the description of the milestones: ");
             taskDescription = printOutput.readLine("Enter the description of the task: ");
-            Projects.task task = new Projects.task(milestones, taskDescription);
-            tasks.add(task);
 
             option = printOutput.readLine("Do you want to enter more tasks to your milestone? (y/n):\n");
+            task = new Projects.task(milestones, taskDescription);
+            tasks.add(task);
+
         }while (option.equals("y"));
-
-        int managerKey = 2;
-
+        
+        
         String tempUser = addedmember.getActiveUser();
         int ownerKey = addedmember.getUserKey(tempUser);
+        int projectKey = randID.getRandom();
 
-        Project newProject = new Project(projectName, weeks, ownerKey,managerKey, startDate, endDate,projectDescription,tasks);
+        Project newProject = new Project(projectName, weeks, ownerKey, startDate, endDate,projectDescription,tasks,projectKey);
         allprojects.addProject(newProject);
     }
     public void viewUsers(){
@@ -163,6 +175,8 @@ public class ownerMenu {
         }while (select.equals("yes"));
     }
     void addTasksToProject(){
+
+       
         String option;
         String taskDescription;
         String milestones;
@@ -178,9 +192,58 @@ public class ownerMenu {
 
             option = printOutput.readLine("Do you want to enter more tasks to your project? (y/n):\n");
         }while (option.equals("y"));
+        
 
     }
+    
+    public Project getProject(){
 
+        Project theProject = null;
+        
+        try {
+            String activeUser = addedmember.getActiveUser();
+            int key = addedmember.getUserKey(activeUser);
+            theProject = (Project) allprojects.getProject(key);
+            if(theProject.getProjectName()==null&&theProject.getMilestoneDescription()==null&&theProject.getMemberKey()==null){
+                throw new Exception();
+            }
+        } catch (Exception e){
+            printOutput.printLine(ANSI_RED+"No project was found within your account,\nyou need to create one before inviting users."+ANSI_RESET);
+            menu();
+        }
+        return theProject;
+    }
+            
+            
+
+    public void assignManager(){
+
+        ArrayList<Member> tempUsers = addedmember.getAllMembers();
+        printOutput.printLine("These are all available managers:\n");
+        for(int i=0;i<0;i++){
+            if(tempUsers.get(i)!=null && tempUsers.get(i).getLevel()==2){
+                printOutput.printLine("Name " + tempUsers.get(i).getName() + " ID " + tempUsers.get(i).getMemberKey());
+
+            }
+        }
+        int ID = printOutput.readInt("Which user do you want to assign as manager? (ID)");
+        try {
+            String activeUser = addedmember.getActiveUser();
+            int key = addedmember.getUserKey(activeUser);
+            Project theProject = (Project) allprojects.getProject(key);
+            if(theProject.getProjectName()==null&&theProject.getMilestoneDescription()==null&&theProject.getMemberKey()==null){
+                throw new Exception();
+            } else {
+                theProject.setManagerKey(ID);
+            }
+        } catch (Exception e){
+            printOutput.printLine(ANSI_RED+"No project was found within your account,\nyou need to create one before inviting users."+ANSI_RESET);
+            menu();
+        }
+
+
+
+    }
 
 
 }

@@ -61,13 +61,7 @@ public class InputClass {
             System.out.println(ANSI_RED+message+ANSI_RESET);
             readInt(A);
         }
-
-
         return output;
-
-
-
-
     }
     public String readYN(String A){
 
