@@ -24,6 +24,8 @@ import Users.Message;
 public class importAndExportSavedInfo {
 
     InputClass input = new InputClass();
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
     addedMembers addedmembers = addedMembers.getInstance();
     allProjects allprojects = allProjects.getInstance();
     assignedTask.allAssignedTasks allAssignedTasks = assignedTask.allAssignedTasks.getInstance();
@@ -32,7 +34,6 @@ public class importAndExportSavedInfo {
     static ArrayList<Project> allProject = new ArrayList<>();
     static ArrayList<assignedTask> AssignedTasks = new ArrayList<>();
     static ArrayList<Message> allMessages = new ArrayList<>();
-
 
     public void loadUser() throws IllegalStateException {
 
@@ -46,7 +47,7 @@ public class importAndExportSavedInfo {
             allMembers = gson.fromJson(reader, type);
             try {
                 int secondsToSleep = 2;
-                input.printLine("Loading saved data...");
+                input.printLine("Loading program...");
                 Thread.sleep(secondsToSleep * 1000);
                 addedmembers.loadFromFile(allMembers);
             } catch (InterruptedException ex) {
@@ -59,7 +60,6 @@ public class importAndExportSavedInfo {
             e.printStackTrace();
         }
     }
-
     public void loadProject() throws IllegalStateException {
 
         Gson gson = new Gson();
@@ -72,11 +72,10 @@ public class importAndExportSavedInfo {
             allprojects.loadFromFile(allProject);
 
         } catch (IOException e) {
-            System.out.print("File not found...");
+            System.out.print(ANSI_RED + "File not found..."+ ANSI_RESET);
             e.printStackTrace();
         }
     }
-
     public void loadAssignedTasks() throws IllegalStateException {
 
         Gson gson = new Gson();
@@ -89,11 +88,10 @@ public class importAndExportSavedInfo {
             allAssignedTasks.loadFromFile(AssignedTasks);
 
         } catch (IOException e) {
-            System.out.print("File not found...");
+            System.out.print(ANSI_RED +"File not found..."+ANSI_RESET);
             e.printStackTrace();
         }
     }
-
     public void loadMessages() throws IllegalStateException {
         Gson gson = new Gson();
         File file = new File("savedMessageObjects.json");
@@ -106,11 +104,10 @@ public class importAndExportSavedInfo {
             AllMessages.loadFromFile(allMessages);
 
         } catch (IOException e) {
-            System.out.print("File not found...");
+            System.out.print(ANSI_RED+"File not found..."+ANSI_RESET);
             e.printStackTrace();
         }
     }
-
     public void exportUsers() {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -126,7 +123,6 @@ public class importAndExportSavedInfo {
                 input.printLine("No file found");
             }
     }
-
     public void exportProjects(){
      Gson gson = new GsonBuilder().setPrettyPrinting().create();
      Type type = new TypeToken<ArrayList<Project>>(){}.getType();
@@ -140,7 +136,6 @@ public class importAndExportSavedInfo {
                      input.printLine("No file found");
                  }
     }
-
     public void exportTasks() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Type type = new TypeToken<ArrayList<assignedTask>>() {
@@ -155,7 +150,6 @@ public class importAndExportSavedInfo {
             input.printLine("No file found");
         }
     }
-
     public void exportMessages () {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Type type = new TypeToken<ArrayList<Message>>() {}.getType();

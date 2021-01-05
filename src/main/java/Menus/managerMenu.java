@@ -13,7 +13,7 @@ import javax.validation.constraints.Null;
 import java.util.ArrayList;
 
 public class managerMenu {
-    public final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_GREEN = "\u001B[32m";
     public final String ANSI_YELLOW = "\u001B[33m";
     public final String ANSI_RESET = "\u001B[0m";
 
@@ -24,7 +24,6 @@ public class managerMenu {
     static allMessages AllMessages = allMessages.getInstance();
     static ownerMenu OwnerMenu = new ownerMenu();
     static Project theProject;
-
 
     public void menu() {
 
@@ -38,12 +37,12 @@ public class managerMenu {
                 throw new Exception();
             }
         } catch (Exception e){
-            printOutput.printLine("You have no active projects...returning");
+            printOutput.printLine("No projects were found within your account, tell the product owner to add you to the project.");
             return;
         }
 
         while(option !=3) {
-            printOutput.printLine("\nWelcome to the Manager Menu! Take care of your Team well.");
+            printOutput.printLine(ANSI_YELLOW +"\nProject Manager Menu\n"+ANSI_RESET+"Here you can work on your project and communicate with your team!\n\nChoose between one of the following options below:\n");
             option = printOutput.readInt("\n1. Add tasks to an existing project \n2. Edit Project\n3. View project progress\n4. Send a message.\n5. See my inbox.\n6. Log out.\n");
 
             switch (option) {
@@ -74,12 +73,8 @@ public class managerMenu {
     public void editProject(){
 
         String editChoice;
-        char editSelection;
-
         do{
-            System.out.println();
-            editChoice = printOutput.readLine("Would you like to edit the project?(y/n)");
-            System.out.println();
+            editChoice = printOutput.readLine("Would you like to edit the project?(y/n)\n");
             if (editChoice.equals("y")){
                 System.out.println();
                 System.out.println("[N]ame of the project");
@@ -90,10 +85,10 @@ public class managerMenu {
                 System.out.println("[M]ilestone description");
                 System.out.println("[T]ask description");
                 System.out.println();
+                char editSelection = printOutput.readChar("What would you would like to edit in the project?\nType one of the following options first (Capital) letter.");
+                editSelection = Character.toUpperCase(editSelection);
 
-                editSelection = printOutput.readChar("What would you would like to edit in the project?");
-
-                switch (editSelection) {
+                switch(editSelection){
                     case 'N' -> editNameOfProject();
                     case 'P' -> editShortDescription();
                     case 'S' -> editStartDate();
@@ -101,7 +96,7 @@ public class managerMenu {
                     case 'A' -> editWeeks();
                     case 'M' -> editMilestoneDescription();
                     case 'T' -> editTaskDescription();
-                    default -> System.out.println("Invalid input. Please try again!");
+                    default ->  System.out.println("Invalid input. Please try again!");
                 }
             }else{
                 break;
@@ -109,80 +104,71 @@ public class managerMenu {
         }while(editChoice == "y");
         allprojects.setProject(theProject);
     }
-
-    public void editNameOfProject () {
-        printOutput.printLine("The name of the project is \"" + ANSI_GREEN + theProject.getProjectName() + ANSI_RESET + "\"");
-        String newName = printOutput.readLine("Type the new name of the project " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
-        if(!newName.equals("0")) {
-            theProject.setProjectName(newName);
-            printOutput.printLine("New name is saved!");
-        }else{
+    public void editNameOfProject (){
+            printOutput.printLine("The name of the project is " + theProject.getProjectName());
+            String newName = printOutput.readLine("Type the new name of the project: (If you would like to go back, type 'BACK').\n");
+             if (newName.equals("BACK")){
             editProject();
+        }else{
+            theProject.setProjectName(newName);
+            printOutput.printLine("\nNew name saved!\n");
         }
     }
     public void editShortDescription(){
-        printOutput.printLine("The short description of the task is \"" + ANSI_GREEN + theProject.getShortDescription() + ANSI_RESET + "\"");
-        String newShortDescription = printOutput.readLine("What's the new short description of the project " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
-        if(!newShortDescription.equals("0")) {
-            theProject.setShortDescription(newShortDescription);
-            printOutput.printLine("New short description is saved!");
-        }else{
+        printOutput.printLine("The short description of the task is " + theProject.getShortDescription());
+        String newName = printOutput.readLine("Enter a new description: (If you would like to go back, type 'BACK').\n");
+        if (newName.equals("BACK")){
             editProject();
+        }else{
+            theProject.setShortDescription(newName);
+            printOutput.printLine("\nNew description saved!\n");
         }
     }
     public void editStartDate(){
-        printOutput.printLine("The start date of the project is \"" + ANSI_GREEN + theProject.getStartDate() + ANSI_RESET + "\"");
-        String newStartDate = printOutput.readLine("What's the new start date of the project " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
-        if(!newStartDate.equals("0")) {
-            theProject.setStartDate(newStartDate);
-            printOutput.printLine("New start date is saved!");
-        }else{
+        printOutput.printLine("The start date of the project is " + theProject.getStartDate());
+        String newStartDate = printOutput.readLine("Enter a new start date: (If you would like to go back, type 'BACK').\n");
+        if (newStartDate.equals("BACK")){
             editProject();
+        }else{
+            theProject.setStartDate(newStartDate);
+            printOutput.printLine("\nThe start date has changed!\n");
         }
     }
     public void editEndDate(){
-        printOutput.printLine("The end date of the project is \"" + ANSI_GREEN + theProject.getEndDate() + ANSI_RESET + "\"");
-        String newEndDate = printOutput.readLine("What's the new end date of the project " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
-        if(!newEndDate.equals("0")) {
-            theProject.setEndDate(newEndDate);
-            printOutput.printLine("New end date is saved!");
-        }else{
+        printOutput.printLine("The end date of the project is " + theProject.getEndDate());
+        String newEndDate = printOutput.readLine("Enter a new end date: (If you would like to go back, type 'BACK').\n");
+        if (newEndDate.equals("BACK")){
             editProject();
+        }else{
+            theProject.setEndDate(newEndDate);
+            printOutput.printLine("\nThe end date has changed!\n");
         }
     }
     public void editWeeks(){
-        printOutput.printLine("The number of weeks in the project is \"" + ANSI_GREEN + theProject.getWeeks() + ANSI_RESET + "\"");
-        int newWeeks = printOutput.readInt("What's the new number of weeks " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
-        if(newWeeks != 0) {
-            theProject.setWeeks(newWeeks);
-            printOutput.printLine("New number of weeks is saved!");
-        }else{
-            editProject();
-        }
+        printOutput.printLine("The number of weeks in the project is " + theProject.getWeeks());
+        int newWeeks = printOutput.readInt("Enter a new number of weeks: (If you would like to go back, type 'BACK'.\n");
+        theProject.setWeeks(newWeeks);
     }
-
     public void editMilestoneDescription() {
-        printOutput.printLine("The Milestone description of the project is \"" + ANSI_GREEN + theProject.getMilestoneDescription() + ANSI_RESET + "\"");
-        String newMilestoneDescription = printOutput.readLine("What's the new milestone description of the project " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
-        if(!newMilestoneDescription.equals("0")) {
+        printOutput.printLine("The Milestone description of the project is " + theProject.getMilestoneDescription());
+        String newMilestoneDescription = printOutput.readLine("Enter the new milestone description: (If you would like to go back, type 'BACK').\n");
+        if (newMilestoneDescription.equals("BACK")){
+            editProject();
+        }else{
             theProject.setMilestoneDescription(newMilestoneDescription);
-            printOutput.printLine("New milestone description is saved!");
-        }else{
-            editProject();
+            printOutput.printLine("\nNew description saved!\n");
         }
     }
-
     public void editTaskDescription(){
-        printOutput.printLine("The task description is \"" + ANSI_GREEN + theProject.getTaskDescription() + ANSI_RESET + "\"");
-        String newTaskDescription = printOutput.readLine("What's the new task description of the project" + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
-        if(!newTaskDescription.equals("0")) {
-            theProject.setTaskDescription(newTaskDescription);
-            printOutput.printLine("New task description is saved!");
-        }else{
+        printOutput.printLine("The task description is " + theProject.getProjectName());
+        String newTaskDescription = printOutput.readLine("Enter a new task description: (If you would like to go back, type 'BACK').\n");
+        if (newTaskDescription.equals("BACK")){
             editProject();
+        }else{
+            theProject.setTaskDescription(newTaskDescription);
+            printOutput.printLine("\nNew description saved!\n");
         }
     }
-
     public Object getProject(){
 
         String activeUser = addedmembers.getActiveUser();
@@ -202,9 +188,8 @@ public class managerMenu {
         }
         return tasksInProject;
     }
-
     public void viewProjectProgress() {
-        String projectName = printOutput.readLine("Please enter project name: ");
+        String projectName = printOutput.readLine("Please enter the project name: ");
         ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
         int totalNumOfTasks = numOfTasksInProject(projectName);
         int tasksCompleted = 0;
@@ -222,11 +207,9 @@ public class managerMenu {
         }
 
     }
-
     public void setProject(Project project){
 
         this.theProject = project;
     }
-
 
 }

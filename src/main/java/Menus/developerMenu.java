@@ -13,6 +13,9 @@ import Users.allMessages;
 import java.util.ArrayList;
 
 public class developerMenu {
+    public final String ANSI_YELLOW = "\u001B[33m";
+    public final String ANSI_RESET = "\u001B[0m";
+    public final String ANSI_RED = "\u001B[31m";
     static InputClass printOutput = new InputClass();
     static myTasksInterface myTasksInterface = new myTasksInterface();
     static allProjects allprojects = allProjects.getInstance();
@@ -26,12 +29,10 @@ public class developerMenu {
         int option = 0;
         while (option != 5) {
 
-            printOutput.printLine("Welcome!\n\nHere you can start on a new project or open existing ones.\n" +
-                    "Choose a option below.\n");
+            printOutput.printLine(ANSI_YELLOW +"\nDeveloper Menu"+ ANSI_RESET+"\nHere you can work on your project\nand communicate with your team members.\n" + "\nChoose between one of the following options below:\n");
             option = printOutput.readInt("1. View my tasks\n2. Report about completed tasks\n3. Delete/archive project\n4. View Projects\n5. Send a message\n6. See your inbox\n7. Log out\n");
             switch (option) {
                 case 1:
-                    printOutput.printLine("to be continued...");
                     myTasksInterface.viewMyTasks();
                     break;
                 case 2:
@@ -45,18 +46,19 @@ public class developerMenu {
                     break;
                 case 5:
                     AllMessages.sendMessage();
+                    menu();
                     return;
                 case 6:
                     AllMessages.readMessage();
+                    menu();
                     return;
                 case 7:
                     returnedMenu.run();
                 default:
-                    printOutput.printLine("Invalid input");
+                    printOutput.printLine(ANSI_RED+"Invalid input, try again."+ANSI_RESET);
             }
         }
     }
-
     public void accessToViewProject() {
         //Method to be finished (Patricia and Jakob)
         // Verifying the access key to see the project
@@ -69,10 +71,8 @@ public class developerMenu {
                 return;
             }
         }
-        printOutput.printLine(" User key invalid ");
+        printOutput.printLine(ANSI_RED+"User key invalid"+ANSI_RESET);
     }
-
-
     public void viewProject(){
         for (int i = 0; i < projects.size(); i++){
             printOutput.printLine("Name of Project: " + projects.get(i).getProjectName() +"\n" + "Project Description: "+ projects.get(i).getProjectDesc()+"\n"+ "Start Date: "+ projects.get(i).getStartDate() +"\n"+

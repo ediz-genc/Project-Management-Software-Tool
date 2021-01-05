@@ -5,6 +5,9 @@ import Tools.InputClass;
 import java.util.ArrayList;
 
 public class allMessages {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
     private ArrayList<Message> allMessages = new ArrayList<>();
     private static volatile allMessages soloAllMessages = new allMessages();
     static addedMembers AddedMembers = addedMembers.getInstance();
@@ -30,12 +33,13 @@ public class allMessages {
 
         for (Member member : allMembers){
             if (member.getUsername() != null && member.getUsername().equals(Receiver)) {
-                String Content = printOutput.readLine("Please enter message content: ");
+                String Content = printOutput.readLine("Type message: ");
                 Message newMessage = new Message(Sender, Receiver, Content, Status);
                 allMessages.add(newMessage);
-                printOutput.printLine("Your message has been sent!");
-            } else {
-                printOutput.printLine("Receiver not found");
+                printOutput.printLine(ANSI_GREEN+"Your message has been sent!"+ANSI_RESET);
+            } else{
+                printOutput.printLine(ANSI_RED+"\nReceiver not found"+ANSI_RESET);//prints even if the message is sent
+                return;
             }
         }
     }
@@ -53,6 +57,7 @@ public class allMessages {
                 printOutput.printLine(message.getContent());
             }else{
                 printOutput.printLine("No new messages");
+                return;
             }
         }
     }

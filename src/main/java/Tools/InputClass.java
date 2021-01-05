@@ -2,18 +2,17 @@ package Tools;
 
 import java.util.Scanner;
 public class InputClass {
-
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
     public String print(String A){
         System.out.print(A);
 
         return A;
     }
-
     public String printLine(String A){
         System.out.println(A);
         return A;
     }
-
     public int printInt(int A){
         System.out.println(A);
         return A;
@@ -46,7 +45,6 @@ public class InputClass {
 
         return output;
     }
-
     public double readDouble(String A){
 
         Scanner input = new Scanner(System.in);
@@ -60,7 +58,7 @@ public class InputClass {
             if((output -(int)output==0)){
                 throw new Exception(); }
         } catch (Exception e) {
-            System.out.println(message);
+            System.out.println(ANSI_RED+message+ANSI_RESET);
             readInt(A);
         }
 
@@ -71,8 +69,6 @@ public class InputClass {
 
 
     }
-
-
     public String readYN(String A){
 
         Scanner input = new Scanner(System.in);
@@ -86,7 +82,7 @@ public class InputClass {
             if(!(output.equals("y"))  || !(output.equals("n")) ){
                 throw new Exception(); }
         } catch (Exception e) {
-            System.out.println(message);
+            System.out.println(ANSI_RED+message+ANSI_RESET);
             readYN(A);
         }
 

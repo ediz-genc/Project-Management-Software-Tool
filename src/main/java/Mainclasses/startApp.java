@@ -10,14 +10,11 @@ import Import_Export.importAndExportSavedInfo;
 
 public class startApp {
 
-
     static InputClass printOutput = new InputClass();
-
-
     static addedMembers addedmembers = addedMembers.getInstance();
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -26,8 +23,6 @@ public class startApp {
     public static final String ANSI_WHITE = "\u001B[37m";
     static randomID randID = randomID.getInstance();
     importAndExportSavedInfo ie = new importAndExportSavedInfo();
-
-
 
     public void run(){
 
@@ -54,7 +49,7 @@ public class startApp {
                         addedmembers.setActiveUser(userName);
                         menuDirectory(levelCheck);
                     } else {
-                        printOutput.printLine("Invalid login information. Please try again!");
+                        printOutput.printLine(ANSI_RED +"Invalid login information, please try again." + ANSI_RESET);
                     }
 
                     break;
@@ -67,11 +62,10 @@ public class startApp {
                     System.exit(0);
                 }
                 default:
-                    printOutput.printLine("Wrong input, try again:\n");
+                    printOutput.printLine(ANSI_RED + "Wrong input, try again:\n"+ ANSI_RESET);
             }
         }
     }
-
     public void newUser(){
 
         String name = printOutput.readLine("Enter your full name: ");
@@ -87,8 +81,7 @@ public class startApp {
         addedmembers.addMember(createMember);
 
     }
-
-     public void menuDirectory(int level){
+    public void menuDirectory(int level){
 
          switch (level) {
              case 1:

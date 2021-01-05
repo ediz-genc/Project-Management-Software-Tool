@@ -11,25 +11,19 @@ public class addedMembers {
     private String memberName;
     private String activeUser;
 
-
-
     public addedMembers() {
     }
-
     public static addedMembers getInstance() {
         if (soloAddedMembers == null) {
             soloAddedMembers = new addedMembers();
         }
         return soloAddedMembers;
     }
-
-
     public void addMember(Object o) {
 
         allMembers.add((Member) o);
 
     }
-
     public ArrayList<Member> getAllMembers(){
         return allMembers;
     }
@@ -45,8 +39,6 @@ public class addedMembers {
     public void setMemberRole(String memberRole){
         this.memberRole = memberRole;
     }
-
-
     public int findMember(String username, String password) {
 
         int valid = 0;
@@ -73,12 +65,8 @@ public class addedMembers {
         }
         return assignTask;
     }
-
-
     public void setActiveUser(String userName){this.activeUser=userName;}
-
     public String getActiveUser(){return activeUser;}
-
     public int getUserKey(String userName){
 
         int tempKey=0; boolean found = false; int key = 0;
@@ -95,7 +83,6 @@ public class addedMembers {
 
         return key;
     }
-
     public void loadFromFile(ArrayList<Member> savedMembers){
             this.allMembers = savedMembers;
 

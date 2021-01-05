@@ -12,15 +12,12 @@ public class Message {
         this.Content = Content;
         this.Status = Status;
     }
-
     public String getSender() {
         return Sender;
     }
-
     public String getReceiver() {
         return Receiver;
     }
-
     public String getContent(){
         return Content;
     }
