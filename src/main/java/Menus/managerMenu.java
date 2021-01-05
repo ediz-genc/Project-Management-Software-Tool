@@ -115,6 +115,7 @@ public class managerMenu {
         }
     }
     public void editShortDescription(){
+
         printOutput.printLine("The short description of the task is " + theProject.getShortDescription());
         String newName = printOutput.readLine("Enter a new description: (If you would like to go back, type 'BACK').\n");
         if (newName.equals("BACK")){
@@ -150,22 +151,34 @@ public class managerMenu {
         theProject.setWeeks(newWeeks);
     }
     public void editMilestoneDescription() {
-        printOutput.printLine("The Milestone description of the project is " + theProject.getMilestoneDescription());
+        ArrayList<task> tempTask = theProject.getTasks();
+        for(int i =0;i<tempTask.size();i++){
+            if(tempTask.get(i).getMilestoneDescription()!=null) {
+                printOutput.printLine(i + " Milestone description " + tempTask.get(i).getMilestoneDescription());
+            }
+        }
+        int option = printOutput.readInt("Choose the number of which description you want to edit\n");
         String newMilestoneDescription = printOutput.readLine("Enter the new milestone description: (If you would like to go back, type 'BACK').\n");
         if (newMilestoneDescription.equals("BACK")){
             editProject();
         }else{
-            theProject.setMilestoneDescription(newMilestoneDescription);
+            tempTask.get(option).setMilestoneDescription(newMilestoneDescription);
             printOutput.printLine("\nNew description saved!\n");
         }
     }
     public void editTaskDescription(){
-        printOutput.printLine("The task description is " + theProject.getProjectName());
+        ArrayList<task> tempTask = theProject.getTasks();
+        for(int i =0;i<tempTask.size();i++){
+            if(tempTask.get(i).getTaskDescription()!=null) {
+                printOutput.printLine(i + " Milestone description " + tempTask.get(i).getTaskDescription());
+            }
+        }
+        int option = printOutput.readInt("Choose the number of which description you want to edit\n");
         String newTaskDescription = printOutput.readLine("Enter a new task description: (If you would like to go back, type 'BACK').\n");
         if (newTaskDescription.equals("BACK")){
             editProject();
         }else{
-            theProject.setTaskDescription(newTaskDescription);
+            tempTask.get(option).setMilestoneDescription(newTaskDescription);
             printOutput.printLine("\nNew description saved!\n");
         }
     }

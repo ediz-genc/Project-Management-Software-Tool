@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Menus.ownerMenu;
-import Tools.randomID;
 
 public class Project {
 
-    randomID randID = randomID.getInstance();
 
     private String projectName;
     private int weeks;
@@ -21,10 +19,10 @@ public class Project {
     private ArrayList<task> tasks = new ArrayList<>();
     private String projectDesc;
 
-    public Project(String projectName, int weeks, int ownerKey, int managerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks) {
+    public Project(String projectName, int weeks, int ownerKey, int managerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks, int projectKey) {
         this.projectName = projectName;
         this.weeks = weeks;
-        this.projectKey = randID.getRandom();
+        this.projectKey = projectKey;
         this.ownerKey = ownerKey;
         this.managerKey = managerKey;
         this.startDate = startDate;
@@ -126,11 +124,11 @@ public class Project {
     return ownerKey;
     }
     public ArrayList<Integer> getMemberKey() { return memberKey; }
-    
+
     public void addMember(int number){
         memberKey.add(number);
-        
-        
+
+
     }
 
 
