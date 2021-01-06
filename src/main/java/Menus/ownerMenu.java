@@ -160,34 +160,14 @@ public class ownerMenu {
         printOutput.printLine(ANSI_BRIGHT_GREEN+"\nMember added!\n"+ANSI_RESET);
         menu();
     }
-    public void allowUserToSeeProject (){
 
-        //Method to be finished (Patricia and Jakob)
-        //Choose which user can see the project and allow access to the user
-        viewUsers();
-
-        String select;
-
-        do {
-
-            int selectedUser = printOutput.readInt("Select the User's key that will have access to see the project: ");
-
-            for (int j = 0; j < allMembers.size(); j++) {
-                if (selectedUser == allMembers.get(j).getMemberKey()) {
-                    allMembers.get(j).setGrantedAccess("Access granted");
-                }
-            }
-            select = printOutput.readLine("Do you want to give access to another user to see the project? (yes/no) ");
-
-        }while (select.equals("yes"));
-    }
     void addTasksToProject(){
         String option;
         ArrayList<String> tasksInMilestone = task.getTaskDescription();
         String milestones;
         String taskDescription;
         String projectName = printOutput.readLine("Please enter project name: ");
-        int position = allprojects.findProjectByName(projectName);
+        int position = findProjectByName(projectName);
         ArrayList<Projects.task> tasks = allprojects.getAllProjects().get(position).getTasks();
         do {
             milestones = printOutput.readLine("Enter milestone description: ");
@@ -199,6 +179,21 @@ public class ownerMenu {
         Projects.task task = new Projects.task(milestones, tasksInMilestone);
         tasks.add(task);
 
+    }
+    public int findProjectByName(String projectName){
+        ArrayList<Project> allProjects = allprojects.getAllProjects();
+        int position = 0;
+        boolean projectFound = false;
+        for(int i = 0; i < allProjects.size();i++){
+            if(allProjects.get(i).getProjectName() != null && allProjects.get(i).getProjectName().equals(projectName)){
+                position = i;
+                projectFound = true;
+            }
+        }
+        if(!projectFound){
+            printOutput.printLine("Project not found");
+        }
+        return position;
     }
     public Projects.task addMoreMilestones(){
         String option;

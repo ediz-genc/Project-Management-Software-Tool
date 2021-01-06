@@ -96,7 +96,7 @@ public class taskAssignmentGUI {
         frame.add(memberAssigned);
         frame.add(assignTaskButton);
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         Color lightBlue = new Color(179,229,252);
         frame.getContentPane().setBackground(lightBlue);
         frame.setSize(500,500);

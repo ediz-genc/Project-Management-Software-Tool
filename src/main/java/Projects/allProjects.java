@@ -59,19 +59,7 @@ public class allProjects {
         }
         return project;
     }
-    public int findProjectByName(String projectName){
-        ArrayList<Project> allProjects = getAllProjects();
-        int position = 0;
-        for(int i = 0; i < allProjects.size();i++){
-            if(allProjects.get(i).getProjectName() != null && allProjects.get(i).getProjectName().equals(projectName)){
-                position = i;
-            }else{
-                printOutput.printLine("Project not found");
-                break;
-            }
-        }
-        return position;
-    }
+
     public ArrayList<Project> getAllProjects(){
         return allProjects;
     }

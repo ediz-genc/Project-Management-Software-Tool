@@ -22,6 +22,7 @@ public class myTasksInterface {
             if(searchList.get(i).getMemberAssigned() != null && searchList.get(i).getMemberAssigned().equals(username)){
                 position = i;
 
+                displayTasks.setLength(0);
                 displayTasks.append("Project name: ").append(searchList.get(position).getProjectName());
                 displayTasks.append("\n");
                 displayTasks.append("Milestone: ").append(searchList.get(position).getMilestoneName());
