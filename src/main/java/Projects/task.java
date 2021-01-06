@@ -21,6 +21,7 @@ public class task {
         return milestoneDescription;
     }
     public void setMilestoneDescription(String milestoneDescription){
+
         this.milestoneDescription = milestoneDescription;
     }
     public ArrayList<String> getTaskDescription(){
