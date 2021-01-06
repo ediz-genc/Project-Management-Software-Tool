@@ -1,6 +1,8 @@
 package Menus;
 
+import Import_Export.importAndExportSavedInfo;
 import Mainclasses.startApp;
+import Projects.task;
 import Tools.InputClass;
 import Projects.Project;
 import Users.Member;
@@ -20,12 +22,14 @@ public class ownerMenu {
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
     static Project project = new Project();
+    static task task = new task();
     static taskAssignmentGUI newTask = new taskAssignmentGUI();
     static Member member = new Member();
     ArrayList<Member> allMembers = addedmember.getAllMembers();
     static allMessages AllMessages = allMessages.getInstance();
     static startApp returnedMenu = new startApp();
     static managerMenu managerMenu = new managerMenu();
+    importAndExportSavedInfo ie = new importAndExportSavedInfo();
 
     public void menu() {
 
@@ -87,18 +91,12 @@ public class ownerMenu {
         printOutput.printLine("\nThe coming questions are just your own projected estimated project details. " +
                 "\nThey can be changed moving forward");
 
-        String option;
-        String taskDescription;
-        String milestones;
         ArrayList<Projects.task> tasks = project.getTasks();
-        do {
-            milestones = printOutput.readLine("Enter the description of the milestones: ");
-            taskDescription = printOutput.readLine("Enter the description of the task: ");
-            Projects.task task = new Projects.task(milestones, taskDescription);
-            tasks.add(task);
-
-            option = printOutput.readLine("Do you want to enter more tasks to your milestone? (y/n):\n");
-        }while (option.equals("y"));
+        String moreMilestones;
+        do{
+            tasks.add(addMoreMilestones());
+            moreMilestones = printOutput.readLine("Do you want to add another milestone? (yes/no):\n");
+        }while(moreMilestones.equals("yes"));
 
         int managerKey = 2;
 
@@ -107,6 +105,7 @@ public class ownerMenu {
 
         Project newProject = new Project(projectName, weeks, ownerKey,managerKey, startDate, endDate,projectDescription,tasks);
         allprojects.addProject(newProject);
+        ie.exportProjects();
     }
     public void viewUsers(){
 
@@ -164,8 +163,9 @@ public class ownerMenu {
     }
     void addTasksToProject(){
         String option;
-        String taskDescription;
+        ArrayList<String> tasksInMilestone = task.getTaskDescription();
         String milestones;
+        String taskDescription;
         String projectName = printOutput.readLine("Please enter project name: ");
         int position = allprojects.findProjectByName(projectName);
         //if you enter a wrong project name it continues to "enter milestone desc. and so on. needs an if
@@ -173,14 +173,26 @@ public class ownerMenu {
         do {
             milestones = printOutput.readLine("Enter milestone description: ");
             taskDescription = printOutput.readLine("Enter task description: ");
-            Projects.task task = new Projects.task(milestones, taskDescription);
-            tasks.add(task);
-
+            tasksInMilestone.add(taskDescription);
             option = printOutput.readLine("Do you want to enter more tasks to your project? (y/n):\n");
         }while (option.equals("y"));
 
+        Projects.task task = new Projects.task(milestones, tasksInMilestone);
+        tasks.add(task);
+
     }
+    public Projects.task addMoreMilestones(){
+        String option;
+        ArrayList<String> taskDescriptions = task.getTaskDescription() ;
+        String milestones;
+        String taskDescription;
+        milestones = printOutput.readLine("Enter the description of the milestone: ");
+        do {
+            taskDescription = printOutput.readLine("Enter the description of the task: ");
+            taskDescriptions.add(taskDescription);
+            option = printOutput.readLine("Do you want to enter more tasks to your milestone? (y/n):\n");
+        }while (option.equals("y"));
 
-
-
+        return new task(milestones, taskDescriptions);
+    }
 }

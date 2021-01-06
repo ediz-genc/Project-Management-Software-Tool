@@ -1,5 +1,6 @@
 package Projects;
 
+import Import_Export.importAndExportSavedInfo;
 import Users.addedMembers;
 
 import javax.swing.*;
@@ -13,6 +14,8 @@ public class taskAssignmentGUI {
     private static volatile taskAssignmentGUI soloNewTask = new taskAssignmentGUI();
     static Users.addedMembers AddedMembers = addedMembers.getInstance();
     static Projects.allProjects allProjects = Projects.allProjects.getInstance();
+    static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
+    importAndExportSavedInfo ie = new importAndExportSavedInfo();
 
     JFrame frame;
     JComboBox chooseProjectName;
@@ -112,16 +115,14 @@ public class taskAssignmentGUI {
                     position = i;
                     allProjectTasks = searchList.get(position).getTasks();
                     for(task Task:allProjectTasks){
-                        allTasks.append(Task.getMilestoneDescription());
+                        allTasks.append("Milestone: ").append(Task.getMilestoneDescription());
                         allTasks.append("\n");
-                        allTasks.append(Task.getTaskDescription());
+                        allTasks.append("Tasks: ").append(Task.getTaskDescription());
                         allTasks.append("\n");
 
                     }
                     String tasksAndMilestones = allTasks.toString();
                     displayTasks.setText(tasksAndMilestones);
-                }else{
-                    System.out.println("Project not found");
                 }
             }
         }
@@ -136,9 +137,10 @@ public class taskAssignmentGUI {
                 String chosenMilestone = milestoneChosen.getText();
                 String chosenTask = taskChosen.getText();
                 String Status = "Uncompleted";
-                ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
-                assignedTask assignedTask = new assignedTask(projectName,chosenMilestone,chosenTask,memberUsername, Status);
+                ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
+                assignedTask assignedTask = new assignedTask(projectName,chosenMilestone,chosenTask,memberUsername,Status);
                 allAssignedTasks.add(assignedTask);
+                ie.exportTasks();
                 frame.setVisible(false);
 
             }else{

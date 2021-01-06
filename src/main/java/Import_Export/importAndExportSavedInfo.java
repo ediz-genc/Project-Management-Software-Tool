@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import java.io.Reader;
 import Projects.allProjects;
 import Projects.assignedTask;
+import Projects.allAssignedTasks;
 import Users.allMessages;
 import Users.Message;
 
@@ -28,7 +29,7 @@ public class importAndExportSavedInfo {
     public static final String ANSI_RED = "\u001B[31m";
     addedMembers addedmembers = addedMembers.getInstance();
     allProjects allprojects = allProjects.getInstance();
-    assignedTask.allAssignedTasks allAssignedTasks = assignedTask.allAssignedTasks.getInstance();
+    static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
     allMessages AllMessages = Users.allMessages.getInstance();
     static ArrayList<Member> allMembers = new ArrayList<Member>();
     static ArrayList<Project> allProject = new ArrayList<>();
@@ -85,7 +86,7 @@ public class importAndExportSavedInfo {
         try (Reader reader = new FileReader(path)) {
             Type type = new TypeToken<ArrayList<assignedTask>>() {}.getType();
             AssignedTasks = gson.fromJson(reader, type);
-            allAssignedTasks.loadFromFile(AssignedTasks);
+            AllAssignedTasks.loadFromFile(AssignedTasks);
 
         } catch (IOException e) {
             System.out.print(ANSI_RED +"File not found..."+ANSI_RESET);
@@ -140,7 +141,7 @@ public class importAndExportSavedInfo {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Type type = new TypeToken<ArrayList<assignedTask>>() {
         }.getType();
-        ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
         File file = new File("savedAssignedTasksObjects.json");
         String path = file.getAbsolutePath();
 

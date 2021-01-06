@@ -1,15 +1,20 @@
 package Projects;
 
+import java.util.ArrayList;
+
 public class task {
 //Task attributes
 
     private String milestoneDescription;
-    private String taskDescription;
+    private ArrayList<String> taskDescription = new ArrayList<>();
 
-    public task(String projectMilestones, String projectDescription){
+    public task(String projectMilestones, ArrayList<String> taskDescription){
 
         this.milestoneDescription = projectMilestones;
-        this.taskDescription = projectDescription;
+        this.taskDescription = taskDescription;
+    }
+    public task(){
+
     }
 
     public String getMilestoneDescription(){
@@ -18,10 +23,10 @@ public class task {
     public void setMilestoneDescription(String milestoneDescription){
         this.milestoneDescription = milestoneDescription;
     }
-    public String getTaskDescription(){
+    public ArrayList<String> getTaskDescription(){
         return taskDescription;
     }
-    public void setTaskDescription(String taskDescription){
+    public void setTaskDescription(ArrayList<String> taskDescription){
         this.taskDescription = taskDescription;
     }
 

@@ -40,7 +40,6 @@ public class startApp {
 
             switch (choices) {
                 case "1":
-                ie.exportUsers();
 
                     String userName = printOutput.readLine("Username: ");
                     String passWord = printOutput.readLine("Password: ");
@@ -56,6 +55,7 @@ public class startApp {
                     case "2":
                     newUser();
                     printOutput.printLine("Your account was successfully added");
+                    ie.exportUsers();
                     break;
                 case "3": {
                     printOutput.printLine("\nThank you for using EFICAZ.\nSee you next time!");

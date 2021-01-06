@@ -30,6 +30,7 @@ public class allMessages {
         String Receiver = printOutput.readLine("Please enter receiver username: ");
         String Status = "Unread";
         ArrayList<Member> allMembers = AddedMembers.getAllMembers();
+        boolean sent = false;
 
         for (Member member : allMembers){
             if (member.getUsername() != null && member.getUsername().equals(Receiver)) {
@@ -37,10 +38,11 @@ public class allMessages {
                 Message newMessage = new Message(Sender, Receiver, Content, Status);
                 allMessages.add(newMessage);
                 printOutput.printLine(ANSI_GREEN+"Your message has been sent!"+ANSI_RESET);
-            } else{
-                printOutput.printLine(ANSI_RED+"\nReceiver not found"+ANSI_RESET);//prints even if the message is sent
-                return;
+                sent = true;
             }
+        }
+        if(!sent){
+            printOutput.printLine(ANSI_RED+"\nReceiver not found"+ANSI_RESET);
         }
     }
     public void readMessage(){

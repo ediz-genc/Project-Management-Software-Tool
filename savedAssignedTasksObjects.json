@@ -13,7 +13,7 @@
     "taskDescription": "Create a json file",
     "memberAssigned": "pat",
     "Status": "Uncompleted",
-    "hoursSpent": 1
+    "hoursSpent": 1.0
   },
   {
     "projectName": "Project Filmax",
@@ -21,6 +21,38 @@
     "taskDescription": "Calculate hours spent",
     "memberAssigned": "mei",
     "Status": "Uncompleted",
-    "hoursSpent": 2
+    "hoursSpent": 2.0
+  },
+  {
+    "projectName": "project1",
+    "milestoneName": "system1",
+    "taskDescription": "calss1",
+    "memberAssigned": "edii",
+    "Status": "Uncompleted",
+    "hoursSpent": 0.0
+  },
+  {
+    "projectName": "eficaz",
+    "milestoneName": "system",
+    "taskDescription": "class",
+    "memberAssigned": "edii",
+    "Status": "Uncompleted",
+    "hoursSpent": 0.0
+  },
+  {
+    "projectName": "project1",
+    "milestoneName": "system",
+    "taskDescription": "class2",
+    "memberAssigned": "edii",
+    "Status": "Uncompleted",
+    "hoursSpent": 0.0
+  },
+  {
+    "projectName": "project1",
+    "milestoneName": "hello",
+    "taskDescription": "hi",
+    "memberAssigned": "edii",
+    "Status": "Uncompleted",
+    "hoursSpent": 0.0
   }
 ]

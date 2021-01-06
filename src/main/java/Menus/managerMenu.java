@@ -8,6 +8,7 @@ import Mainclasses.startApp;
 import Users.allMessages;
 import org.springframework.scheduling.config.Task;
 import Projects.assignedTask;
+import Projects.allAssignedTasks;
 
 import javax.validation.constraints.Null;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class managerMenu {
     static InputClass printOutput = new InputClass();
     static addedMembers addedmembers = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
+    static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
     static startApp returnedMenu = new startApp();
     static allMessages AllMessages = allMessages.getInstance();
     static ownerMenu OwnerMenu = new ownerMenu();
@@ -190,7 +192,7 @@ public class managerMenu {
     }
     public void viewProjectProgress() {
         String projectName = printOutput.readLine("Please enter the project name: ");
-        ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
         int totalNumOfTasks = numOfTasksInProject(projectName);
         int tasksCompleted = 0;
         for (assignedTask AssignedTask : allAssignedTasks) {
