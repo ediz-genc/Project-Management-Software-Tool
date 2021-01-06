@@ -72,7 +72,12 @@ public class ownerMenu {
                     AllMessages.readMessage();
                     break;
                 case 7:
-                    addMemberToProject();
+                    String choice = printOutput.readLine("Do you want to assign a developer or manager? 'y' for developer and 'n' for manager  (y/n)");
+                    if (choice.equals("y")) {
+                        addMemberToProject();
+                    } else if(choice.equals("n")){
+                        assignManager();
+                    }
                     return;
                 case 8:
                     returnedMenu.run();
@@ -209,4 +214,34 @@ public class ownerMenu {
 
         return new task(milestones, taskDescriptions);
     }
+
+    public void assignManager(){
+
+        ArrayList<Member> tempUsers = addedmember.getAllMembers();
+        printOutput.printLine("These are all available managers:\n");
+        for(int i=0;i<0;i++){
+            if(tempUsers.get(i)!=null && tempUsers.get(i).getLevel()==2){
+                printOutput.printLine("Name " + tempUsers.get(i).getName() + " ID " + tempUsers.get(i).getMemberKey());
+
+            }
+        }
+        int ID = printOutput.readInt("Which user do you want to assign as manager? (ID)");
+        try {
+            String activeUser = addedmember.getActiveUser();
+            int key = addedmember.getUserKey(activeUser);
+            Project theProject = (Project) allprojects.getProject(key);
+            if(theProject.getProjectName()==null&&theProject.getMilestoneDescription()==null&&theProject.getMemberKey()==null){
+                throw new Exception();
+            } else {
+                theProject.setManagerKey(ID);
+            }
+        } catch (Exception e){
+            printOutput.printLine(ANSI_RED+"No project was found within your account,\nyou need to create one before inviting users."+ANSI_RESET);
+            menu();
+        }
+
+
+
+    }
+
 }
