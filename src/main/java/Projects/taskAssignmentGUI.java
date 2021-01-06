@@ -16,6 +16,7 @@ public class taskAssignmentGUI {
     static Projects.allProjects allProjects = Projects.allProjects.getInstance();
     static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
     importAndExportSavedInfo ie = new importAndExportSavedInfo();
+    static private int counter = 0; static private int counter1 = 0;
 
     JFrame frame;
     JComboBox chooseProjectName;
@@ -44,7 +45,7 @@ public class taskAssignmentGUI {
         projectName.setBounds(20,20,150,30);
         projectName.setForeground(Color.black);
 
-        ArrayList<String> projectNames = soloNewTask.getAllProjectNames();
+        ArrayList<String> projectNames = allProjects.findProjectsNames();
         String[] projectNamesArray = projectNames.toArray(new String[0]);
         chooseProjectName = new JComboBox(projectNamesArray);
         chooseProjectName.setBounds(180,20,90,20);
@@ -115,6 +116,7 @@ public class taskAssignmentGUI {
                     position = i;
                     allProjectTasks = searchList.get(position).getTasks();
                     for(task Task:allProjectTasks){
+                        allTasks.setLength(0);
                         allTasks.append("Milestone: ").append(Task.getMilestoneDescription());
                         allTasks.append("\n");
                         allTasks.append("Tasks: ").append(Task.getTaskDescription());

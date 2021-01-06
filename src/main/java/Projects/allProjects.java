@@ -1,12 +1,14 @@
 package Projects;
 import java.util.ArrayList;
 import Tools.InputClass;
+import Users.addedMembers;
 
 public class allProjects {
 
     private static volatile allProjects soloAllProjects = new allProjects();
     private ArrayList<Project> allProjects = new ArrayList<Project>();
     static InputClass printOutput = new InputClass();
+    static addedMembers addedmembers = addedMembers.getInstance();
     static private int getterPosition =0;
 
     private allProjects() {
@@ -80,9 +82,25 @@ public class allProjects {
 
             }
 
-            
-    
-    
+    public ArrayList<String> findProjectsNames(){
+
+        ArrayList<String> projectNames = new ArrayList<String>();
+        String activeUser = addedmembers.getActiveUser();
+        int key = addedmembers.getUserKey(activeUser);
+        ArrayList<Project> allprojects = getAllProjects();
+
+        for (int i = 0; i < allProjects.size(); i++) {
+            if(allprojects.get(i).getOwnerKey()==key || allprojects.get(i).getManagerKey()==key) {
+                projectNames.add(allprojects.get(i).getProjectName());
+            }
+        }
+
+        return projectNames;
+    }
+
+
+
+
     public void setProject(Project project){
         int position = getterPosition;
         allProjects.set(position,project);

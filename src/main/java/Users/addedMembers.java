@@ -27,18 +27,7 @@ public class addedMembers {
     public ArrayList<Member> getAllMembers(){
         return allMembers;
     }
-    public String getMemberName(){
-        return memberName;
-    }
-    public String getMemberRole(){
-        return memberRole;
-    }
-    public void setMemberName(String memberName){
-        this.memberName = memberName;
-    }
-    public void setMemberRole(String memberRole){
-        this.memberRole = memberRole;
-    }
+
     public int findMember(String username, String password) {
 
         int valid = 0;

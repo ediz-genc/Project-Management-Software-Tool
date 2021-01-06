@@ -107,7 +107,7 @@ public class ownerMenu {
 
         Project newProject = new Project(projectName, weeks, ownerKey,managerKey, startDate, endDate,projectDescription,tasks);
         allprojects.addProject(newProject);
-        ie.exportProjects();
+        printOutput.printLine("good job");
     }
     public void viewUsers(){
 
@@ -183,7 +183,6 @@ public class ownerMenu {
         String taskDescription;
         String projectName = printOutput.readLine("Please enter project name: ");
         int position = allprojects.findProjectByName(projectName);
-        //if you enter a wrong project name it continues to "enter milestone desc. and so on. needs an if
         ArrayList<Projects.task> tasks = allprojects.getAllProjects().get(position).getTasks();
         do {
             milestones = printOutput.readLine("Enter milestone description: ");

@@ -23,6 +23,7 @@ public class developerMenu {
     static startApp returnedMenu = new startApp();
     static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
     importAndExportSavedInfo ie = new importAndExportSavedInfo();
+    static addedMembers addedmembers = addedMembers.getInstance();
 
     public void menu() {
 
@@ -61,26 +62,32 @@ public class developerMenu {
     }
 
     public void accessToViewProject() {
-        //Method to be finished (Patricia and Jakob)
-        // Verifying the access key to see the project
 
-        int memberKey = printOutput.readInt("Enter your member key: ");
-
-        for (int j = 0; j < allMembers.size(); j++) {
-            if (memberKey == allMembers.get(j).getMemberKey() && allMembers.get(j).getGrantedAccess().equals("Access granted")) {
-                viewProject();
-                return;
+        String activeUser = addedmembers.getActiveUser();
+        int key = addedmembers.getUserKey(activeUser);
+        try {
+            Project project = (Project) allprojects.getProject(key);
+            if(project==null){
+                throw new Exception();
+            } else {
+                viewProject(project);
             }
+
+        } catch(Exception e) {
+            printOutput.printLine("You have no projects assigned to you...returning to menu");
+            return;
         }
-        printOutput.printLine(ANSI_RED + "User key invalid" + ANSI_RESET);
+
     }
 
-    public void viewProject() {
-        for (int i = 0; i < projects.size(); i++) {
-            printOutput.printLine("Name of Project: " + projects.get(i).getProjectName() + "\n" + "Project Description: " + projects.get(i).getProjectDesc() + "\n" + "Start Date: " + projects.get(i).getStartDate() + "\n" +
-                    "End date: " + projects.get(i).getEndDate() + "\n" + "Length of Project: " + projects.get(i).getWeeks() +
-                    projects.get(i).getTasks().toString().replace("[", "").replace("]", "").replace(",", "") + "\n");
-        }
+    public void viewProject(Project project) {
+
+            printOutput.printLine("Name of Project: " + project.getProjectName() + "\n" + "Project Description: " + project.getProjectDesc() + "\n" + "Start Date: " + project.getStartDate() + "\n" +
+                    "End date: " + project.getEndDate() + "\n" + "Length of Project: " + project.getWeeks() +
+                    project.getTasks().toString().replace("[", "").replace("]", "").replace(",", "") + "\n");
+
+
+
     }
 
     public void markTaskAsDone() {
