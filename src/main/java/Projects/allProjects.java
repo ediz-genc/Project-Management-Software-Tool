@@ -9,7 +9,7 @@ public class allProjects {
     private ArrayList<Project> allProjects = new ArrayList<Project>();
     static InputClass printOutput = new InputClass();
     static addedMembers addedmembers = addedMembers.getInstance();
-    static private int getterPosition =0;
+    static private int getterPosition = 0;
 
     private allProjects() {
     }
@@ -82,15 +82,15 @@ public class allProjects {
                 projectNames.add(allprojects.get(i).getProjectName());
             }
         }
-
         return projectNames;
     }
-
-
-
 
     public void setProject(Project project){
         int position = getterPosition;
         allProjects.set(position,project);
+    }
+
+    public void addBudget(double budget){
+        allProjects.get(getterPosition).setBudgetCost(budget);
     }
 }

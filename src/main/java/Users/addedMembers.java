@@ -38,11 +38,11 @@ public class addedMembers {
                     allMembers.get(i).getPassword().equals(password)) {
                 valid = allMembers.get(i).getLevel();
                 break;
-
             }
         }
         return valid;
     }
+
     public boolean findMember(String memberUsername){
         boolean assignTask = false;
 
@@ -66,10 +66,12 @@ public class addedMembers {
         }
         return assignTask;
     }
-    public void setActiveUser(String userName){this.activeUser=userName;}
-    public String getActiveUser(){return activeUser;}
-    public int getUserKey(String userName){
 
+    public void setActiveUser(String userName){this.activeUser=userName;}
+
+    public String getActiveUser(){return activeUser;}
+
+    public int getUserKey(String userName){
         int tempKey=0; boolean found = false; int key = 0;
 
         for(int i=0; i< allMembers.size();i++){
@@ -80,10 +82,9 @@ public class addedMembers {
                 break;
             }
         }
-
-
         return key;
     }
+
     public void loadFromFile(ArrayList<Member> savedMembers){
             this.allMembers = savedMembers;
 

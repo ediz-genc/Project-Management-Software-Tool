@@ -7,7 +7,6 @@ import Menus.ownerMenu;
 
 public class Project {
 
-
     private String projectName;
     private int weeks;
     private ArrayList<Integer> memberKey;
@@ -18,6 +17,7 @@ public class Project {
     private String endDate;
     private ArrayList<task> tasks = new ArrayList<>();
     private String projectDesc;
+    private double budgetCost;
 
     public Project(String projectName, int weeks, int ownerKey,int managerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks) {
         this.projectName = projectName;
@@ -29,6 +29,7 @@ public class Project {
         this.endDate = endDate;
         this.tasks = tasks;
         this.projectDesc = projectDescription;
+        this.budgetCost = 0;
     }
 
     public Project() {
@@ -81,6 +82,14 @@ public class Project {
         tasks.add((task) o);
     }
 
+    public double getBudgetCost() {
+        return budgetCost;
+    }
+
+    public void setBudgetCost(double budgetCost) {
+        this.budgetCost = budgetCost;
+    }
+
     public void setMilestoneDescription(String milestoneDescription) {
         //this.tasks[0][0] = milestoneDescription;
     }
@@ -93,19 +102,17 @@ public class Project {
     public void setProjectDesc(String projectDesc) { this.projectDesc = projectDesc; }
 
     public void statusReport(int status, int row, int column) {
-
         String RED = "\u001B[31m";
-
     }
 
     public String getMilestoneDescription(){
             String[][] task = new String[2][2];
             return task[0][0];
     }
+
     public String getTaskDescription(){
            String[][] task = new String[2][2];
            return task[0][0];
-
     }
 
     public void setWeeks(int weeks) {
@@ -116,8 +123,6 @@ public class Project {
         this.projectName = projectName;
     }
 
-
-
     public int getManagerKey() { return managerKey; }
     
     public int getOwnerKey(){
@@ -125,11 +130,7 @@ public class Project {
     }
     public ArrayList<Integer> getMemberKey() { return memberKey; }
 
-    public void addMember(int number){
-        memberKey.add(number);
-
-
-    }
+    public void addMember(int number){ memberKey.add(number); }
 
     public void setManagerKey(int managerKey) {
         this.managerKey = managerKey;

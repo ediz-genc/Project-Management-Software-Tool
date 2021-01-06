@@ -2,13 +2,10 @@ package Menus;
 
 import Import_Export.importAndExportSavedInfo;
 import Mainclasses.startApp;
-import Projects.task;
+import Projects.*;
 import Tools.InputClass;
-import Projects.Project;
 import Users.Member;
 import Users.addedMembers;
-import Projects.allProjects;
-import Projects.taskAssignmentGUI;
 import Users.allMessages;
 import Tools.randomID;
 
@@ -32,16 +29,19 @@ public class ownerMenu {
     static managerMenu managerMenu = new managerMenu();
     importAndExportSavedInfo ie = new importAndExportSavedInfo();
     randomID randID = randomID.getInstance();
+    static Budget budget = new Budget();
+    static allAssignedTasks AllAssignedTasks = new allAssignedTasks();
+
 
     public void menu() {
 
         int option = 0;
 
-        while (option != 8) {
+        while (option != 10) {
 
             printOutput.printLine(ANSI_YELLOW + "\nProduct Owner Menu\n"+ ANSI_RESET +"Create a new project and assign people,\nor continue working on existing one!\n" +
                     "\nChoose between one of the following options below:\n");
-            option = printOutput.readInt("1. Create new Project\n2. Assign task to user \n3. Add tasks to existing project\n4. Edit the project\n5. Send a message\n6. See your inbox\n7. Invite users to project\n8. Log out\n");
+            option = printOutput.readInt("1. Create new Project\n2. Assign task to user \n3. Add tasks to existing project\n4. Edit the project\n5. Send a message\n6. See your inbox\n7. Invite users to project\n8. Estimate project budget\n9. Compare initial and final budget\n10. Log out\n");
             switch (option) {
                 case 1:
                     newProject();
@@ -80,6 +80,10 @@ public class ownerMenu {
                     }
                     return;
                 case 8:
+                    estimatedBudget();
+                case 9:
+                    budgetComparison();
+                case 10:
                     returnedMenu.run();
                 default:
                     printOutput.printLine(ANSI_RED+"Invalid input, try again."+ANSI_RESET);
@@ -114,13 +118,7 @@ public class ownerMenu {
         allprojects.addProject(newProject);
         printOutput.printLine("good job");
     }
-    public void viewUsers(){
 
-        for (int i = 0; i < allMembers.size(); i++){
-            printOutput.printLine("Name of the User: " +allMembers.get(i).getName()+ "\n" + "User ID: " +allMembers.get(i).getUsername() + "\n"+ "User Key: "+allMembers.get(i).getMemberKey()+"\n"+
-                    "Use Access to see project: "+ allMembers.get(i).getGrantedAccess());
-        }
-    }
     public void addMemberToProject(){
         Project theProject = null;
 
@@ -211,7 +209,6 @@ public class ownerMenu {
     }
 
     public void assignManager(){
-
         ArrayList<Member> tempUsers = addedmember.getAllMembers();
         printOutput.printLine("These are all available managers:\n");
         for(int i=0;i<0;i++){
@@ -234,9 +231,68 @@ public class ownerMenu {
             printOutput.printLine(ANSI_RED+"No project was found within your account,\nyou need to create one before inviting users."+ANSI_RESET);
             menu();
         }
+    }
 
+    public void estimatedBudget(){
+        ArrayList<Budget> budgetCost = budget.getBudgetCost();
+        Project theProject = null;
 
+        String activeUser = addedmember.getActiveUser();
+        int key = addedmember.getUserKey(activeUser);
+        theProject = (Project) allprojects.getProject(key);
+        printOutput.printLine("Project name: " + theProject);
 
+        int totalWorkHours = printOutput.readInt("Enter the estimated amount of hours to complete the project (in hours): ");
+        int memberCostPerHour = printOutput.readInt("Enter the cost for the working member per hour: ");
+        int amountOfMembers = printOutput.readInt("Enter the amount of members that will be working on the project: ");
+        int velocity = printOutput.readInt("Enter the estimated velocity for the project: ");
+        int extraCost = printOutput.readInt("If any, enter the estimated extra cost that for the project: ");
+        Budget budget = new Budget(totalWorkHours, memberCostPerHour, amountOfMembers, velocity, extraCost);
+        budgetCost.add(budget);
+
+        double totalEstimatedBudget = budgetCalculation();
+        allprojects.addBudget(totalEstimatedBudget);
+        menu();
+    }
+
+    public double budgetCalculation(){
+        ArrayList<Budget> budgetCost = budget.getBudgetCost();
+        double totalEstimatedBudget = 0.0;
+
+        for(int i = 0; i < budgetCost.size(); i++){
+            totalEstimatedBudget = (budgetCost.get(i).getVelocity() * budgetCost.get(i).getAmountOfMembers() * budgetCost.get(i).getMemberCostPerHour() *
+                    budgetCost.get(i).getTotalWorkHours()) + budgetCost.get(i).getExtraCost();
+        }
+        printOutput.printLine("The total estimated budget for the project is: " + totalEstimatedBudget);
+        return totalEstimatedBudget;
+    }
+
+    public double calculateTotalTimeWorked(){
+        ArrayList<assignedTask> assignedTasks = AllAssignedTasks.getAssignedTasks();
+        String projectName = printOutput.readLine("Enter the project name: ");
+        double timeWorked = 0;
+        for(int j = 0; j < assignedTasks.size(); j++) {
+            if(assignedTasks.get(j).getProjectName().equals(projectName)) {
+                timeWorked = timeWorked + assignedTasks.get(j).getHoursSpent();
+            }
+        }
+        return timeWorked;
+    }
+
+    public void budgetComparison(){
+        ArrayList<Budget> budgetCost = budget.getBudgetCost();
+        double totalTimeWorked = calculateTotalTimeWorked();
+        double totalRealBudget = 0.0;
+        int realVelocity = printOutput.readInt("Enter the real velocity after the project is finished: ");
+        int realExtraCost = printOutput.readInt("Enter the total extra cost after project is finished: ");
+
+        for(int i = 0; i < budgetCost.size(); i++){
+            totalRealBudget = (realVelocity * budgetCost.get(i).getAmountOfMembers() * budgetCost.get(i).getMemberCostPerHour() *
+                    totalTimeWorked) + realExtraCost;
+            printOutput.printLine("The real total budget after the project is finished is: " + totalRealBudget);
+        }
+        budgetCalculation();
+        menu();
     }
 
 }

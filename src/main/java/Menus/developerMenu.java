@@ -77,17 +77,12 @@ public class developerMenu {
             printOutput.printLine("You have no projects assigned to you...returning to menu");
             return;
         }
-
     }
 
     public void viewProject(Project project) {
-
-            printOutput.printLine("Name of Project: " + project.getProjectName() + "\n" + "Project Description: " + project.getProjectDesc() + "\n" + "Start Date: " + project.getStartDate() + "\n" +
-                    "End date: " + project.getEndDate() + "\n" + "Length of Project: " + project.getWeeks() +
-                    project.getTasks().toString().replace("[", "").replace("]", "").replace(",", "") + "\n");
-
-
-
+        printOutput.printLine("Name of Project: " + project.getProjectName() + "\n" + "Project Description: " + project.getProjectDesc() + "\n" + "Start Date: " + project.getStartDate() + "\n" +
+                "End date: " + project.getEndDate() + "\n" + "Length of Project: " + project.getWeeks() +
+                project.getTasks().toString().replace("[", "").replace("]", "").replace(",", "") + "\n");
     }
 
     public void markTaskAsDone() {
@@ -103,9 +98,7 @@ public class developerMenu {
                 System.out.println("Task number: " + position + "\n" + "Project: " + allAssignedTasks.get(position).getProjectName() + "\n" + "Milestone: " + allAssignedTasks.get(position).getMilestoneName()
                         + "\n" + "Task description: " + allAssignedTasks.get(position).getTaskDescription());
                 tasksFound = true;
-
             }
-
         }
         if (!tasksFound) {
             printOutput.printLine("No uncompleted tasks found");
@@ -117,8 +110,6 @@ public class developerMenu {
             allAssignedTasks.get(completedTask).changeStatus();
             allAssignedTasks.get(completedTask).setHoursSpent(hoursSpentToDouble);
             printOutput.printLine("Task completed!");
-
         }
-
     }
 }
