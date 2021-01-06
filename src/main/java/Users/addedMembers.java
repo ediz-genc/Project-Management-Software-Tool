@@ -65,6 +65,18 @@ public class addedMembers {
         }
         return assignTask;
     }
+
+    public boolean findMemberINT(int memberKey){
+        boolean assignTask = false;
+
+        for (Member allMember : allMembers) {
+            if (allMember.getMemberKey() == memberKey) {
+                assignTask = true;
+                break;
+            }
+        }
+        return assignTask;
+    }
     public void setActiveUser(String userName){this.activeUser=userName;}
     public String getActiveUser(){return activeUser;}
     public int getUserKey(String userName){

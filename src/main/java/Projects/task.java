@@ -27,8 +27,8 @@ public class task {
     public ArrayList<String> getTaskDescription(){
         return taskDescription;
     }
-    public void setTaskDescription(ArrayList<String> taskDescription){
-        this.taskDescription = taskDescription;
+    public void setTaskDescription(String taskDescription, int option){
+        this.taskDescription.set(option,taskDescription);
     }
 
     public String toString() {

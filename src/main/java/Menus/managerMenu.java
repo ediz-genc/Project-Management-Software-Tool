@@ -8,6 +8,7 @@ import Mainclasses.startApp;
 import Users.allMessages;
 import org.springframework.scheduling.config.Task;
 import Projects.assignedTask;
+import Projects.allAssignedTasks;
 
 import javax.validation.constraints.Null;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class managerMenu {
     static allMessages AllMessages = allMessages.getInstance();
     static ownerMenu OwnerMenu = new ownerMenu();
     static Project theProject;
+    static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
 
     public void menu() {
 
@@ -184,7 +186,7 @@ public class managerMenu {
         String newTaskDescription = printOutput.readLine("Enter a new task description " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
 
         if(!newTaskDescription.equals("0")) {
-            tempTask.get(option -1).setTaskDescription(newTaskDescription);
+            tempTask.get(option -1).setTaskDescription(newTaskDescription,option);
             printOutput.printLine("New task description is saved!");
         }else{
             editProject();
@@ -211,7 +213,7 @@ public class managerMenu {
     }
     public void viewProjectProgress() {
         String projectName = printOutput.readLine("Please enter project name: ");
-        ArrayList<assignedTask> allAssignedTasks = assignedTask.allAssignedTasks.getInstance().getAssignedTasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
         int totalNumOfTasks = numOfTasksInProject(projectName);
         int tasksCompleted = 0;
         for (assignedTask AssignedTask : allAssignedTasks) {

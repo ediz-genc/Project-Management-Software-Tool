@@ -19,11 +19,12 @@ public class Project {
     private ArrayList<task> tasks = new ArrayList<>();
     private String projectDesc;
 
-    public Project(String projectName, int weeks, int ownerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks, int projectKey) {
+    public Project(String projectName, int weeks, int ownerKey,int managerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks) {
         this.projectName = projectName;
         this.weeks = weeks;
         this.projectKey = projectKey;
         this.ownerKey = ownerKey;
+        this.managerKey = managerKey;
         this.startDate = startDate;
         this.endDate = endDate;
         this.tasks = tasks;
@@ -133,6 +134,6 @@ public class Project {
     public void setManagerKey(int managerKey) {
         this.managerKey = managerKey;
     }
-    
-    
+
+
 }

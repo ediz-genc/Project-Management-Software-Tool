@@ -10,6 +10,7 @@ import Users.addedMembers;
 import Projects.allProjects;
 import Projects.taskAssignmentGUI;
 import Users.allMessages;
+import Tools.randomID;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class ownerMenu {
     static startApp returnedMenu = new startApp();
     static managerMenu managerMenu = new managerMenu();
     importAndExportSavedInfo ie = new importAndExportSavedInfo();
+    randomID randID = randomID.getInstance();
 
     public void menu() {
 
@@ -98,7 +100,7 @@ public class ownerMenu {
             moreMilestones = printOutput.readLine("Do you want to add another milestone? (yes/no):\n");
         }while(moreMilestones.equals("yes"));
 
-        int managerKey = 2;
+        int managerKey = randID.getRandom();
 
         String tempUser = addedmember.getActiveUser();
         int ownerKey = addedmember.getUserKey(tempUser);
@@ -135,6 +137,19 @@ public class ownerMenu {
             System.out.println("Name: " + member.getName() +  " ID: " + member.getMemberKey());
         }
         int number = printOutput.readInt("\nWho do you want to add?\nState the ID: ");
+        boolean exist = addedmember.findMemberINT(number);
+        if(!exist){
+            String option = printOutput.readLine("The ID doesn't exist..returning to menu. Do you want to try again? (y/n)");
+            switch(option){
+                case "y":
+                    addMemberToProject();
+                    break;
+                case "n":
+                    return;
+                default:
+                    printOutput.printLine("Invalid input");
+            }
+        }
         allprojects.addMember(number);
         //needs a checker if the member id typed in exists or not
         printOutput.printLine(ANSI_BRIGHT_GREEN+"\nMember added!\n"+ANSI_RESET);
