@@ -9,7 +9,7 @@ public class allProjects {
     private ArrayList<Project> allProjects = new ArrayList<Project>();
     static InputClass printOutput = new InputClass();
     static addedMembers addedmembers = addedMembers.getInstance();
-    static private int getterPosition =0;
+    private int getterPosition =0;
 
     private allProjects() {
     }
@@ -22,12 +22,9 @@ public class allProjects {
     public void addProject(Object o) {
         allProjects.add((Project) o);
     }
-    public void addMember(int key) {
+    public void addMember(int memberID) {
 
-        for (int i = 0; i < allProjects.size(); i++) {
-            if (allProjects.get(i).getProjectKey() == key) {
-            }
-        }
+        allProjects.get(getterPosition).addMemberKey(memberID);
     }
     public Object getManagerProject(int key) {
 
@@ -51,9 +48,10 @@ public class allProjects {
         if(key == allProjects.get(i).getOwnerKey() || key == allProjects.get(i).getManagerKey()){project = allProjects.get(i);getterPosition=i; return project;}
           if(allProjects.get(i).getMemberKey()!=null){tempKeys = allProjects.get(i).getMemberKey();
             for (int j = 0; j < tempKeys.size(); j++) {
-                if (tempKeys.get(i) != null && tempKeys.get(i) == key) {
+                if (tempKeys.get(j) != null && tempKeys.get(j) == key) {
                     project = allProjects.get(i);
-                    getterPosition=i;
+                    getterPosition = i;
+                    return project;
                 }
             }}
         }

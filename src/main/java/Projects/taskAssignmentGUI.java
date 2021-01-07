@@ -16,7 +16,6 @@ public class taskAssignmentGUI {
     static Projects.allProjects allProjects = Projects.allProjects.getInstance();
     static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
     importAndExportSavedInfo ie = new importAndExportSavedInfo();
-    static private int counter = 0; static private int counter1 = 0;
 
     JFrame frame;
     JComboBox chooseProjectName;

@@ -67,13 +67,13 @@ public class developerMenu {
         int key = addedmembers.getUserKey(activeUser);
         try {
             Project project = (Project) allprojects.getProject(key);
-            if(project==null){
+            if (project == null) {
                 throw new Exception();
             } else {
                 viewProject(project);
             }
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             printOutput.printLine("You have no projects assigned to you...returning to menu");
             return;
         }
@@ -82,10 +82,9 @@ public class developerMenu {
 
     public void viewProject(Project project) {
 
-            printOutput.printLine("Name of Project: " + project.getProjectName() + "\n" + "Project Description: " + project.getProjectDesc() + "\n" + "Start Date: " + project.getStartDate() + "\n" +
-                    "End date: " + project.getEndDate() + "\n" + "Length of Project: " + project.getWeeks() +
-                    project.getTasks().toString().replace("[", "").replace("]", "").replace(",", "") + "\n");
-
+        printOutput.printLine("Name of Project: " + project.getProjectName() + "\n" + "Project Description: " + project.getProjectDesc() + "\n" + "Start Date: " + project.getStartDate() + "\n" +
+                "End date: " + project.getEndDate() + "\n" + "Length of Project: " + project.getWeeks() +
+                project.getTasks().toString().replace("[", "").replace("]", "").replace(",", "") + "\n");
 
 
     }
@@ -97,6 +96,7 @@ public class developerMenu {
         String hoursSpent;
         int position;
         boolean tasksFound = false;
+
         for (int i = 0; i < allAssignedTasks.size(); i++) {
             if (allAssignedTasks.get(i).getMemberAssigned() != null && allAssignedTasks.get(i).getMemberAssigned().equals(username) && allAssignedTasks.get(i).getStatus().equals("Uncompleted")) {
                 position = i;
@@ -110,15 +110,20 @@ public class developerMenu {
         if (!tasksFound) {
             printOutput.printLine("No uncompleted tasks found");
         } else {
-            choice = printOutput.readLine("Please choose a task that has been completed: ");
-            hoursSpent = printOutput.readLine("Enter the hours you have spent working on this task: ");
-            double hoursSpentToDouble = Double.parseDouble(hoursSpent);
-            int completedTask = Integer.parseInt(choice);
-            allAssignedTasks.get(completedTask).changeStatus();
-            allAssignedTasks.get(completedTask).setHoursSpent(hoursSpentToDouble);
-            printOutput.printLine("Task completed!");
+            try {
+                choice = printOutput.readLine("Please choose a task that has been completed: ");
+                hoursSpent = printOutput.readLine("Enter the hours you have spent working on this task: ");
+                double hoursSpentToDouble = Double.parseDouble(hoursSpent);
+                int completedTask = Integer.parseInt(choice);
+                allAssignedTasks.get(completedTask).changeStatus();
+                allAssignedTasks.get(completedTask).setHoursSpent(hoursSpentToDouble);
+                printOutput.printLine("Task completed!");
+                ie.exportTasks();
+
+            } catch (IndexOutOfBoundsException exception) {
+                printOutput.printLine("A task with this number doesn't exist, please try again");
+            }
 
         }
-
     }
 }

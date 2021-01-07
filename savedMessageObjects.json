@@ -16,5 +16,11 @@
     "Receiver": "jako",
     "Content": "Hello!",
     "Status": "Unread"
+  },
+  {
+    "Sender": "edii",
+    "Receiver": "jako",
+    "Content": "hi, how is it going?",
+    "Status": "Unread"
   }
 ]

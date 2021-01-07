@@ -1,5 +1,7 @@
 package Projects;
 import Tools.InputClass;
+import Users.addedMembers;
+import Users.Member;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,20 +11,20 @@ public class myTasksInterface {
     static InputClass printOutput = new InputClass();
     StringBuilder displayTasks = new StringBuilder();
     static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
+    static Users.addedMembers AddedMembers = addedMembers.getInstance();
     JTextArea tasksDisplay;
 
     public myTasksInterface(){
 
     }
     public void viewMyTasks(){
-        String username = printOutput.readLine("Please type your username:");
+        String username = findUserNameByKey();
         ArrayList<assignedTask> searchList = AllAssignedTasks.getAssignedTasks();
         int position;
         for(int i = 0; i< searchList.size();i++){
             if(searchList.get(i).getMemberAssigned() != null && searchList.get(i).getMemberAssigned().equals(username)){
                 position = i;
 
-                displayTasks.setLength(0);
                 displayTasks.append("Project name: ").append(searchList.get(position).getProjectName());
                 displayTasks.append("\n");
                 displayTasks.append("Milestone: ").append(searchList.get(position).getMilestoneName());
@@ -35,6 +37,7 @@ public class myTasksInterface {
                 tasksDisplay.setText(myTasks);
             }
         }
+        displayTasks.setLength(0);
         JFrame frame = new JFrame();
         JScrollPane scrollableTaskDisplay = new JScrollPane(tasksDisplay,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -44,5 +47,17 @@ public class myTasksInterface {
         frame.setSize(500,500);
         frame.setVisible(true);
 
+    }
+    public String findUserNameByKey(){
+        String activeUser = AddedMembers.getActiveUser();
+        int key = AddedMembers.getUserKey(activeUser);
+        String username = "";
+        ArrayList<Member> allMembers = AddedMembers.getAllMembers();
+        for(Member member: allMembers){
+            if(member.getMemberKey() == key){
+                username = member.getUsername();
+            }
+        }
+        return username;
     }
 }

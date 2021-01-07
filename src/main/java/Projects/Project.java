@@ -52,6 +52,9 @@ public class Project {
     
 
     public void addMemberKey(int key) {
+        if(memberKey==null){
+        memberKey = new ArrayList<Integer>();
+        }
         memberKey.add(key);
     }
 

@@ -366,5 +366,13 @@
     "level": 1,
     "memberKey": 2537,
     "grantedAccess": "access not granted"
+  },
+  {
+    "name": "Helene",
+    "username": "hele",
+    "password": "1234",
+    "level": 1,
+    "memberKey": 1638,
+    "grantedAccess": "access not granted"
   }
 ]

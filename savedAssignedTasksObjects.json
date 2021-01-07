@@ -52,7 +52,7 @@
     "milestoneName": "hello",
     "taskDescription": "hi",
     "memberAssigned": "edii",
-    "Status": "Uncompleted",
-    "hoursSpent": 0.0
+    "Status": "Completed",
+    "hoursSpent": 7.5
   }
 ]

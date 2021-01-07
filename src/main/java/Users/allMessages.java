@@ -47,20 +47,18 @@ public class allMessages {
     }
     public void readMessage(){
         String username = printOutput.readLine("Please enter your username: ");
+        boolean received = false;
         for(Message message: allMessages){
-            if(message.getReceiver().equals(username) && message.getStatus().equals("Unread")){
+            if(message.getReceiver() != null && message.getReceiver().equals(username) && message.getStatus().equals("Unread")){
+                received = true;
                 printOutput.printLine("New messages: ");
                 printOutput.printLine("From " + message.getSender() + ":");
                 printOutput.printLine(message.getContent());
                 message.changeStatus();
-            }else if (message.getReceiver().equals(username) && message.getStatus().equals("Read")){
-                printOutput.printLine("Read messages: ");
-                printOutput.printLine("From " + message.getSender() + ":");
-                printOutput.printLine(message.getContent());
-            }else{
-                printOutput.printLine("No new messages");
-                return;
             }
+        }
+        if(!received){
+            printOutput.printLine("No new messages");
         }
     }
     public void loadFromFile(ArrayList<Message> savedMessages){

@@ -1,5 +1,6 @@
 package Menus;
 
+import Import_Export.importAndExportSavedInfo;
 import Projects.*;
 import Tools.InputClass;
 import Projects.Project;
@@ -26,6 +27,7 @@ public class managerMenu {
     static ownerMenu OwnerMenu = new ownerMenu();
     static Project theProject;
     static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
+    importAndExportSavedInfo ie = new importAndExportSavedInfo();
 
     public void menu() {
 
@@ -62,6 +64,7 @@ public class managerMenu {
                     break;
                 case 5:
                     AllMessages.readMessage();
+                    ie.exportMessages();
                     break;
                 case 6:
                     returnedMenu.run();
@@ -201,12 +204,16 @@ public class managerMenu {
     }
     public int numOfTasksInProject(String projectName) {
         int tasksInProject = 0;
+        boolean projectFound = false;
         ArrayList<Project> allProjects = allprojects.getAllProjects();
         for (Project project : allProjects) {
             if (project.getProjectName() != null && project.getProjectName().equals(projectName)) {
                 tasksInProject = project.getTasks().size();
-            } else {
-                printOutput.readLine("Project not found");
+                projectFound = true;
+            }
+            else if(!projectFound){
+                printOutput.printLine("Project not found");
+                menu();
             }
         }
         return tasksInProject;
@@ -219,8 +226,6 @@ public class managerMenu {
         for (assignedTask AssignedTask : allAssignedTasks) {
             if (AssignedTask.getProjectName() != null && AssignedTask.getProjectName().equals(projectName) && AssignedTask.getStatus().equals("Completed")) {
                 tasksCompleted++;
-            } else {
-                printOutput.printLine("No completed tasks found.");
             }
         }
         if (tasksCompleted < totalNumOfTasks) {

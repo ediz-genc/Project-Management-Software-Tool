@@ -67,15 +67,16 @@ public class ownerMenu {
                     break;
                 case 5:
                     AllMessages.sendMessage();
+                    ie.exportMessages();
                     break;
                 case 6:
                     AllMessages.readMessage();
                     break;
                 case 7:
-                    String choice = printOutput.readLine("Do you want to assign a developer or manager? 'y' for developer and 'n' for manager  (y/n)");
-                    if (choice.equals("y")) {
+                    String choice = printOutput.readLine("Do you want to assign a developer or manager? 'd' for developer and 'm' for manager  (y/n): \n");
+                    if (choice.equals("d")) {
                         addMemberToProject();
-                    } else if(choice.equals("n")){
+                    } else if(choice.equals("m")){
                         assignManager();
                     }
                     return;
@@ -105,7 +106,7 @@ public class ownerMenu {
             moreMilestones = printOutput.readLine("Do you want to add another milestone? (yes/no):\n");
         }while(moreMilestones.equals("yes"));
 
-        int managerKey = randID.getRandom();
+        int managerKey = 0000;
 
         String tempUser = addedmember.getActiveUser();
         int ownerKey = addedmember.getUserKey(tempUser);
@@ -113,6 +114,9 @@ public class ownerMenu {
         Project newProject = new Project(projectName, weeks, ownerKey,managerKey, startDate, endDate,projectDescription,tasks);
         allprojects.addProject(newProject);
         printOutput.printLine("good job");
+        String activeUser = addedmember.getActiveUser();
+        int key = addedmember.getUserKey(activeUser);
+        project = (Project) allprojects.getProject(key);
     }
     public void viewUsers(){
 
@@ -128,7 +132,7 @@ public class ownerMenu {
             String activeUser = addedmember.getActiveUser();
             int key = addedmember.getUserKey(activeUser);
             theProject = (Project) allprojects.getProject(key);
-            if(theProject.getProjectName()==null&&theProject.getMilestoneDescription()==null&&theProject.getMemberKey()==null){
+            if(theProject.getProjectName()==null&&theProject.getMilestoneDescription()==null&&theProject.getMemberKey() == null){
                 throw new Exception();
             }
         } catch (Exception e){
@@ -138,11 +142,14 @@ public class ownerMenu {
         assert theProject != null;
         System.out.println("Which user do you want to assign to " + theProject.getProjectName());
         ArrayList<Member> temp = addedmember.getAllMembers();
-        for(Member member: temp){
-            System.out.println("Name: " + member.getName() +  " ID: " + member.getMemberKey());
+        for(Member member: temp) {
+            if (member.getLevel() == 3) {
+                System.out.println("Name: " + member.getName() + " ID: " + member.getMemberKey());
+            }
         }
-        int number = printOutput.readInt("\nWho do you want to add?\nState the ID: ");
-        boolean exist = addedmember.findMemberINT(number);
+        int memberID = printOutput.readInt("\nWho do you want to add?\nState the ID: ");
+
+        boolean exist = addedmember.findMemberINT(memberID);
         if(!exist){
             String option = printOutput.readLine("The ID doesn't exist..returning to menu. Do you want to try again? (y/n)");
             switch(option){
@@ -155,7 +162,7 @@ public class ownerMenu {
                     printOutput.printLine("Invalid input");
             }
         }
-        allprojects.addMember(number);
+        allprojects.addMember(memberID);
         //needs a checker if the member id typed in exists or not
         printOutput.printLine(ANSI_BRIGHT_GREEN+"\nMember added!\n"+ANSI_RESET);
         menu();
@@ -214,7 +221,7 @@ public class ownerMenu {
 
         ArrayList<Member> tempUsers = addedmember.getAllMembers();
         printOutput.printLine("These are all available managers:\n");
-        for(int i=0;i<0;i++){
+        for(int i=0;i< tempUsers.size();i++){
             if(tempUsers.get(i)!=null && tempUsers.get(i).getLevel()==2){
                 printOutput.printLine("Name " + tempUsers.get(i).getName() + " ID " + tempUsers.get(i).getMemberKey());
 
@@ -232,8 +239,8 @@ public class ownerMenu {
             }
         } catch (Exception e){
             printOutput.printLine(ANSI_RED+"No project was found within your account,\nyou need to create one before inviting users."+ANSI_RESET);
-            menu();
         }
+        menu();
 
 
 
