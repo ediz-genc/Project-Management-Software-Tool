@@ -7,11 +7,9 @@ import Projects.Project;
 import Users.addedMembers;
 import Mainclasses.startApp;
 import Users.allMessages;
-import org.springframework.scheduling.config.Task;
 import Projects.assignedTask;
 import Projects.allAssignedTasks;
 
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
 
 public class managerMenu {
@@ -180,16 +178,22 @@ public class managerMenu {
     }
     public void editTaskDescription(){
         ArrayList<task> tempTask = theProject.getTasks();
+        int counter = 0;
+
         for(int i =0;i<tempTask.size();i++){
             if(tempTask.get(i).getTaskDescription()!=null) {
-                printOutput.printLine(i + 1 + " Task description is \"" + ANSI_GREEN + tempTask.get(i).getTaskDescription() + ANSI_RESET + "\"");
+                ArrayList<String> allTaskDescriptions = tempTask.get(i).getTaskDescription();
+                for(String taskDescription: allTaskDescriptions){
+                    System.out.println("Task " + counter + " description: \"" + ANSI_GREEN + taskDescription + ANSI_RESET + "\"");
+                    counter++;
+                }
             }
         }
         int option = printOutput.readInt("Choose the number of which description you want to edit: ");
         String newTaskDescription = printOutput.readLine("Enter a new task description " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
 
         if(!newTaskDescription.equals("0")) {
-            tempTask.get(option -1).setTaskDescription(newTaskDescription,option);
+            tempTask.get(option).setTaskDescription(newTaskDescription,option);
             printOutput.printLine("New task description is saved!");
         }else{
             editProject();
@@ -220,7 +224,7 @@ public class managerMenu {
     }
     public void viewProjectProgress() {
         String projectName = printOutput.readLine("Please enter project name: ");
-        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedtasks();
         int totalNumOfTasks = numOfTasksInProject(projectName);
         int tasksCompleted = 0;
         for (assignedTask AssignedTask : allAssignedTasks) {

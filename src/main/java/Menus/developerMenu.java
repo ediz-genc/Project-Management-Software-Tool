@@ -90,7 +90,7 @@ public class developerMenu {
     }
 
     public void markTaskAsDone() {
-        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedtasks();
         String username = printOutput.readLine("Please enter your username: ");
         String choice = "";
         String hoursSpent;

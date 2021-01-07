@@ -6,17 +6,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import Users.addedMembers;
 import Users.Member;
 import Projects.Project;
 import java.io.IOException;
 import Projects.allProjects;
-import com.google.gson.Gson;
+
 import java.io.Reader;
-import Projects.allProjects;
+
 import Projects.assignedTask;
 import Projects.allAssignedTasks;
 import Users.allMessages;
@@ -141,7 +139,7 @@ public class importAndExportSavedInfo {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Type type = new TypeToken<ArrayList<assignedTask>>() {
         }.getType();
-        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedtasks();
         File file = new File("savedAssignedTasksObjects.json");
         String path = file.getAbsolutePath();
 

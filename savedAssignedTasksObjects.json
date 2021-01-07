@@ -36,8 +36,8 @@
     "milestoneName": "system",
     "taskDescription": "class",
     "memberAssigned": "edii",
-    "Status": "Uncompleted",
-    "hoursSpent": 0.0
+    "Status": "Completed",
+    "hoursSpent": 10.0
   },
   {
     "projectName": "project1",
@@ -54,5 +54,21 @@
     "memberAssigned": "edii",
     "Status": "Completed",
     "hoursSpent": 7.5
+  },
+  {
+    "projectName": "not so eficaz",
+    "milestoneName": "a",
+    "taskDescription": "b",
+    "memberAssigned": "edii",
+    "Status": "Completed",
+    "hoursSpent": 10.0
+  },
+  {
+    "projectName": "eficaz",
+    "milestoneName": "system",
+    "taskDescription": "class",
+    "memberAssigned": "edii",
+    "Status": "Completed",
+    "hoursSpent": 10.0
   }
 ]

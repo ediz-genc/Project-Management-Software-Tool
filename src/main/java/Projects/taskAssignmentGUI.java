@@ -138,7 +138,7 @@ public class taskAssignmentGUI {
                 String chosenMilestone = milestoneChosen.getText();
                 String chosenTask = taskChosen.getText();
                 String Status = "Uncompleted";
-                ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
+                ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedtasks();
                 assignedTask assignedTask = new assignedTask(projectName,chosenMilestone,chosenTask,memberUsername,Status);
                 allAssignedTasks.add(assignedTask);
                 ie.exportTasks();

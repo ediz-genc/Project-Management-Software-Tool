@@ -253,7 +253,7 @@ public class ownerMenu {
         String activeUser = addedmember.getActiveUser();
         int key = addedmember.getUserKey(activeUser);
         theProject = (Project) allprojects.getProject(key);
-        printOutput.printLine("Project name: " + theProject);
+        printOutput.printLine("Project name: " + theProject.getProjectName());
 
         int totalWorkHours = printOutput.readInt("Enter the estimated amount of hours to complete the project (in hours): ");
         int memberCostPerHour = printOutput.readInt("Enter the cost for the working member per hour: ");
@@ -281,14 +281,15 @@ public class ownerMenu {
     }
 
     public double calculateTotalTimeWorked(){
-        ArrayList<assignedTask> assignedTasks = AllAssignedTasks.getAssignedTasks();
-        String projectName = printOutput.readLine("Enter the project name: ");
+        Project theProject = null;
+        String activeUser = addedmember.getActiveUser();
+        int key = addedmember.getUserKey(activeUser);
+        theProject = (Project) allprojects.getProject(key);
+        String projectName = theProject.getProjectName();
         double timeWorked = 0;
-        for(int j = 0; j < assignedTasks.size(); j++) {
-            if(assignedTasks.get(j).getProjectName().equals(projectName)) {
-                timeWorked = timeWorked + assignedTasks.get(j).getHoursSpent();
-            }
-        }
+        assignedTask assignedtask = allAssignedTasks.getInstance().getTotalSpentHours(projectName);
+        timeWorked = timeWorked + assignedtask.getHoursSpent();
+
         return timeWorked;
     }
 

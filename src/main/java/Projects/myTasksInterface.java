@@ -19,7 +19,7 @@ public class myTasksInterface {
     }
     public void viewMyTasks(){
         String username = findUserNameByKey();
-        ArrayList<assignedTask> searchList = AllAssignedTasks.getAssignedTasks();
+        ArrayList<assignedTask> searchList = AllAssignedTasks.getAssignedtasks();
         int position;
         for(int i = 0; i< searchList.size();i++){
             if(searchList.get(i).getMemberAssigned() != null && searchList.get(i).getMemberAssigned().equals(username)){
