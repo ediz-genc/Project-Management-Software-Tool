@@ -62,6 +62,11 @@ public class allProjects {
         return allProjects;
     }
 
+    public void addBudget(double budget){
+        allProjects.get(getterPosition).setBudgetCost(budget);
+    }
+
+
 
     public void loadFromFile(ArrayList<Project> savedProjects){
                 this.allProjects = savedProjects;
