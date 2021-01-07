@@ -61,7 +61,7 @@ public class ownerMenu {
                     try {
                         int key = addedmember.getUserKey(activeUser);
                         project = (Project) allprojects.getProject(key);
-                        if(project.getProjectName()==null){throw new Exception();}
+                        if(project==null){throw new Exception();}
                         managerMenu.setProject(project);
                         managerMenu.editProject();
                     } catch(Exception e) {
