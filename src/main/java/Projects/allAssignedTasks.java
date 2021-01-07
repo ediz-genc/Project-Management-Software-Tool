@@ -9,15 +9,18 @@ public class allAssignedTasks {
     public allAssignedTasks(){
 
     }
+
     public static allAssignedTasks getInstance(){
         if(soloAllAssignedTasks == null){
             soloAllAssignedTasks = new allAssignedTasks();
         }
         return soloAllAssignedTasks;
     }
+
     public ArrayList<assignedTask> getAssignedTasks(){
         return assignedTasks;
     }
+
     public void loadFromFile(ArrayList<assignedTask> savedAssignedTasks){
         this.assignedTasks = savedAssignedTasks;
     }

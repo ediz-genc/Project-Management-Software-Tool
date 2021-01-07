@@ -1,7 +1,6 @@
 package Projects;
 
 
-
 public class assignedTask {
     private String projectName;
     private String milestoneName;
@@ -44,9 +43,9 @@ public class assignedTask {
     public void setHoursSpent(double hoursSpent) {
         this.hoursSpent = hoursSpent;
     }
+
     public double getHoursSpent(){
         return hoursSpent;
     }
-
 
 }
