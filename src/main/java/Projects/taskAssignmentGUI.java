@@ -23,12 +23,12 @@ public class taskAssignmentGUI {
     static InputClass printOutput = new InputClass();
     static ownerMenu OwnerMenu = new ownerMenu();
 
-    JFrame frame;
+    JFrame frame = new JFrame("Assigning tasks");
     JComboBox chooseProjectName;
     JTextField milestoneChosen;
     JTextField taskChosen;
     JTextField memberAssigned;
-    JTextPane displayTasks;
+    JTextPane displayTasks = new JTextPane();
     StringBuffer allTasks = new StringBuffer();
 
     public void projectChecker(){

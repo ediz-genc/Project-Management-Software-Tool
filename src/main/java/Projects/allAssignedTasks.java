@@ -16,6 +16,10 @@ public class allAssignedTasks {
         return soloAllAssignedTasks;
     }
     public ArrayList<assignedTask> getAssignedTasks(){
+       if(assignedTasks==null){
+           assignedTasks = new ArrayList<assignedTask>();
+       }
+
         return assignedTasks;
     }
     public void loadFromFile(ArrayList<assignedTask> savedAssignedTasks){

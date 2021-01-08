@@ -24,6 +24,9 @@ public class developerMenu {
 
     public void menu() {
 
+        boolean checker = checkProject();
+        if(!checker){return;}
+
         int option = 0;
         while (option != 5) {
 
@@ -69,12 +72,12 @@ public class developerMenu {
 
         } catch (Exception e) {
             printOutput.printLine("You have no projects assigned to you...returning to menu");
-            return;
-        }
+            menu();        }
 
     }
 
     public void viewProject(Project project) {
+
 
         printOutput.printLine("Name of Project: " + project.getProjectName() + "\n" + "Project Description: " + project.getProjectDesc() + "\n" + "Start Date: " + project.getStartDate() + "\n" +
                 "End date: " + project.getEndDate() + "\n" + "Length of Project: " + project.getWeeks() +
@@ -84,6 +87,18 @@ public class developerMenu {
     }
 
     public void markTaskAsDone() {
+        ArrayList<assignedTask> testTasks = null;
+
+        try {
+            testTasks = AllAssignedTasks.getAssignedTasks();
+            if (testTasks == null) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            printOutput.printLine("You have no tasks assigned to you...returning to menu");
+            menu();        }
+
+
         ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
         String username = printOutput.readLine("Please enter your username: ");
         String choice = "";
@@ -91,7 +106,7 @@ public class developerMenu {
         int position;
         boolean tasksFound = false;
 
-        for (int i = 0; i < allAssignedTasks.size(); i++) {
+        for (int i = 0; i < testTasks.size(); i++) {
             if (allAssignedTasks.get(i).getMemberAssigned() != null && allAssignedTasks.get(i).getMemberAssigned().equals(username) && allAssignedTasks.get(i).getStatus().equals("Uncompleted")) {
                 position = i;
                 System.out.println("Task number: " + position + "\n" + "Project: " + allAssignedTasks.get(position).getProjectName() + "\n" + "Milestone: " + allAssignedTasks.get(position).getMilestoneName()
@@ -120,4 +135,25 @@ public class developerMenu {
 
         }
     }
+
+
+        public boolean checkProject(){
+        boolean checker = false;
+
+        try {
+            String activeUser = addedmembers.getActiveUser();
+            int key = addedmembers.getUserKey(activeUser);
+            Project theProject = (Project) allprojects.getProject(key);
+            if(theProject==null){
+                return checker;
+            } else {
+                checker = true;
+            }
+        } catch (Exception e){
+            printOutput.printLine("You have no active projects, please contact a product owner.\nReturning...");
+
+        }
+        return checker;
+    }
+
 }
