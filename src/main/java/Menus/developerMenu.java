@@ -4,7 +4,6 @@ import Import_Export.importAndExportSavedInfo;
 import Mainclasses.startApp;
 import Projects.*;
 import Tools.InputClass;
-import Users.Member;
 import Users.addedMembers;
 import Users.allMessages;
 import Projects.allAssignedTasks;
@@ -17,8 +16,6 @@ public class developerMenu {
     static InputClass printOutput = new InputClass();
     static myTasksInterface myTasksInterface = new myTasksInterface();
     static allProjects allprojects = allProjects.getInstance();
-    ArrayList<Project> projects = allprojects.getAllProjects();
-    ArrayList<Member> allMembers = addedMembers.getInstance().getAllMembers();
     static allMessages AllMessages = allMessages.getInstance();
     static startApp returnedMenu = new startApp();
     static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();

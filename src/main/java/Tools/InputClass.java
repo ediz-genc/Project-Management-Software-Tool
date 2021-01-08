@@ -4,19 +4,12 @@ import java.util.Scanner;
 public class InputClass {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
-    public String print(String A){
-        System.out.print(A);
 
-        return A;
-    }
     public String printLine(String A){
         System.out.println(A);
         return A;
     }
-    public int printInt(int A){
-        System.out.println(A);
-        return A;
-    }
+
     public char readChar(String userMessage) {
 
         Scanner input = new Scanner(System.in);

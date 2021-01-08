@@ -17,10 +17,10 @@ public class Budget {
         this.amountOfMembers = amountOfMembers;
         this.velocity = velocity;
         this.extraCost = extraCost;
-        ArrayList<Budget> budgetCost;
     }
     public Budget (){
     }
+
     public int getTotalWorkHours() { return totalWorkHours; }
     public void setTotalWorkHours(int totalWorkHours) { this.totalWorkHours = totalWorkHours; }
     public int getMemberCostPerHour() { return memberCostPerHour; }

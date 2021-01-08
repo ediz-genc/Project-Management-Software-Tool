@@ -168,16 +168,7 @@ public class taskAssignmentGUI {
             }
         }
     }
-    public ArrayList<String> getAllProjectNames(){
-        ArrayList<Projects.Project> projects = allProjects.getAllProjects();
-        ArrayList<String> allProjectNames = new ArrayList<>();
 
-        for (Projects.Project project : projects) {
-            String projectName = project.getProjectName();
-            allProjectNames.add(projectName);
-        }
-        return allProjectNames;
-    }
     public static void main(String[] args){
         taskAssignmentGUI newTask = new taskAssignmentGUI();
         newTask.assignTask();

@@ -12,8 +12,6 @@ import java.util.Random;
         private int number;
         private final int row = 50;
         private final int column = 2;
-        private int singleNumber;
-            private int getSingleNumber;
 
 
             public static randomID getInstance() {
@@ -44,10 +42,6 @@ import java.util.Random;
             }
             return number;
         }
-
-
-
-
     }
 
 

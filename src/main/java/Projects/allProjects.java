@@ -1,13 +1,11 @@
 package Projects;
 import java.util.ArrayList;
-import Tools.InputClass;
 import Users.addedMembers;
 
 public class allProjects {
 
     private static volatile allProjects soloAllProjects = new allProjects();
     private ArrayList<Project> allProjects = new ArrayList<Project>();
-    static InputClass printOutput = new InputClass();
     static addedMembers addedmembers = addedMembers.getInstance();
     private int getterPosition =0;
 

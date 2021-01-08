@@ -26,14 +26,11 @@ public class ownerMenu {
     static Project project = new Project();
     static task task = new task();
     static taskAssignmentGUI newTask = new taskAssignmentGUI();
-    static Member member = new Member();
-    ArrayList<Member> allMembers = addedmember.getAllMembers();
     static allMessages AllMessages = allMessages.getInstance();
     static startApp returnedMenu = new startApp();
     static managerMenu managerMenu = new managerMenu();
     randomID randID = randomID.getInstance();
     static Budget budget = new Budget();
-    static allAssignedTasks AllAssignedTasks = new allAssignedTasks();
 
     public void menu() {
 
@@ -133,13 +130,7 @@ public class ownerMenu {
         allprojects.addProject(newProject);
         printOutput.printLine(ANSI_BRIGHT_GREEN+"Project created!"+ANSI_RESET);
     }
-    public void viewUsers(){
 
-        for (int i = 0; i < allMembers.size(); i++){
-            printOutput.printLine("Name of the User: " +allMembers.get(i).getName()+ "\n" + "User ID: " +allMembers.get(i).getUsername() + "\n"+ "User Key: "+allMembers.get(i).getMemberKey()+"\n"+
-                    "Use Access to see project: "+ allMembers.get(i).getGrantedAccess());
-        }
-    }
     public void printedDevelopers(){
 
         System.out.println(ANSI_YELLOW+"These are all the available Developers:\n"+ANSI_RESET);
@@ -254,6 +245,7 @@ public class ownerMenu {
         printOutput.printLine("Project name: " + theProject.getProjectName());
 
         try {
+            printOutput.printLine(ANSI_YELLOW + "Enter the input to the nearest whole number! " + ANSI_RESET);
             int totalWorkHours = printOutput.readInt("Enter the estimated amount of hours to complete the project (in hours): ");
             int memberCostPerHour = printOutput.readInt("Enter the cost for the working member per hour: ");
             int amountOfMembers = printOutput.readInt("Enter the amount of members that will be working on the project: ");
@@ -262,7 +254,7 @@ public class ownerMenu {
             Budget budget = new Budget(totalWorkHours, memberCostPerHour, amountOfMembers, velocity, extraCost);
             budgetCost.add(budget);
         }catch (InputMismatchException exception){
-            printOutput.printLine("Please round the work hours to the nearest whole number.");
+            printOutput.printLine(ANSI_RED + "Please round the work hours to the nearest whole number." + ANSI_RESET);
             menu();
         }
 
@@ -287,6 +279,7 @@ public class ownerMenu {
         int key = addedmember.getUserKey(activeUser);
         theProject = (Project) allprojects.getProject(key);
         String projectName = theProject.getProjectName();
+
         double timeWorked = 0;
         assignedTask assignedtask = allAssignedTasks.getInstance().getTotalSpentHours(projectName);
         timeWorked = timeWorked + assignedtask.getHoursSpent();
@@ -298,6 +291,7 @@ public class ownerMenu {
         double totalTimeWorked = calculateTotalTimeWorked();
         double totalRealBudget = 0.0;
         try {
+            printOutput.printLine(ANSI_YELLOW + "Enter the input to the nearest whole number! " + ANSI_RESET);
             int realVelocity = printOutput.readInt("Enter the real velocity after the project is finished: ");
             int realExtraCost = printOutput.readInt("Enter the total extra cost after project is finished: ");
 
@@ -307,7 +301,7 @@ public class ownerMenu {
                 printOutput.printLine("The real total budget after the project is finished is: " + totalRealBudget);
             }
         }catch (InputMismatchException inputMismatchException){
-            printOutput.printLine("Please round all estimations to the nearest whole number.");
+            printOutput.printLine(ANSI_RED +"Please round all estimations to the nearest whole number. "+ ANSI_RESET);
             menu();
 
         }

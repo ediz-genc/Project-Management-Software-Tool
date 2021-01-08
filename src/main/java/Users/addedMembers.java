@@ -7,8 +7,6 @@ public class addedMembers {
     private static volatile addedMembers soloAddedMembers = new addedMembers();
 
     private ArrayList<Member> allMembers = new ArrayList<>();
-    private String memberRole;
-    private String memberName;
     private String activeUser;
 
     public addedMembers() {

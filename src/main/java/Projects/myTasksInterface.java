@@ -1,5 +1,4 @@
 package Projects;
-import Tools.InputClass;
 import Users.addedMembers;
 import Users.Member;
 
@@ -8,7 +7,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class myTasksInterface {
-    static InputClass printOutput = new InputClass();
     StringBuilder displayTasks = new StringBuilder();
     static allAssignedTasks AllAssignedTasks = allAssignedTasks.getInstance();
     static Users.addedMembers AddedMembers = addedMembers.getInstance();

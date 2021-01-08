@@ -1,9 +1,6 @@
 package Projects;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import Menus.ownerMenu;
 
 public class Project {
 
@@ -78,12 +75,6 @@ public class Project {
     public void setBudgetCost(double budgetCost) {
         this.budgetCost = budgetCost;
     }
-    public void setMilestoneDescription(String milestoneDescription) {
-        //this.tasks[0][0] = milestoneDescription;
-    }
-    public void setTaskDescription(String taskDescription) {
-        //this.tasks[0][0] = taskDescription;
-    }
     public String getProjectDesc() { return projectDesc; }
     public void setProjectDesc(String projectDesc) { this.projectDesc = projectDesc; }
     public void statusReport(int status, int row, int column) {
@@ -92,10 +83,6 @@ public class Project {
     public String getMilestoneDescription(){
             String[][] task = new String[2][2];
             return task[0][0];
-    }
-    public String getTaskDescription(){
-           String[][] task = new String[2][2];
-           return task[0][0];
     }
     public void setWeeks(int weeks) {
                 this.weeks = weeks;
