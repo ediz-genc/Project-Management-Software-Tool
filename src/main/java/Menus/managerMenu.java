@@ -48,27 +48,16 @@ public class managerMenu {
             option = printOutput.readInt("\n1. Add tasks to an existing project \n2. Edit Project\n3. View project progress\n4. Send a message.\n5. See my inbox.\n6. Log out.\n");
 
             switch (option) {
-                case 1:
-                    OwnerMenu.addTasksToProject();
-                    break;
-                case 2:
-                    editProject();
-                    break;
-                case 3:
-                    viewProjectProgress();
-                    break;
-                case 4:
-                    AllMessages.sendMessage();
-                    break;
-                case 5:
+                case 1 -> OwnerMenu.addTasksToProject();
+                case 2 -> editProject();
+                case 3 -> viewProjectProgress();
+                case 4 -> AllMessages.sendMessage();
+                case 5 -> {
                     AllMessages.readMessage();
                     ie.exportMessages();
-                    break;
-                case 6:
-                    returnedMenu.run();
-                    break;
-                default:
-                    printOutput.printLine("Invalid input");
+                }
+                case 6 -> returnedMenu.run();
+                default -> printOutput.printLine("Invalid input");
             }
         }
     }

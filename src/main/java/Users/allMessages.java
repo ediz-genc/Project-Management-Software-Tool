@@ -27,7 +27,7 @@ public class allMessages {
         return allMessages;
     }
     public void sendMessage() {
-        String Sender = printOutput.readLine("Please enter your username: ");
+        String Sender = AddedMembers.findUserNameByKey();
         String Receiver = printOutput.readLine("Please enter receiver username: ");
         String Status = "Unread";
         ArrayList<Member> allMembers = AddedMembers.getAllMembers();
@@ -47,7 +47,7 @@ public class allMessages {
         }
     }
     public void readMessage(){
-        String username = printOutput.readLine("Please enter your username: ");
+        String username = AddedMembers.findUserNameByKey();
         boolean received = false;
         for(Message message: allMessages){
             if(message.getReceiver() != null && message.getReceiver().equals(username) && message.getStatus().equals("Unread")){
