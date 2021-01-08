@@ -1,5 +1,6 @@
 package Menus;
 
+import Import_Export.importAndExportSavedInfo;
 import Mainclasses.startApp;
 import Projects.task;
 import Tools.InputClass;
@@ -32,6 +33,7 @@ public class ownerMenu {
     static managerMenu managerMenu = new managerMenu();
     randomID randID = randomID.getInstance();
     static Budget budget = new Budget(); String activeUser; boolean checker;
+    importAndExportSavedInfo ie = new importAndExportSavedInfo();
 
     public void menu() {
 
@@ -80,6 +82,7 @@ public class ownerMenu {
                     break;
                 case 5:
                     AllMessages.sendMessage();
+                    ie.exportMessages();
                     break;
                 case 6:
                     AllMessages.readMessage();
@@ -175,8 +178,6 @@ public class ownerMenu {
         ArrayList<String> tasksInMilestone = new ArrayList<>();
         String milestones; int number = 0;
 
-
-
    do {
 
             milestones = printOutput.readLine("Enter milestone description: ");
@@ -193,26 +194,8 @@ public class ownerMenu {
 
        allprojects.setProject(theProject);
 
-
-
     }
-    public int findProjectByName(String projectName){
-        ArrayList<Project> allProjects = allprojects.getAllProjects();
-        int position = 0;
-        boolean projectFound = false;
-        for(int i = 0; i < allProjects.size();i++){
-            if(allProjects.get(i).getProjectName() != null && allProjects.get(i).getProjectName().equals(projectName)){
-                position = i;
-                projectFound = true;
-                break;
-            }
-        }
-        if(!projectFound){
-            printOutput.printLine(ANSI_RED+"Project not found, try again."+ANSI_RESET+ANSI_YELLOW+"\n(Type '0' to go back)."+ANSI_RESET);
-            addTasksToProject();
-        }
-        return position;
-    }
+
     public Projects.task addMoreMilestones(){
         String option;
         ArrayList<String> taskDescriptions = task.getTaskDescription() ;
@@ -258,12 +241,7 @@ public class ownerMenu {
             }
     public void estimatedBudget(){
         ArrayList<Budget> budgetCost = budget.getBudgetCost();
-        Project theProject = null;
-
-        String activeUser = addedmember.getActiveUser();
-        int key = addedmember.getUserKey(activeUser);
-        theProject = (Project) allprojects.getProject(key);
-        printOutput.printLine("Project name: " + theProject.getProjectName());
+        managerMenu.chooseProject();
 
         try {
             printOutput.printLine(ANSI_YELLOW + "Enter the input to the nearest whole number! " + ANSI_RESET);
@@ -319,12 +297,13 @@ public class ownerMenu {
             for (int i = 0; i < budgetCost.size(); i++) {
                 totalRealBudget = (realVelocity * budgetCost.get(i).getAmountOfMembers() * budgetCost.get(i).getMemberCostPerHour() *
                         totalTimeWorked) + realExtraCost;
-                printOutput.printLine("The real total budget after the project is finished is: " + totalRealBudget);
             }
+            printOutput.printLine("The real total budget after the project is finished is: " + totalRealBudget);
         }catch (InputMismatchException inputMismatchException){
             printOutput.printLine(ANSI_RED +"Please round all estimations to the nearest whole number. "+ ANSI_RESET);
             menu();
         }
+        allprojects.addRealCostBudget(totalRealBudget);
         budgetCalculation();
         menu();
     }

@@ -1,6 +1,7 @@
 package Users;
 
 import Tools.InputClass;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,9 @@ public class allMessages {
             if (member.getUsername() != null && member.getUsername().equals(Receiver)) {
                 String Content = printOutput.readLine("Type message: ");
                 Message newMessage = new Message(Sender, Receiver, Content, Status);
+                if(allMessages == null){
+                    allMessages = new ArrayList<Message>();
+                }
                 allMessages.add(newMessage);
                 printOutput.printLine(ANSI_GREEN+"Your message has been sent!"+ANSI_RESET);
                 sent = true;
@@ -49,10 +53,14 @@ public class allMessages {
     public void readMessage(){
         String username = AddedMembers.findUserNameByKey();
         boolean received = false;
+        printOutput.printLine("These are your messages: ");
+        if(allMessages == null){
+            printOutput.printLine("No messages!");
+            return;
+        }
         for(Message message: allMessages){
             if(message.getReceiver() != null && message.getReceiver().equals(username) && message.getStatus().equals("Unread")){
                 received = true;
-                printOutput.printLine("New messages: ");
                 printOutput.printLine("From " + message.getSender() + ":");
                 printOutput.printLine(message.getContent());
                 message.changeStatus();

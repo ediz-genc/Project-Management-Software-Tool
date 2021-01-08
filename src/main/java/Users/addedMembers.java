@@ -19,6 +19,9 @@ public class addedMembers {
     }
     public void addMember(Object o) {
 
+        if(allMembers == null){
+            allMembers = new ArrayList<Member>();
+        }
         allMembers.add((Member) o);
 
     }
@@ -28,6 +31,9 @@ public class addedMembers {
     public int findMember(String username, String password) {
 
         int valid = 0;
+        if(allMembers == null){
+            return 0;
+        }
         int searchListLength = allMembers.size();
 
         for (int i = 0; i < searchListLength; i++) {

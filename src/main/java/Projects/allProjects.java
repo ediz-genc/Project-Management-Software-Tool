@@ -7,7 +7,6 @@ public class allProjects {
 
     private static volatile allProjects soloAllProjects = new allProjects();
     private ArrayList<Project> allProjects = new ArrayList<Project>();
-    static InputClass printOutput = new InputClass();
     static addedMembers addedmembers = addedMembers.getInstance();
     private int getterPosition =0;
 
@@ -20,6 +19,9 @@ public class allProjects {
         return soloAllProjects;
     }
     public void addProject(Object o) {
+        if(allProjects == null){
+            allProjects = new ArrayList<Project>();
+        }
         allProjects.add((Project) o);
     }
     public void addMember(int memberID) {
@@ -63,6 +65,7 @@ public class allProjects {
     public void addBudget(double budget){
         allProjects.get(getterPosition).setBudgetCost(budget);
     }
+    public void addRealCostBudget (double realCost){ allProjects.get(getterPosition).setRealBudgetCost(realCost);}
     public void loadFromFile(ArrayList<Project> savedProjects){
                 this.allProjects = savedProjects;
 

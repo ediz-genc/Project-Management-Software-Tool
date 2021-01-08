@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Project {
 
-    public int getProjectKey;
     private String projectName;
     private int weeks;
     private ArrayList<Integer> memberKey;
@@ -16,6 +15,7 @@ public class Project {
     private ArrayList<task> tasks = new ArrayList<>();
     private String projectDesc;
     private double budgetCost;
+    private double realBudgetCost;
 
     public Project(String projectName, int projectKey, int weeks, int ownerKey,int managerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks) {
         this.projectName = projectName;
@@ -28,6 +28,7 @@ public class Project {
         this.tasks = tasks;
         this.projectDesc = projectDescription;
         this.budgetCost = 0;
+        this.realBudgetCost = 0;
     }
     public Project() {
     }
@@ -73,18 +74,12 @@ public class Project {
     public double getBudgetCost() {
         return budgetCost;
     }
+    public double getRealBudgetCost() {return realBudgetCost;}
     public void setBudgetCost(double budgetCost) {
         this.budgetCost = budgetCost;
     }
+    public void setRealBudgetCost(double realBudgetCost){this.realBudgetCost = realBudgetCost;}
     public String getProjectDesc() { return projectDesc; }
-    public void setProjectDesc(String projectDesc) { this.projectDesc = projectDesc; }
-    public void statusReport(int status, int row, int column) {
-        String RED = "\u001B[31m";
-    }
-    public String getMilestoneDescription(){
-            String[][] task = new String[2][2];
-            return task[0][0];
-    }
     public void setWeeks(int weeks) {
                 this.weeks = weeks;
     }
@@ -103,8 +98,5 @@ public class Project {
     public void setTasks(ArrayList<task> tasks){
         this.tasks = tasks;
     }
-
-
-
 
 }
