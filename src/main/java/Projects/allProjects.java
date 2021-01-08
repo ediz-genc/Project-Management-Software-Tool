@@ -57,22 +57,16 @@ public class allProjects {
         }
         return project;
     }
-
     public ArrayList<Project> getAllProjects(){
         return allProjects;
     }
-
     public void addBudget(double budget){
         allProjects.get(getterPosition).setBudgetCost(budget);
     }
-
-
-
     public void loadFromFile(ArrayList<Project> savedProjects){
                 this.allProjects = savedProjects;
 
             }
-
     public ArrayList<String> findProjectsNames(){
 
         ArrayList<String> projectNames = new ArrayList<String>();
@@ -88,10 +82,6 @@ public class allProjects {
 
         return projectNames;
     }
-
-
-
-
     public void setProject(Project project){
         int position = getterPosition;
         allProjects.set(position,project);

@@ -31,7 +31,7 @@ public class developerMenu {
         while (option != 5) {
 
             printOutput.printLine(ANSI_YELLOW + "\nDeveloper Menu" + ANSI_RESET + "\nHere you can work on your project\nand communicate with your team members.\n" + "\nChoose between one of the following options below:\n");
-            option = printOutput.readInt("1. View my tasks\n2. Report about completed tasks\n3. Delete/archive project\n4. View Projects\n5. Send a message\n6. See your inbox\n7. Log out\n");
+            option = printOutput.readInt("1. View my tasks\n2. Report about completed tasks\n3. View Projects\n4. Send a message\n5. See your inbox\n6. Log out\n");
             switch (option) {
                 case 1:
                     myTasksInterface.viewMyTasks();
@@ -40,20 +40,17 @@ public class developerMenu {
                     markTaskAsDone();
                     break;
                 case 3:
-                    printOutput.printLine("to be continued...");
-                    break;
-                case 4:
                     accessToViewProject();
                     break;
-                case 5:
+                case 4:
                     AllMessages.sendMessage();
                     ie.exportMessages();
                     break;
-                case 6:
+                case 5:
                     AllMessages.readMessage();
                     menu();
                     return;
-                case 7:
+                case 6:
                     returnedMenu.run();
                 default:
                     printOutput.printLine(ANSI_RED + "Invalid input, try again." + ANSI_RESET);
@@ -90,7 +87,7 @@ public class developerMenu {
     }
 
     public void markTaskAsDone() {
-        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedtasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
         String username = printOutput.readLine("Please enter your username: ");
         String choice = "";
         String hoursSpent;

@@ -234,7 +234,7 @@ public class managerMenu {
     }
     public void viewProjectProgress() {
         String projectName = printOutput.readLine("Please enter project name: ");
-        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedtasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
         int totalNumOfTasks = numOfTasksInProject(projectName);
         int tasksCompleted = 0;
         for (assignedTask AssignedTask : allAssignedTasks) {

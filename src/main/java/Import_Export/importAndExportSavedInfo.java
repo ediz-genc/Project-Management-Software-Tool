@@ -139,7 +139,7 @@ public class importAndExportSavedInfo {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Type type = new TypeToken<ArrayList<assignedTask>>() {
         }.getType();
-        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedtasks();
+        ArrayList<assignedTask> allAssignedTasks = AllAssignedTasks.getAssignedTasks();
         File file = new File("savedAssignedTasksObjects.json");
         String path = file.getAbsolutePath();
 

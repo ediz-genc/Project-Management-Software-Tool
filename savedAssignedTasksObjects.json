@@ -20,8 +20,8 @@
     "milestoneName": "Budget",
     "taskDescription": "Calculate hours spent",
     "memberAssigned": "mei",
-    "Status": "Uncompleted",
-    "hoursSpent": 2.0
+    "Status": "Completed",
+    "hoursSpent": 6.0
   },
   {
     "projectName": "project1",
@@ -70,5 +70,13 @@
     "memberAssigned": "edii",
     "Status": "Completed",
     "hoursSpent": 10.0
+  },
+  {
+    "projectName": "testproject",
+    "milestoneName": "test developer menu",
+    "taskDescription": "test teverything",
+    "memberAssigned": "jakobd",
+    "Status": "Uncompleted",
+    "hoursSpent": 0.0
   }
 ]

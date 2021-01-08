@@ -27,7 +27,6 @@ public class addedMembers {
     public ArrayList<Member> getAllMembers(){
         return allMembers;
     }
-
     public int findMember(String username, String password) {
 
         int valid = 0;
@@ -42,7 +41,6 @@ public class addedMembers {
         }
         return valid;
     }
-
     public boolean findMember(String memberUsername){
         boolean assignTask = false;
 
@@ -54,7 +52,6 @@ public class addedMembers {
         }
         return assignTask;
     }
-
     public boolean findMemberINT(int memberKey){
         boolean assignTask = false;
 
@@ -66,11 +63,8 @@ public class addedMembers {
         }
         return assignTask;
     }
-
     public void setActiveUser(String userName){this.activeUser=userName;}
-
     public String getActiveUser(){return activeUser;}
-
     public int getUserKey(String userName){
         int tempKey=0; boolean found = false; int key = 0;
 
@@ -84,7 +78,6 @@ public class addedMembers {
         }
         return key;
     }
-
     public void loadFromFile(ArrayList<Member> savedMembers){
             this.allMembers = savedMembers;
 

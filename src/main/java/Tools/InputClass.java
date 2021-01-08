@@ -68,19 +68,19 @@ public class InputClass {
         Scanner input = new Scanner(System.in);
         String output=null;
 
-        String message = "Invalid input";
+        String message = "Invalid input, choose between 'y' or 'n'";
 
         try {
             System.out.print(A);
             output = input.nextLine();
-            if(!(output.equals("y"))  || !(output.equals("n")) ){
+            if(!output.equals("y")){
+                throw new Exception(); }
+            else if(!output.equals("n")) {
                 throw new Exception(); }
         } catch (Exception e) {
             System.out.println(ANSI_RED+message+ANSI_RESET);
             readYN(A);
         }
-
-
         return output;
     }
 

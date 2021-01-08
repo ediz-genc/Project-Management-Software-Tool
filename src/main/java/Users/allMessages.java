@@ -8,6 +8,7 @@ public class allMessages {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
+    public final String ANSI_YELLOW = "\u001B[33m";
     private ArrayList<Message> allMessages = new ArrayList<>();
     private static volatile allMessages soloAllMessages = new allMessages();
     static addedMembers AddedMembers = addedMembers.getInstance();
@@ -42,7 +43,7 @@ public class allMessages {
             }
         }
         if(!sent){
-            printOutput.printLine(ANSI_RED+"\nReceiver not found"+ANSI_RESET);
+            printOutput.printLine(ANSI_RED+"\nReceiver not found."+ANSI_RESET);
         }
     }
     public void readMessage(){
@@ -58,7 +59,7 @@ public class allMessages {
             }
         }
         if(!received){
-            printOutput.printLine("No new messages");
+            printOutput.printLine(ANSI_YELLOW+"\nNo new messages"+ANSI_RESET);
         }
     }
     public void loadFromFile(ArrayList<Message> savedMessages){

@@ -390,5 +390,29 @@
     "level": 1,
     "memberKey": 4893,
     "grantedAccess": "access not granted"
+  },
+  {
+    "name": "jakob",
+    "username": "jakobo",
+    "password": "1234",
+    "level": 1,
+    "memberKey": 6780,
+    "grantedAccess": "access not granted"
+  },
+  {
+    "name": "jakob",
+    "username": "jakobm",
+    "password": "1234",
+    "level": 2,
+    "memberKey": 4146,
+    "grantedAccess": "access not granted"
+  },
+  {
+    "name": "jakob",
+    "username": "jakobd",
+    "password": "1234",
+    "level": 3,
+    "memberKey": 2107,
+    "grantedAccess": "access not granted"
   }
 ]
