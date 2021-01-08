@@ -89,4 +89,16 @@ public class addedMembers {
             this.allMembers = savedMembers;
 
         }
+    public String findUserNameByKey(){
+        String activeUser = getActiveUser();
+        int key = getUserKey(activeUser);
+        String username = "";
+        ArrayList<Member> allMembers = getAllMembers();
+        for(Member member: allMembers){
+            if(member.getMemberKey() == key){
+                username = member.getUsername();
+            }
+        }
+        return username;
+    }
 }

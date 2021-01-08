@@ -14,6 +14,7 @@ import Users.allMessages;
 import Tools.randomID;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class ownerMenu {
     public final String ANSI_RED = "\u001B[31m";
@@ -255,13 +256,18 @@ public class ownerMenu {
         theProject = (Project) allprojects.getProject(key);
         printOutput.printLine("Project name: " + theProject.getProjectName());
 
-        int totalWorkHours = printOutput.readInt("Enter the estimated amount of hours to complete the project (in hours): ");
-        int memberCostPerHour = printOutput.readInt("Enter the cost for the working member per hour: ");
-        int amountOfMembers = printOutput.readInt("Enter the amount of members that will be working on the project: ");
-        int velocity = printOutput.readInt("Enter the estimated velocity for the project: ");
-        int extraCost = printOutput.readInt("If any, enter the estimated extra cost that for the project: ");
-        Budget budget = new Budget(totalWorkHours, memberCostPerHour, amountOfMembers, velocity, extraCost);
-        budgetCost.add(budget);
+        try {
+            int totalWorkHours = printOutput.readInt("Enter the estimated amount of hours to complete the project (in hours): ");
+            int memberCostPerHour = printOutput.readInt("Enter the cost for the working member per hour: ");
+            int amountOfMembers = printOutput.readInt("Enter the amount of members that will be working on the project: ");
+            int velocity = printOutput.readInt("Enter the estimated velocity for the project: ");
+            int extraCost = printOutput.readInt("If any, enter the estimated extra cost that for the project: ");
+            Budget budget = new Budget(totalWorkHours, memberCostPerHour, amountOfMembers, velocity, extraCost);
+            budgetCost.add(budget);
+        }catch (InputMismatchException exception){
+            printOutput.printLine("Please round the work hours to the nearest whole number.");
+            menu();
+        }
 
         double totalEstimatedBudget = budgetCalculation();
         allprojects.addBudget(totalEstimatedBudget);
@@ -297,13 +303,19 @@ public class ownerMenu {
         ArrayList<Budget> budgetCost = budget.getBudgetCost();
         double totalTimeWorked = calculateTotalTimeWorked();
         double totalRealBudget = 0.0;
-        int realVelocity = printOutput.readInt("Enter the real velocity after the project is finished: ");
-        int realExtraCost = printOutput.readInt("Enter the total extra cost after project is finished: ");
+        try {
+            int realVelocity = printOutput.readInt("Enter the real velocity after the project is finished: ");
+            int realExtraCost = printOutput.readInt("Enter the total extra cost after project is finished: ");
 
-        for(int i = 0; i < budgetCost.size(); i++){
-            totalRealBudget = (realVelocity * budgetCost.get(i).getAmountOfMembers() * budgetCost.get(i).getMemberCostPerHour() *
-                    totalTimeWorked) + realExtraCost;
-            printOutput.printLine("The real total budget after the project is finished is: " + totalRealBudget);
+            for (int i = 0; i < budgetCost.size(); i++) {
+                totalRealBudget = (realVelocity * budgetCost.get(i).getAmountOfMembers() * budgetCost.get(i).getMemberCostPerHour() *
+                        totalTimeWorked) + realExtraCost;
+                printOutput.printLine("The real total budget after the project is finished is: " + totalRealBudget);
+            }
+        }catch (InputMismatchException inputMismatchException){
+            printOutput.printLine("Please round all estimations to the nearest whole number.");
+            menu();
+
         }
         budgetCalculation();
         menu();

@@ -18,7 +18,7 @@ public class myTasksInterface {
 
     }
     public void viewMyTasks(){
-        String username = findUserNameByKey();
+        String username = AddedMembers.findUserNameByKey();
         ArrayList<assignedTask> searchList = AllAssignedTasks.getAssignedtasks();
         int position;
         for(int i = 0; i< searchList.size();i++){
@@ -47,17 +47,5 @@ public class myTasksInterface {
         frame.setSize(500,500);
         frame.setVisible(true);
 
-    }
-    public String findUserNameByKey(){
-        String activeUser = AddedMembers.getActiveUser();
-        int key = AddedMembers.getUserKey(activeUser);
-        String username = "";
-        ArrayList<Member> allMembers = AddedMembers.getAllMembers();
-        for(Member member: allMembers){
-            if(member.getMemberKey() == key){
-                username = member.getUsername();
-            }
-        }
-        return username;
     }
 }
