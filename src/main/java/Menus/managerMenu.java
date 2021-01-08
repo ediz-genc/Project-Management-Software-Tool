@@ -165,27 +165,37 @@ public class managerMenu {
             editProject();
         }
     }
-    public void editTaskDescription(){
+    public void editTaskDescription() {
+        String activeUser = addedmembers.getActiveUser();
+        int key = addedmembers.getUserKey(activeUser);
+        theProject = (Project) allprojects.getProject(key);
         ArrayList<task> tempTask = theProject.getTasks();
-        int counter = 0;
+        int counter = 0; int index = 0;
 
-        for(int i =0;i<tempTask.size();i++){
-            if(tempTask.get(i).getTaskDescription()!=null) {
-                ArrayList<String> allTaskDescriptions = tempTask.get(i).getTaskDescription();
-                for(String taskDescription: allTaskDescriptions){
-                    System.out.println("Task " + counter + " description: \"" + ANSI_GREEN + taskDescription + ANSI_RESET + "\"");
+        for (int i = 0; i < tempTask.size(); i++) {
+            if (theProject.getTasks().get(i).getTaskDescription() != null && theProject.getManagerKey()==key || theProject.getOwnerKey()==key) {
+                index = i;
+                ArrayList<String> allTaskDescriptions = theProject.getTasks().get(i).getTaskDescription();
+                for (int j = 0;j<allTaskDescriptions.size();j++) {
+                    counter = j;
                     counter++;
+                    System.out.println("Task " + counter + " description: \"" + ANSI_GREEN + allTaskDescriptions.get(j) + ANSI_RESET + "\"");
                 }
             }
         }
         int option = printOutput.readInt("Choose the number of which description you want to edit: ");
         String newTaskDescription = printOutput.readLine("Enter a new task description " + ANSI_YELLOW + "(Enter \"0\" to go back): " + ANSI_RESET);
+        option--;
 
-        if(!newTaskDescription.equals("0")) {
-            tempTask.get(option).setTaskDescription(newTaskDescription,option);
-            printOutput.printLine("New task description is saved!");
-        }else{
-            editProject();
+        theProject.getTasks().get(index).setTaskDescription(newTaskDescription,option);
+        theProject.setTasks(tempTask);
+        printOutput.printLine("New task description is saved!");
+        allprojects.setProject(theProject);
+        if (key == 3) {
+            ownerMenu oM = new ownerMenu();
+            oM.menu();
+        } else {
+            return;
         }
     }
     public Object getProject(){

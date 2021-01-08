@@ -142,5 +142,10 @@ public class Project {
         this.managerKey = managerKey;
     }
 
+    public void setTasks(ArrayList<task> tasks){
+        this.tasks = tasks;
+    }
+
+
 
 }
