@@ -1,11 +1,13 @@
 package Projects;
 import java.util.ArrayList;
+import Tools.InputClass;
 import Users.addedMembers;
 
 public class allProjects {
 
     private static volatile allProjects soloAllProjects = new allProjects();
     private ArrayList<Project> allProjects = new ArrayList<Project>();
+    static InputClass printOutput = new InputClass();
     static addedMembers addedmembers = addedMembers.getInstance();
     private int getterPosition =0;
 
@@ -73,7 +75,7 @@ public class allProjects {
         ArrayList<Project> allprojects = getAllProjects();
 
         for (int i = 0; i < allProjects.size(); i++) {
-            if(allprojects.get(i).getOwnerKey()==key || allprojects.get(i).getManagerKey()==key) {
+            if(allprojects.get(i) != null && allprojects.get(i).getOwnerKey()==key || allprojects.get(i).getManagerKey()==key) {
                 projectNames.add(allprojects.get(i).getProjectName());
             }
         }
@@ -83,5 +85,47 @@ public class allProjects {
     public void setProject(Project project){
         int position = getterPosition;
         allProjects.set(position,project);
+   }
+
+   public ArrayList<Project> getAssignedProject(){
+
+   ArrayList<Project> assignedProject = new ArrayList<>();
+   String activeUser = addedmembers.getActiveUser();
+   int key = addedmembers.getUserKey(activeUser);
+   ArrayList<Project> allProject = getAllProjects();
+   int totalAmount = 0;
+
+   for(int i=0;i<allProject.size();i++){
+   if(allProject.get(i)!= null && allProject.get(i).getOwnerKey() == key || allProject.get(i).getManagerKey()==key){
+        assignedProject.add(allProject.get(i)); totalAmount++;
+   }
+}
+    if(totalAmount==0){return null;}
+    return assignedProject;
+}
+
+    public void setGetterPosition(int projectKey){
+
+        for(int i = 0;i<allProjects.size();i++){
+            if(allProjects.get(i)!= null && allProjects.get(i).getProjectKey()== projectKey){
+            this.getterPosition = i;
+            break;
+
+            }
+
+        }
+
     }
+
+   public Project getThroughIndex(int key){
+
+   Project project = null;
+   if(allProjects.get(this.getterPosition).getOwnerKey() == key || allProjects.get(this.getterPosition).getManagerKey() == key){
+   project = allProjects.get(getterPosition);
+   } else {
+   project = null;
+   }
+   
+   return project;
+   }
 }

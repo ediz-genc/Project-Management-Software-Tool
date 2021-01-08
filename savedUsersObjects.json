@@ -414,5 +414,37 @@
     "level": 3,
     "memberKey": 2107,
     "grantedAccess": "access not granted"
+  },
+  {
+    "name": "Helena",
+    "username": "helen",
+    "password": "hi22",
+    "level": 4,
+    "memberKey": 9501,
+    "grantedAccess": "access not granted"
+  },
+  {
+    "name": "Jack",
+    "username": "jac",
+    "password": "1234",
+    "level": 1,
+    "memberKey": 5015,
+    "grantedAccess": "access not granted"
+  },
+  {
+    "name": "Alina",
+    "username": "ali",
+    "password": "ali1234",
+    "level": 1,
+    "memberKey": 6995,
+    "grantedAccess": "access not granted"
+  },
+  {
+    "name": "Arvid",
+    "username": "arvi",
+    "password": "arve123",
+    "level": 1,
+    "memberKey": 9445,
+    "grantedAccess": "access not granted"
   }
 ]

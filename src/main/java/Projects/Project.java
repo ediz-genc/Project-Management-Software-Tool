@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Project {
 
+    public int getProjectKey;
     private String projectName;
     private int weeks;
     private ArrayList<Integer> memberKey;
@@ -16,7 +17,7 @@ public class Project {
     private String projectDesc;
     private double budgetCost;
 
-    public Project(String projectName, int weeks, int ownerKey,int managerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks) {
+    public Project(String projectName, int projectKey, int weeks, int ownerKey,int managerKey, String startDate, String endDate,String projectDescription, ArrayList<task> tasks) {
         this.projectName = projectName;
         this.weeks = weeks;
         this.projectKey = projectKey;
@@ -66,8 +67,8 @@ public class Project {
     public ArrayList<task> getTasks() {
         return tasks;
     }
-    public void addTask(Object o) {
-        tasks.add((task) o);
+    public void addTask(task singleTask) {
+        tasks.add(singleTask);
     }
     public double getBudgetCost() {
         return budgetCost;
@@ -102,6 +103,7 @@ public class Project {
     public void setTasks(ArrayList<task> tasks){
         this.tasks = tasks;
     }
+
 
 
 

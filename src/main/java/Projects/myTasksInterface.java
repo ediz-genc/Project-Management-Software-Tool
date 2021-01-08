@@ -31,7 +31,7 @@ public class myTasksInterface {
                 displayTasks.append("\n");
 
                 String myTasks = displayTasks.toString();
-                tasksDisplay = new JTextArea(10,15);
+                tasksDisplay = new JTextArea(20,15);
                 tasksDisplay.setText(myTasks);
             }
         }
@@ -42,6 +42,8 @@ public class myTasksInterface {
         frame.add(tasksDisplay);
         frame.add(scrollableTaskDisplay);
         frame.getContentPane().setLayout(new FlowLayout());
+        Color lightBlue = new Color(179,229,252);
+        frame.getContentPane().setBackground(lightBlue);
         frame.setSize(500,500);
         frame.setVisible(true);
 

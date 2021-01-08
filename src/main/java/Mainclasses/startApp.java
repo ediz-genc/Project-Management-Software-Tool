@@ -59,6 +59,7 @@ public class startApp {
                     break;
                 case "3": {
                     printOutput.printLine("\nThank you for using EFICAZ.\nSee you next time!");
+                    ie.exportProjects();
                     System.exit(0);
                 }
                 default:
@@ -73,13 +74,12 @@ public class startApp {
         String userName = printOutput.readLine("Create a username: ");
         String pass = printOutput.readLine("Create a password: ");
 
-        int level = printOutput.readInt("Whats your profession? Choose from the options below.\n\n" +
+        int level = printOutput.read123("Whats your profession? Choose from the options below.\n\n" +
                 "1. Product owner\n2. Project manager\n3. Developer/Designer\n (Enter 1-3 depending on your profession)\n\n");
 
         int memberKey = randID.getRandom();
         Member createMember = new Member(name, userName, pass, level,memberKey);
         addedmembers.addMember(createMember);
-
     }
     public void menuDirectory(int level){
 

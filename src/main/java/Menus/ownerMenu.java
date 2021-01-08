@@ -24,13 +24,14 @@ public class ownerMenu {
     static addedMembers addedmember = addedMembers.getInstance();
     static allProjects allprojects = allProjects.getInstance();
     static Project project = new Project();
+    static Project theProject = new Project();
     static task task = new task();
     static taskAssignmentGUI newTask = new taskAssignmentGUI();
     static allMessages AllMessages = allMessages.getInstance();
     static startApp returnedMenu = new startApp();
     static managerMenu managerMenu = new managerMenu();
     randomID randID = randomID.getInstance();
-    static Budget budget = new Budget();
+    static Budget budget = new Budget(); String activeUser; boolean checker;
 
     public void menu() {
 
@@ -49,19 +50,32 @@ public class ownerMenu {
                     newTask.projectChecker();
                     break;
                 case 3:
+                    activeUser = addedmember.getActiveUser();
+                    checker = checkProject();
+                    if(checker){
+                    int key = addedmember.getUserKey(activeUser);
+                    managerMenu.chooseProject();
+                    this.theProject = (Project) allprojects.getThroughIndex(key);
                     addTasksToProject();
+                    } else {
+                    System.out.println("You have no projects");
+                    return;
+                    }
+
                     break;
                 case 4:
                     String activeUser = addedmember.getActiveUser();
-                    Project project;
-                    try {
+                    Project tempProject; boolean checker = checkProject();
+                    if(checker){
+
                         int key = addedmember.getUserKey(activeUser);
-                        project = (Project) allprojects.getProject(key);
-                        if(project==null){throw new Exception();}
-                        managerMenu.setProject(project);
+                        managerMenu.chooseProject();
+                        tempProject = (Project) allprojects.getThroughIndex(key);
+                        managerMenu.setProject(tempProject);
                         managerMenu.editProject();
-                    } catch(Exception e) {
-                        printOutput.printLine(ANSI_RED+"No projects were found within your account, please create a project in order to edit."+ANSI_RESET);
+                    } else {
+                    System.out.println("You have no projects");
+                    return;
                     }
                     break;
                 case 5:
@@ -71,17 +85,16 @@ public class ownerMenu {
                     AllMessages.readMessage();
                     break;
                 case 7:
-                    Project theProject = null;
-                    try {
-                        String activeUsers = addedmember.getActiveUser();
-                        int key = addedmember.getUserKey(activeUsers);
-                        theProject = (Project) allprojects.getProject(key);
-                        if(theProject.getProjectName()==null&&theProject.getMilestoneDescription()==null&&theProject.getMemberKey()==null){
-                            throw new Exception();
-                        }
-                    } catch (Exception e){
-                        printOutput.printLine(ANSI_RED+"No project was found within your account,\nyou need to create one before inviting users."+ANSI_RESET);
-                        menu();
+                    activeUser = addedmember.getActiveUser();
+                    checker = checkProject();
+                    if(checker){
+                    int key = addedmember.getUserKey(activeUser);
+                    managerMenu.chooseProject();
+                    this.theProject = (Project) allprojects.getThroughIndex(key);
+
+                    } else {
+                    System.out.println("You have no projects");
+                    return;
                     }
                     assert theProject != null;
                     String choice = printOutput.readLine("Do you want to assign a developer or manager?\n1. Developer\n2. Project Manager\n");
@@ -118,27 +131,29 @@ public class ownerMenu {
         String moreMilestones;
         do{
             tasks.add(addMoreMilestones());
-            moreMilestones = printOutput.readLine("Do you want to add another milestone? (yes/no):\n");
-        }while(moreMilestones.equals("yes"));
+            moreMilestones = printOutput.readYN("Do you want to add another milestone to your project? (y/n):\n");
+        }while(moreMilestones.equals("y"));
 
         int managerKey = randID.getRandom();
-
+        int projectKey = randID.getRandom();
         String tempUser = addedmember.getActiveUser();
         int ownerKey = addedmember.getUserKey(tempUser);
 
-        Project newProject = new Project(projectName, weeks, ownerKey,managerKey, startDate, endDate,projectDescription,tasks);
+        Project newProject = new Project(projectName,projectKey, weeks, ownerKey,managerKey, startDate, endDate,projectDescription,tasks);
         allprojects.addProject(newProject);
         printOutput.printLine(ANSI_BRIGHT_GREEN+"Project created!"+ANSI_RESET);
     }
 
     public void printedDevelopers(){
 
-        System.out.println(ANSI_YELLOW+"These are all the available Developers:\n"+ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "These are all the available Developers: \n" + ANSI_RESET);
         ArrayList<Member> temp = addedmember.getAllMembers();
         for(Member member: temp){
-            System.out.println("Name: " + member.getName() +  " ID: " + member.getMemberKey());
-            assignedDeveloper();
+            if(member.getLevel()!= 0 && member.getLevel() == 3){
+                System.out.println("Name: " + member.getName() +  " ID: " + member.getMemberKey());
+            }
         }
+        assignedDeveloper();
     }
     public void assignedDeveloper(){
 
@@ -157,24 +172,28 @@ public class ownerMenu {
     }
     void addTasksToProject(){
         String option;
-        ArrayList<String> tasksInMilestone = task.getTaskDescription();
-        String milestones;
-        String taskDescription;
-        String projectName = printOutput.readLine("Please enter project name: ");
-        if(projectName.equals("0")){
-        menu();
-        }
-        int position = findProjectByName(projectName);
-        ArrayList<Projects.task> tasks = allprojects.getAllProjects().get(position).getTasks();
-        do {
+        ArrayList<String> tasksInMilestone = new ArrayList<>();
+        String milestones; int number = 0;
+
+
+
+   do {
+
             milestones = printOutput.readLine("Enter milestone description: ");
-            taskDescription = printOutput.readLine("Enter task description: ");
-            tasksInMilestone.add(taskDescription);
+            number = printOutput.readInt("How many tasks do you want to add?");
+            for(int i=0;i<number;i++){
+            String descp = printOutput.readLine("Enter task description: ");
+             tasksInMilestone.add(descp);
+            }
+
+            Projects.task task = new Projects.task(milestones, tasksInMilestone);
+            theProject.addTask(task);
             option = printOutput.readYN("Do you want to enter more tasks to your project? (y/n):\n");
         }while (option.equals("y"));
 
-        Projects.task task = new Projects.task(milestones, tasksInMilestone);
-        tasks.add(task);
+       allprojects.setProject(theProject);
+
+
 
     }
     public int findProjectByName(String projectName){
@@ -185,6 +204,7 @@ public class ownerMenu {
             if(allProjects.get(i).getProjectName() != null && allProjects.get(i).getProjectName().equals(projectName)){
                 position = i;
                 projectFound = true;
+                break;
             }
         }
         if(!projectFound){
@@ -202,21 +222,20 @@ public class ownerMenu {
         do {
             taskDescription = printOutput.readLine("Enter the description of the task: ");
             taskDescriptions.add(taskDescription);
-            option = printOutput.readLine("Do you want to enter more tasks to your milestone? (y/n):\n");
+            option = printOutput.readYN("Do you want to enter more tasks to your milestone? (y/n):\n");
         }while (option.equals("y"));
 
         return new task(milestones, taskDescriptions);
     }
     public void printedManagers(){
 
-        printOutput.printLine(ANSI_YELLOW+"These are all the available managers:\n"+ANSI_RESET);
-        for(int i=0;i<0;i++){
-            ArrayList<Member> tempUsers = addedmember.getAllMembers();
+        printOutput.printLine(ANSI_YELLOW+"These are all the available managers: \n"+ANSI_RESET);
+        ArrayList<Member> tempUsers = addedmember.getAllMembers();
+        for(int i=0;i<tempUsers.size();i++){
             if(tempUsers.get(i)!=null && tempUsers.get(i).getLevel()==2){
                 printOutput.printLine("Name " + tempUsers.get(i).getName() + "| ID " + tempUsers.get(i).getMemberKey());
-            assignedManager();
             }
-        }
+        } assignedManager();
     }
     public void assignedManager(){
 
@@ -231,8 +250,10 @@ public class ownerMenu {
         }
             String activeUser = addedmember.getActiveUser();
             int key = addedmember.getUserKey(activeUser);
-            Project theProject = (Project) allprojects.getProject(key);
-            theProject.setManagerKey(ID);
+            this.theProject.setManagerKey(ID);
+            printOutput.printLine(ANSI_BRIGHT_GREEN+"\nMember added!\n"+ANSI_RESET);
+            allprojects.setProject(theProject);
+            menu();
 
             }
     public void estimatedBudget(){
@@ -303,11 +324,31 @@ public class ownerMenu {
         }catch (InputMismatchException inputMismatchException){
             printOutput.printLine(ANSI_RED +"Please round all estimations to the nearest whole number. "+ ANSI_RESET);
             menu();
-
         }
         budgetCalculation();
         menu();
     }
+
+
+     public boolean checkProject(){
+        boolean checker = false;
+
+        try {
+                    String activeUser = addedmember.getActiveUser();
+                    int key = addedmember.getUserKey(activeUser);
+                    Project theProject = (Project) allprojects.getProject(key);
+                    if(theProject==null){
+                        return checker;
+                    } else {
+                    checker = true;
+                    }
+                } catch (Exception e){
+                    printOutput.printLine("You have no active projects...returning");
+
+                }
+        return checker;
+        }
+
 
 
 }

@@ -1,5 +1,6 @@
 [
   {
+    "getProjectKey": 0,
     "projectName": "project1",
     "weeks": 5,
     "projectKey": 9892,
@@ -16,9 +17,11 @@
         ]
       }
     ],
-    "projectDesc": "This is a project management system."
+    "projectDesc": "This is a project management system.",
+    "budgetCost": 0.0
   },
   {
+    "getProjectKey": 0,
     "projectName": "project2",
     "weeks": 7,
     "projectKey": 1020,
@@ -35,9 +38,11 @@
         ]
       }
     ],
-    "projectDesc": "This is a project"
+    "projectDesc": "This is a project",
+    "budgetCost": 0.0
   },
   {
+    "getProjectKey": 0,
     "projectName": "eficaz",
     "weeks": 5,
     "projectKey": 3055,
@@ -54,9 +59,11 @@
         ]
       }
     ],
-    "projectDesc": ""
+    "projectDesc": "",
+    "budgetCost": 0.0
   },
   {
+    "getProjectKey": 0,
     "projectName": "eficaz",
     "weeks": 5,
     "projectKey": 7801,
@@ -72,9 +79,11 @@
         ]
       }
     ],
-    "projectDesc": "hi"
+    "projectDesc": "hi",
+    "budgetCost": 0.0
   },
   {
+    "getProjectKey": 0,
     "projectName": "eficaz",
     "weeks": 5,
     "projectKey": 4369,
@@ -91,9 +100,11 @@
         ]
       }
     ],
-    "projectDesc": "hello"
+    "projectDesc": "hello",
+    "budgetCost": 0.0
   },
   {
+    "getProjectKey": 0,
     "projectName": "skola",
     "weeks": 1,
     "projectKey": 0,
@@ -109,6 +120,27 @@
         ]
       }
     ],
-    "projectDesc": "ss"
+    "projectDesc": "ss",
+    "budgetCost": 0.0
+  },
+  {
+    "getProjectKey": 0,
+    "projectName": "embedded computer",
+    "weeks": 5,
+    "projectKey": 6662,
+    "ownerKey": 1145,
+    "managerKey": 2050,
+    "startDate": "",
+    "endDate": "",
+    "tasks": [
+      {
+        "milestoneDescription": "biology system",
+        "taskDescription": [
+          "biology class"
+        ]
+      }
+    ],
+    "projectDesc": "computational biology",
+    "budgetCost": 0.0
   }
 ]
